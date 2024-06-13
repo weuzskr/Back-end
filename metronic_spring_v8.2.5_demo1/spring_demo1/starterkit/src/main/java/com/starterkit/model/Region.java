@@ -1,10 +1,11 @@
 package com.starterkit.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "poste")
-public class Poste {
+@Table(name = "region")
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +14,13 @@ public class Poste {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    public Poste() {
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    private Set<Departement> departements;
+
+    public Region() {
     }
 
-    public Poste(String nom) {
+    public Region(String nom) {
         this.nom = nom;
     }
 
@@ -35,5 +39,13 @@ public class Poste {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Set<Departement> getDepartements() {
+        return departements;
+    }
+
+    public void setDepartements(Set<Departement> departements) {
+        this.departements = departements;
     }
 }

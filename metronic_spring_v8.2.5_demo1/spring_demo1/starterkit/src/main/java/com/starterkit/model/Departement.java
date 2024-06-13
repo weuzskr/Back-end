@@ -3,8 +3,8 @@ package com.starterkit.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "poste")
-public class Poste {
+@Table(name = "departement")
+public class Departement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +13,16 @@ public class Poste {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    public Poste() {
+    @ManyToOne
+    @JoinColumn(name = "region_id", nullable = false)
+    private Region region;
+
+    public Departement() {
     }
 
-    public Poste(String nom) {
+    public Departement(String nom, Region region) {
         this.nom = nom;
+        this.region = region;
     }
 
     // Getters and Setters
@@ -35,5 +40,13 @@ public class Poste {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }

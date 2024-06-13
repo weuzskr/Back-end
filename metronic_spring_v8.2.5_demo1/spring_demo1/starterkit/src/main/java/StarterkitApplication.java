@@ -1,9 +1,12 @@
-package com.theme.starterkit;
+package com.starterkit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
+
+
 public class StarterkitApplication {
 
     public static void main(String[] args) {
