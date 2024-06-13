@@ -1,11 +1,11 @@
 package com.starterkit.controller;
 
 import com.starterkit.model.Citoyen;
-import com.starterkit.service.CitoyenService;
+import com.starterkit.repository.CitoyenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,11 +13,39 @@ import java.util.List;
 @RequestMapping("/api/citoyens")
 public class CitoyenController {
 
-    @Autowired
-    private CitoyenService citoyenService;
+    private final CitoyenRepository citoyenRepository;
 
+    @Autowired
+    public CitoyenController(CitoyenRepository citoyenRepository) {
+        this.citoyenRepository = citoyenRepository;
+    }
+
+    // Endpoint pour récupérer tous les citoyens
     @GetMapping
-    public List<Citoyen> getAllCitoyens() {
-        return citoyenService.getAllCitoyens();
+    public ResponseEntity<List<Citoyen>> getAllCitoyens() {
+        List<Citoyen> citoyens = citoyenRepository.findAll();
+        return new ResponseEntity<>(citoyens, HttpStatus.OK);
+    }
+
+    // Endpoint pour chercher un citoyen par son ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Citoyen> getCitoyenById(@PathVariable Long id) {
+        Citoyen citoyen = citoyenRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Citoyen not found with id: " + id));
+        return new ResponseEntity<>(citoyen, HttpStatus.OK);
+    }
+
+    // Endpoint pour chercher un citoyen par son nom
+    @GetMapping("/search")
+    public ResponseEntity<List<Citoyen>> getCitoyensByNom(@RequestParam String nom) {
+        List<Citoyen> citoyens = citoyenRepository.findByNom(nom);
+        return new ResponseEntity<>(citoyens, HttpStatus.OK);
+    }
+
+    // Endpoint pour enregistrer un nouveau citoyen
+    @PostMapping("/enroll")
+    public ResponseEntity<Citoyen> addCitoyen(@RequestBody Citoyen citoyen) {
+        Citoyen savedCitoyen = citoyenRepository.save(citoyen);
+        return new ResponseEntity<>(savedCitoyen, HttpStatus.CREATED);
     }
 }

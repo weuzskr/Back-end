@@ -5,15 +5,13 @@ import com.starterkit.repository.CitoyenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CitoyenService {
 
     @Autowired
     private CitoyenRepository citoyenRepository;
 
-    public List<Citoyen> getAllCitoyens() {
-        return citoyenRepository.findAll();
+    public Citoyen enrollCitizen(Citoyen citoyen) {
+        return citoyenRepository.save(citoyen);
     }
 }
