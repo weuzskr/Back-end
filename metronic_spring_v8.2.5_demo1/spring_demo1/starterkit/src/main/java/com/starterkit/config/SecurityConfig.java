@@ -32,12 +32,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login","/api/citoyens","/api/citoyens/enroll","/enroll","/api/citoyens/**","/api/citoyens/enroll/**","/api/citoyens/search**").permitAll()
+                // Autoriser l'accès sans authentification à certains endpoints
+                .antMatchers("/login","/api/citoyens").permitAll()
+                // Restreindre l'accès aux endpoints /admin/** aux utilisateurs avec le rôle "ADMIN"
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                // Toutes les autres requêtes nécessitent une authentification
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                // Page de connexion personnalisée
                 .loginPage("/login")
+                // Redirection après connexion réussie
                 .defaultSuccessUrl("/home", true)
                 .permitAll()
                 .and()
