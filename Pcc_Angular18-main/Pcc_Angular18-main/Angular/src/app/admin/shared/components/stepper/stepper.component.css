@@ -1,0 +1,11 @@
+.completed-icon {
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; /* Ajustez selon la taille désirée */
+  height: 30px; /* Ajustez selon la taille désirée */
+}

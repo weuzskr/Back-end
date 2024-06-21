@@ -1,0 +1,358 @@
+<div class="modal fade" tabindex="-1" id="citoyen_add_modal">
+  <div class="modal-dialog modal-xl">
+    <form
+      class="modal-content"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="citoyenForm"
+    >
+      <!--begin Close-->
+      <div
+        class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      >
+        <i class="pe-4">
+          <span class="path1"></span><span class="path2"></span>x</i
+        >
+      </div>
+      <!--end Close-->
+      <div class="modal-body">
+        <div class="flex-center flex-wrap">
+          <div class="d-flex flex-wrap">
+            <div *ngFor="let step of steps; let i = index" class="w-50">
+              <div
+                class="mx-4 my-4"
+                [class.current]="isActiveStep(i)"
+                [class.completed]="isStepCompleted(i)"
+                (click)="goToStep(i)"
+              >
+                <div class="d-flex flex-between align-items-center">
+                  <div class="w-40px h-40px">
+                    <span *ngIf="isStepCompleted(i)" class="completed-icon">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span
+                      class="btn btn-info btn-active-light-primary me-4"
+                      *ngIf="!isStepCompleted(i)"
+                      >{{ step.number }}</span
+                    >
+                  </div>
+                  <div>
+                    <h3>{{ step.title }}</h3>
+                    <div>{{ step.description }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- Step 1 Content -->
+          <div *ngIf="activeStep.number === 1">
+            <div class="d-flex flex-wrap mb-4">
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Nom</label>
+                <input
+                  type="text"
+                  class="form-control form-control-solid"
+                  formControlName="nom"
+                />
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Prénom</label>
+                <input
+                  type="text"
+                  class="form-control form-control-solid"
+                  formControlName="prenom"
+                />
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Date de naissance</label>
+                <input
+                  type="date"
+                  class="form-control form-control-solid"
+                  formControlName="date_de_naissance"
+                />
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Lieu de naissance</label>
+                <input
+                  type="text"
+                  class="form-control form-control-solid"
+                  formControlName="lieu_de_naissance"
+                />
+              </div>
+            </div>
+            <div class="d-flex flex-wrap mb-4">
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Pays de naissance</label>
+                <input
+                  type="text"
+                  class="form-control form-control-solid"
+                  formControlName="pays_de_naissance"
+                />
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Numéro de téléphone</label>
+                <input
+                  type="number"
+                  class="form-control form-control-solid"
+                  formControlName="numero_de_telephone"
+                />
+              </div>
+
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Sexe</label>
+                <select
+                  class="form-control form-control-solid"
+                  formControlName="sexe"
+                >
+                  <option value="Masculin">Masculin</option>
+                  <option value="Feminin">Féminin</option>
+                </select>
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Situation matrimoniale</label>
+                <select
+                  class="form-control form-control-solid"
+                  formControlName="situation_matrimoniale"
+                >
+                  <option value="celibataire">Célibataire</option>
+                  <option value="marie">Marié</option>
+                  <option value="divorce">Divorcé</option>
+                  <option value="veuf">Veuf</option>
+                </select>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap mb-4">
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Profession</label>
+                <select
+                  class="form-control form-control-solid"
+                  formControlName="profession_id"
+                >
+                  <option
+                    *ngFor="let profession of professions"
+                    [value]="profession.id"
+                  >
+                    {{ profession.secteur_dactivite }}
+                  </option>
+                </select>
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Lieu d'acitvité</label>
+                <input
+                  type="text"
+                  class="form-control form-control-solid"
+                  formControlName="lieu_dactivite"
+                />
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Empreinte digitale</label>
+                <input
+                  type="text"
+                  class="form-control form-control-solid"
+                  formControlName="empreinte_digitale"
+                />
+              </div>
+              <div class="fv-row w-25 pe-4">
+                <label class="form-label">Signature</label>
+                <input
+                  type="text"
+                  class="form-control form-control-solid"
+                  formControlName="signature"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Step 2 Content -->
+          <div *ngIf="activeStep.number === 2">
+            <div formArrayName="famille">
+              <div
+                *ngFor="let member of famille.controls; let i = index"
+                [formGroupName]="i"
+                class="d-flex flex-wrap mb-4"
+              >
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Nom</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-solid"
+                    formControlName="nom"
+                  />
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Prénom</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-solid"
+                    formControlName="prenom"
+                  />
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Âge</label>
+                  <input
+                    type="number"
+                    class="form-control form-control-solid"
+                    formControlName="age"
+                  />
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Sexe</label>
+                  <select
+                    class="form-control form-control-solid"
+                    formControlName="sexe"
+                  >
+                    <option value="Masculin">Masculin</option>
+                    <option value="Feminin">Féminin</option>
+                  </select>
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Type</label>
+                  <select
+                    class="form-control form-control-solid"
+                    formControlName="type"
+                  >
+                    <option value="enfant">Enfant</option>
+                    <option value="conjoint">Conjoint.e</option>
+                  </select>
+                </div>
+                <div class="fv-row w-10 d-flex align-items-end">
+                  <button class="btn btn-danger" (click)="removeFamille(i)">
+                    Supprimer
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn btn-primary btn-active-light-primary"
+              (click)="addFamille()"
+            >
+              Ajouter membre de la famille
+            </button>
+          </div>
+          <!-- Step 3 Content -->
+          <div *ngIf="activeStep.number === 3">
+            <div formArrayName="attaches_familliales">
+              <div
+                *ngFor="
+                  let attach of attaches_familliales.controls;
+                  let i = index
+                "
+                [formGroupName]="i"
+                class="d-flex flex-wrap mb-4"
+              >
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Nom</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-solid"
+                    formControlName="nom"
+                  />
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Prénom</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-solid"
+                    formControlName="prenom"
+                  />
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Numéro de téléphone</label>
+                  <input
+                    type="number"
+                    class="form-control form-control-solid"
+                    formControlName="numero_de_telephone"
+                  />
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Adresse</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-solid"
+                    formControlName="adresse"
+                  />
+                </div>
+                <div class="fv-row w-25 pe-4">
+                  <label class="form-label">Lien de parenté</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-solid"
+                    formControlName="lien_de_parente"
+                  />
+                </div>
+                <div class="fv-row w-10 d-flex align-items-end">
+                  <button
+                    class="btn btn-danger"
+                    (click)="removeAttacheFamilliale(i)"
+                  >
+                    Supprimer
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn btn-primary btn-active-light-primary"
+              (click)="addAttacheFamilliale()"
+            >
+              Ajouter attache familiale
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--Start modal's Footer-->
+      <div class="modal-footer d-flex flex-stack">
+        <!-- First step: only "Next" button -->
+        <button
+          type="button"
+          class="btn btn-primary btn-active-light-primary ms-auto"
+          *ngIf="activeStep.number === 1"
+          (click)="nextStep()"
+        >
+          Suivant
+        </button>
+
+        <!-- Intermediate steps: "Previous" and "Next" buttons -->
+        <div
+          *ngIf="isBetweenStep()"
+          class="d-flex justify-content-between w-100"
+        >
+          <button
+            type="button"
+            class="btn btn-primary btn-active-light-primary me-2"
+            (click)="prevStep()"
+          >
+            Precedant
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-active-light-primary ms-auto"
+            (click)="nextStep()"
+          >
+            Suivant
+          </button>
+        </div>
+
+        <!-- Last step: "Previous" and "Submit" buttons -->
+        <div *ngIf="isLastStep()" class="d-flex justify-content-between w-100">
+          <button
+            type="button"
+            class="btn btn-primary btn-active-light-primary me-2"
+            (click)="prevStep()"
+          >
+            Precedant
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary btn-active-light-primary ms-auto"
+            data-kt-stepper-action="submit"
+          >
+            Soumettre
+          </button>
+        </div>
+      </div>
+      <!--End modal's Footer-->
+    </form>
+  </div>
+</div>

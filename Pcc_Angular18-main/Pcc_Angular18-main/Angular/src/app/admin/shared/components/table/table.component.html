@@ -1,0 +1,89 @@
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-head-row card-tools-still-right">
+        <div class="card-title">Listes des ressortisants</div>
+        <div *ngIf="!showConsulat" class="ms-md-auto py-2 py-md-0">
+          <button
+            class="btn btn-primary btn-round ms-auto"
+            data-bs-toggle="modal"
+            data-bs-target="#citoyen_add_modal"
+          >
+            <i class="fa fa-plus"></i>
+            Enroller un ressortisant
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <!--start add citoyen Modal -->
+      <app-stepper></app-stepper>
+      <!-- end add citoyen Modal -->
+
+      <div class="table-responsive">
+        <table
+          id="multi-filter-select"
+          class="display table table-striped table-hover"
+        >
+          <thead>
+            <tr>
+              <td>Matricule</td>
+              <td>Nom Complet</td>
+              <td>Profession</td>
+              <td>Date de naissance</td>
+              <td>Lieu de Naissance</td>
+              <td>Numéro de Téléphone</td>
+              <td *ngIf="showConsulat">Consulat</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td>Matricule</td>
+              <td>Nom Complet</td>
+              <td>Profession</td>
+              <td>Date de naissance</td>
+              <td>Lieu de Naissance</td>
+              <td>Numéro de Téléphone</td>
+              <td *ngIf="showConsulat">Consulat</td>
+              <td>Action</td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr *ngFor="let citoyen of citoyens">
+              <td>{{ citoyen.matricule }}</td>
+              <td>{{ citoyen.prenom }} {{ citoyen.nom }}</td>
+              <td>{{ citoyen.profession.secteur_dactivite }}</td>
+              <td>{{ citoyen.date_de_naissance }}</td>
+              <td>{{ citoyen.lieu_de_naissance }}</td>
+              <td>{{ citoyen.numero_de_telephone }}</td>
+              <td *ngIf="showConsulat">{{ citoyen.consulat?.nom }}</td>
+              <td>
+                <div class="form-button-action">
+                  <button
+                    type="button"
+                    data-bs-toggle="tooltip"
+                    title=""
+                    class="btn btn-link btn-primary btn-lg"
+                    data-original-title="Edit Task"
+                  >
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button
+                    type="button"
+                    data-bs-toggle="tooltip"
+                    title=""
+                    class="btn btn-link btn-danger"
+                    data-original-title="Show"
+                  >
+                    <i class="fa fa-eye"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
