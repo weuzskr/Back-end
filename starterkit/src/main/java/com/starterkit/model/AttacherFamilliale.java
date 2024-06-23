@@ -19,6 +19,14 @@ public class AttacherFamilliale {
     @Column(name = "nom", nullable = false)
     private String nom;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Column(name = "numero_de_telephone", nullable = false)
     private String numeroDeTelephone;
 

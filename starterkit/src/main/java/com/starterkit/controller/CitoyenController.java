@@ -1,6 +1,8 @@
 package com.starterkit.controller;
 
+
 import com.starterkit.model.Citoyen;
+import com.starterkit.service.CitoyenService;
 import com.starterkit.repository.CitoyenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,10 +44,12 @@ public class CitoyenController {
         return new ResponseEntity<>(citoyens, HttpStatus.OK);
     }
 
-    // Endpoint pour enregistrer un nouveau citoyen
-    @PostMapping("/enroll")
-    public ResponseEntity<Citoyen> addCitoyen(@RequestBody Citoyen citoyen) {
-        Citoyen savedCitoyen = citoyenRepository.save(citoyen);
-        return new ResponseEntity<>(savedCitoyen, HttpStatus.CREATED);
+    @Autowired
+    private CitoyenService citoyenService;
+
+    @PostMapping("/enroler")
+    public ResponseEntity<Citoyen> enrôlerCitoyen(@RequestBody Citoyen citoyen) {
+        Citoyen enrôléCitoyen = citoyenService.enrôlerCitoyen(citoyen);
+        return ResponseEntity.ok(enrôléCitoyen);
     }
 }
