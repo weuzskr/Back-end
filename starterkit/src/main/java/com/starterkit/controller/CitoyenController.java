@@ -1,6 +1,5 @@
 package com.starterkit.controller;
 
-
 import com.starterkit.model.Citoyen;
 import com.starterkit.service.CitoyenService;
 import com.starterkit.repository.CitoyenRepository;
