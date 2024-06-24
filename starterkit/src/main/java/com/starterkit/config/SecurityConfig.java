@@ -16,7 +16,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -49,8 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
-                .formLogin().disable()
-                .cors(); // Activer la configuration CORS
+                .formLogin().disable();
     }
 
     @Bean
@@ -66,3 +64,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 }
+
