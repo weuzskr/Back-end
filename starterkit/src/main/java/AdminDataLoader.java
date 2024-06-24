@@ -22,6 +22,7 @@ public class AdminDataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        // Vérification et création du premier administrateur si aucun n'existe
         if (adminRepository.count() == 0) {
             String username = "admin";
             String rawPassword = "passe";
@@ -30,10 +31,25 @@ public class AdminDataLoader implements ApplicationRunner {
 
             Admin admin = new Admin(username, encodedPassword, email);
             adminRepository.save(admin);
-
-            System.out.println("Admin user created successfully.");
+            System.out.println("Admin user 'admin' created successfully.");
         } else {
-            System.out.println("Admin user already exists. Skipping admin creation.");
+            System.out.println("Admin user 'admin' already exists. Skipping admin creation.");
+        }
+
+        // Vérification et création d'un nouvel administrateur
+        if (!adminRepository.existsByUsername("MagibBa")) {
+            String newUsername = "MagibBa";
+            String newRawPassword = "passe";
+            String newEmail = "Ba@mirahtec.com";
+            String newEncodedPassword = passwordEncoder.encode(newRawPassword);
+
+            Admin newAdmin = new Admin(newUsername, newEncodedPassword, newEmail);
+            adminRepository.save(newAdmin);
+            System.out.println("Admin user 'MagibBa' created successfully.");
+        } else {
+            System.out.println("Admin user 'MagibBa' already exists. Skipping admin creation.");
         }
     }
+
+
 }
