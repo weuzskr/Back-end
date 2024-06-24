@@ -39,11 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/login", "/api/home").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/home").authenticated()
                 .anyRequest().authenticated()
                 .and()
-                .csrf().disable() // Désactiver CSRF pour simplifier les requêtes POST via Postman
+                .csrf().disable()
                 .formLogin().disable();
     }
 }

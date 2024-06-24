@@ -1,7 +1,7 @@
 package com.starterkit.model;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class Admin {
@@ -17,6 +17,14 @@ public class Admin {
 
     @Column(unique = true)
     private String email;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "admin_roles",
+            joinColumns = @JoinColumn(name = "admin_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     // Constructors, getters, and setters
     public Admin() {}
@@ -57,5 +65,13 @@ public class Admin {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
