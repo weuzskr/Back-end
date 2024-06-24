@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            margin-top: 20px;
+            display: inline-block;
+            border: 1px solid #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome Home!</h1>
+    <p>Thank you for visiting our website. We hope you have a pleasant experience!</p>
+    <a th:href="@{/logout}">Logout</a>
+    <a th:href="@{/formulaire-citoyen}" target="_blank" > Acceder au formulaire</a>
+    <a th:href="@{/enroler}"  > formulaire</a>
+</div>
+</body>
+</html>
