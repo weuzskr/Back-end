@@ -50,14 +50,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .formLogin().disable()
-                .cors(); // Activer la configuration CORS
+                .cors().disable(); // Activer la configuration CORS
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*")); // Permettre toutes les origines
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Méthodes autorisées
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Méthodes
+                                                                                                   // autorisées
         configuration.setAllowedHeaders(Arrays.asList("*")); // Autoriser tous les en-têtes
         configuration.setAllowCredentials(true); // Autoriser les credentials (cookies, authentification HTTP)
 
