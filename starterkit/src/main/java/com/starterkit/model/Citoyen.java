@@ -2,6 +2,7 @@ package com.starterkit.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "citoyen")
@@ -57,27 +58,26 @@ public class Citoyen {
     @JoinColumn(name = "profession_id")
     private Profession profession;
 
-    @ManyToOne
-    @JoinColumn(name = "attacherfamilliale_id")
-    private AttacherFamilliale attacherFamilliale;
+    @OneToMany(mappedBy = "citoyen", cascade = CascadeType.ALL)
+    private List<AttacherFamilliale> attacherFamilliales;
 
-    @ManyToOne
-    @JoinColumn(name = "famille_id")
-    private Famille famille;
+    @OneToMany(mappedBy = "citoyen", cascade = CascadeType.ALL)
+    private List<Famille> familles;
 
+
+    // Constructeur par défaut
+    public Citoyen() {
+    }
     @ManyToOne
     @JoinColumn(name = "consulat_id")
     private Consulat consulat;
 
-    // Constructeurs, getters et setters
-
-    public Citoyen() {
-    }
-
-    public Citoyen(String matricule, String nom, String prenom, LocalDate dateDeNaissance, String lieuDeNaissance,
-                   String paysDeNaissance, String sexe, Float taille, String numeroDeTelephone, String photo,
-                   String signature, String lieuDactivites, String empreinteDigitale, String situationMatrimoniale,
-                   Profession profession, AttacherFamilliale attacherFamilliale, Famille famille, Consulat consulat) {
+    // Constructeur avec de nombreux paramètres
+    public Citoyen(String matricule, String nom, String prenom, LocalDate dateDeNaissance,
+                   String lieuDeNaissance, String paysDeNaissance, String sexe, Float taille,
+                   String numeroDeTelephone, String photo, String signature, String lieuDactivites,
+                   String empreinteDigitale, String situationMatrimoniale, Profession profession,
+                   List<AttacherFamilliale> attacherFamilliales, List<Famille> familles, Consulat consulat) {
         this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
@@ -93,9 +93,18 @@ public class Citoyen {
         this.empreinteDigitale = empreinteDigitale;
         this.situationMatrimoniale = situationMatrimoniale;
         this.profession = profession;
-        this.attacherFamilliale = attacherFamilliale;
-        this.famille = famille;
+        this.attacherFamilliales = attacherFamilliales;
+        this.familles = familles;
         this.consulat = consulat;
+    }
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMatricule() {
@@ -218,20 +227,20 @@ public class Citoyen {
         this.profession = profession;
     }
 
-    public AttacherFamilliale getAttacherFamilliale() {
-        return attacherFamilliale;
+    public List<AttacherFamilliale> getAttacherFamilliales() {
+        return attacherFamilliales;
     }
 
-    public void setAttacherFamilliale(AttacherFamilliale attacherFamilliale) {
-        this.attacherFamilliale = attacherFamilliale;
+    public void setAttacherFamilliales(List<AttacherFamilliale> attacherFamilliales) {
+        this.attacherFamilliales = attacherFamilliales;
     }
 
-    public Famille getFamille() {
-        return famille;
+    public List<Famille> getFamilles() {
+        return familles;
     }
 
-    public void setFamille(Famille famille) {
-        this.famille = famille;
+    public void setFamilles(List<Famille> familles) {
+        this.familles = familles;
     }
 
     public Consulat getConsulat() {

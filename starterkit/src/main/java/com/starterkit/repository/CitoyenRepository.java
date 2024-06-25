@@ -8,8 +8,9 @@ import java.util.List;
 
 @Repository
 public interface CitoyenRepository extends JpaRepository<Citoyen, Long> {
-    List<Citoyen> findByNom(String nom);
+    List<Citoyen> findByNomContainingIgnoreCase(String nom);
 
     // Exemple : Requête pour trouver un citoyen par son matricule
     Citoyen findByMatricule(String matricule);
+    List<Citoyen> findByConsulatId(Long consulatId);
 }

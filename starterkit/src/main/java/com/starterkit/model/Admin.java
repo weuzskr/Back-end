@@ -26,13 +26,18 @@ public class Admin {
     )
     private Set<Role> roles;
 
+    @OneToOne
+    @JoinColumn(name = "consulat_id", unique = true)
+    private Consulat consulat;
+
     // Constructors, getters, and setters
     public Admin() {}
 
-    public Admin(String username, String password, String email) {
+    public Admin(String username, String password, String email, Consulat consulat) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.consulat = consulat;
     }
 
     public Long getId() {
@@ -73,5 +78,13 @@ public class Admin {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Consulat getConsulat() {
+        return consulat;
+    }
+
+    public void setConsulat(Consulat consulat) {
+        this.consulat = consulat;
     }
 }

@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.Famille;
@@ -41,3 +42,4 @@ public class FamilleDataLoader implements ApplicationRunner {
         }
     }
 }
+*/

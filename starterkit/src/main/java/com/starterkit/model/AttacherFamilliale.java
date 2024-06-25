@@ -19,14 +19,6 @@ public class AttacherFamilliale {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Column(name = "numero_de_telephone", nullable = false)
     private String numeroDeTelephone;
 
@@ -35,6 +27,10 @@ public class AttacherFamilliale {
 
     @Column(name = "adresse", nullable = false)
     private String adresse;
+
+    @ManyToOne
+    @JoinColumn(name = "citoyen_id", nullable = false)
+    private Citoyen citoyen;
 
     public AttacherFamilliale() {}
 
@@ -47,12 +43,28 @@ public class AttacherFamilliale {
         this.adresse = adresse;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getMatricule() {
         return matricule;
     }
 
     public void setMatricule(String matricule) {
         this.matricule = matricule;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getNom() {
@@ -63,11 +75,35 @@ public class AttacherFamilliale {
         this.nom = nom;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getNumeroDeTelephone() {
+        return numeroDeTelephone;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setNumeroDeTelephone(String numeroDeTelephone) {
+        this.numeroDeTelephone = numeroDeTelephone;
+    }
+
+    public String getLienDeParente() {
+        return lienDeParente;
+    }
+
+    public void setLienDeParente(String lienDeParente) {
+        this.lienDeParente = lienDeParente;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public Citoyen getCitoyen() {
+        return citoyen;
+    }
+
+    public void setCitoyen(Citoyen citoyen) {
+        this.citoyen = citoyen;
     }
 }

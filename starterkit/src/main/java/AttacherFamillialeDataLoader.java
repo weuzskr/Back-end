@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.AttacherFamilliale;
@@ -40,3 +41,4 @@ public class AttacherFamillialeDataLoader implements ApplicationRunner {
         }
     }
 }
+*/
