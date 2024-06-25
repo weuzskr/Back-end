@@ -9,7 +9,9 @@
         <!--begin Products-->
         <div class="card card-flush">
           <!--begin Card header-->
-          <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+          <div
+            class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
+          >
             <!--begin Card title-->
             <div class="card-title">
               <!--begin Search-->
@@ -29,25 +31,28 @@
             </div>
             <!--end Card title-->
             <!--begin Card toolbar-->
-            <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-              <div class="w-100 mw-150px">
-                <!--begin Select2-->
-                <select
-                  class="form-select form-select-solid"
-                  data-control="select2"
-                  data-hide-search="true"
-                  data-placeholder="Status"
-                  data-kt-ecommerce-product-filter="status"
-                >
-                  <option></option>
-                  <option value="all">All</option>
-                  <option value="published">Published</option>
-                  <option value="scheduled">Scheduled</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-                <!--end Select2-->
+            <div
+              class="card-toolbar flex-row-fluid gap-5 d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex gap-2">
+                <div class="w-100 mw-150px">
+                  <!-- Items per page selector -->
+                  <select
+                    class="form-select form-select-solid"
+                    [(ngModel)]="itemsPerPage"
+                    (ngModelChange)="paginateCitoyens()"
+                  >
+                    <option [value]="5">5</option>
+                    <option [value]="10">10</option>
+                    <option [value]="25">25</option>
+                    <option [value]="50">50</option>
+                    <option [value]="75">75</option>
+                    <option [value]="100">100</option>
+                  </select>
+                </div>
               </div>
-              <!--begin Add product-->
+              <div class="d-flex gap-2"></div>
+              <!--begin add un citoyen-->
               <button
                 class="btn btn-primary"
                 *ngIf="!showConsulat"
@@ -56,7 +61,7 @@
               >
                 Enroller un citoyen
               </button>
-              <!--end Add product-->
+              <!--end add un citoyen-->
             </div>
             <!--end Card toolbar-->
           </div>
@@ -91,7 +96,11 @@
                 </tr>
               </thead>
               <tbody class="fw-semibold text-gray-600">
-                <tr *ngFor="let citoyen of citoyens | search : SearchText">
+                <tr
+                  *ngFor="
+                    let citoyen of paginatedCitoyens | search : SearchText
+                  "
+                >
                   <td>
                     <div class="d-flex align-items-center">
                       <!--begin Title-->
@@ -163,7 +172,7 @@
                     <!--end Menu-->
                   </td>
                 </tr>
-                <tr *ngIf="!citoyens || citoyens.length === 0">
+                <tr *ngIf="paginatedCitoyens.length === 0">
                   <td colspan="8" class="text-center">
                     <span class="text-gray-600">
                       <h3>Aucune donnée disponible pour cette table.</h3></span
@@ -181,32 +190,57 @@
           >
             <!--begin::Pagination-->
             <div class="fs-6 fw-semibold text-gray-700">
-              Showing 1 to 10 of 50 entries
+              Affichage de {{ (currentPage - 1) * itemsPerPage + 1 }} à
+              {{
+                currentPage * itemsPerPage > citoyens.length
+                  ? citoyens.length
+                  : currentPage * itemsPerPage
+              }}
+              sur {{ citoyens.length }} entrées
             </div>
             <!--begin::Pages-->
             <div></div>
             <ul class="pagination">
-              <li class="page-item previous">
-                <span class="page-link">
-                  <i class="previous"></i>
-                  Precedent
+              <li
+                class="page-item previous"
+                [class.disabled]="currentPage === 1"
+              >
+                <span
+                  class="page-link"
+                  (click)="previousPage()"
+                  [style.cursor]="currentPage === 1 ? 'not-allowed' : 'pointer'"
+                >
+                  <i class="previous"></i> Precedent
                 </span>
               </li>
-              <li class="page-item active"><span class="page-link">1</span></li>
-              <li class="page-item"><span class="page-link">2</span></li>
-              <li class="page-item"><span class="page-link">3</span></li>
-              <li class="page-item"><span class="page-link">4</span></li>
-              <li class="page-item"><span class="page-link">5</span></li>
-              <li class="page-item"><span class="page-link">6</span></li>
-              <li class="page-item next">
-                <span class="page-link">
-                  Suivant
-                  <i class="next"></i>
+              <li
+                class="page-item"
+                *ngFor="let page of getPages()"
+                [class.active]="page === currentPage"
+              >
+                <span
+                  class="page-link"
+                  (click)="goToPage(page)"
+                  [style.cursor]="page === currentPage ? 'default' : 'pointer'"
+                  >{{ page }}</span
+                >
+              </li>
+              <li
+                class="page-item next"
+                [class.disabled]="currentPage === totalPages"
+              >
+                <span
+                  class="page-link"
+                  (click)="nextPage()"
+                  [style.cursor]="
+                    currentPage === totalPages ? 'not-allowed' : 'pointer'
+                  "
+                >
+                  Suivant <i class="next"></i>
                 </span>
               </li>
             </ul>
             <!--end::Pages-->
-
             <!--end::Pagination-->
           </div>
           <!-- end card footer -->

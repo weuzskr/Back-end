@@ -14,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MinistreComponent implements OnInit {
   data: any[] = [];
+  type: string = "ministre";
   showConsulat: boolean = true;
   // consulats: any[] = [];
   // postes: any[] = [];
@@ -44,8 +45,8 @@ export class MinistreComponent implements OnInit {
     // this.loadJuridictions();
     // this.loadRegions();
     // this.loadDepartements();
-    this.loadCitoyens();
-    console.log("les citoyens pour le composant ministrey ", this.data);
+    // this.loadCitoyens();
+
   }
 
   // loadConsulats(): void {
@@ -108,16 +109,5 @@ export class MinistreComponent implements OnInit {
   //   );
   // }
 
-  loadCitoyens() {
-    this.CitoyenService.getAllcitoyens().subscribe(
-      (data) => {
-        this.data = data.citoyens;
-        return this.data;
 
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
-      }
-    );
-  }
 }
