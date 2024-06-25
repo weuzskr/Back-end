@@ -1,0 +1,729 @@
+<div
+  class="modal fade"
+  tabindex="-1"
+  id="kt_modal_create_citoyen"
+  aria-hidden="true"
+>
+  <!--begin Modal dialog-->
+  <div class="modal-dialog modal-dialog-centered mw-900px">
+    <!--begin Modal content-->
+    <div class="modal-content">
+      <form
+        (ngSubmit)="onSubmit()"
+        [formGroup]="citoyenForm"
+        novalidate="novalidate"
+        id="kt_modal_create_app_form"
+      >
+        <!--begin Modal header-->
+        <div class="modal-header">
+          <!--begin Close-->
+          <div
+            class="btn btn-sm btn-icon btn-active-color-primary"
+            data-bs-dismiss="modal"
+          >
+            <i class="ki-outline ki-cross fs-1"></i>
+          </div>
+          <!--end Close-->
+        </div>
+        <!--end Modal header-->
+        <!--begin Modal body-->
+        <div class="modal-body py-lg-10 px-lg-10">
+          <!--begin Stepper-->
+          <div
+            class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid"
+            id="kt_modal_create_app_stepper"
+          >
+            <!--begin Aside-->
+            <div
+              class="d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px"
+            >
+              <!--begin Nav-->
+              <div class="stepper-nav ps-lg-10">
+                <div *ngFor="let step of steps; let i = index">
+                  <!--begin Steps-->
+                  <div
+                    class="stepper-item"
+                    data-kt-stepper-element="nav"
+                    [class.current]="isActiveStep(i)"
+                    [class.completed]="isStepCompleted(i)"
+                    (click)="goToStep(i)"
+                  >
+                    <!--begin Wrapper-->
+                    <div class="stepper-wrapper">
+                      <!--begin Icon-->
+                      <div class="stepper-icon w-40px h-40px">
+                        <i
+                          class="ki-outline ki-check stepper-check fs-2"
+                          *ngIf="isStepCompleted(i)"
+                        ></i>
+                        <span
+                          class="stepper-number"
+                          *ngIf="!isStepCompleted(i)"
+                          >{{ step.number }}</span
+                        >
+                      </div>
+                      <!--end Icon-->
+                      <!--begin Label-->
+                      <div class="stepper-label">
+                        <h3 class="stepper-title">{{ step.title }}</h3>
+                        <div class="stepper-desc">{{ step.description }}</div>
+                      </div>
+                      <!--end Label-->
+                    </div>
+                    <!--end Wrapper-->
+                    <!--begin Line-->
+                    <div
+                      class="stepper-line h-40px"
+                      *ngIf="isNotLastStep(i)"
+                    ></div>
+                    <!--end Line-->
+                  </div>
+                  <!--end Steps-->
+                </div>
+              </div>
+              <!--end Nav-->
+            </div>
+            <!-- end Aside -->
+
+            <!--begin Content-->
+            <div class="flex-row-fluid py-lg-5 px-lg-15">
+              <!-- Step 1 Content -->
+              <div class="step-content" *ngIf="activeStep.number === 1">
+                <div class="w-100">
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span class="required">Nom</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre nom"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="nom"
+                      placeholder="votre nom"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Prénom</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre prénom"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="prenom"
+                      placeholder="votre prénom"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Date de naissance</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre date de naissance"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="date_de_naissance"
+                      placeholder="votre date de naissance"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Lieu de naissance</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre lieu de naissance"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="lieu_de_naissance"
+                      placeholder="votre lieu de naissance"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Pays de naissance</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre pays de naissance"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="pays_de_naissance"
+                      placeholder="votre pays de naissance"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Numéro de téléphone</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre numéro de téléphone"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="number"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="numero_de_telephone"
+                      placeholder="votre numéro de téléphone"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Sexe</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Sélectionner votre sexe"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <select
+                      class="form-select form-select-solid"
+                      data-control="select2"
+                      data-hide-search="true"
+                      data-placeholder="Sexe"
+                    >
+                      <option value=""></option>
+                      <option value="Masculin">Masculin</option>
+                      <option value="Feminin">Féminin</option>
+                    </select>
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Situation matrimoniale</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Sélectionner votre situation matrimoniale"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <select
+                      class="form-select form-select-solid"
+                      data-control="select2"
+                      data-hide-search="true"
+                      data-placeholder="Situation matrimoniale"
+                    >
+                      <option value=""></option>
+                      <option value="celibataire">Célibataire</option>
+                      <option value="marie">Marié</option>
+                      <option value="divorce">Divorcé</option>
+                      <option value="veuf">Veuf</option>
+                    </select>
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Profession</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Sélectionner votre profession"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <select
+                      class="form-select form-select-solid"
+                      data-control="select2"
+                      data-hide-search="true"
+                      data-placeholder="profession"
+                    >
+                      <option value=""></option>
+                      <option
+                        *ngFor="let profession of professions"
+                        [value]="profession.id"
+                      >
+                        {{ profession.secteur_dactivite }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Lieu d'activité</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre lieu d'activité"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="lieu_dactivite"
+                      placeholder="votre lieu d'activité"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Empreinte digitale</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre empreinte digitale"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="empreinte_digitale"
+                      placeholder="votre empreinte digitale"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span>Signature</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre signature"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="signature"
+                      placeholder="votre signature"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- end step 1 content -->
+
+              <!-- Step 2 Content -->
+              <div class="step-content" *ngIf="activeStep.number === 2">
+                <div formArrayName="famille">
+                  <div
+                    *ngFor="let member of famille.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Nom</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le nom"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="nom"
+                        placeholder="nom"
+                      />
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Prénom</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le prénom"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="prenom"
+                        placeholder="prénom"
+                      />
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Âge</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer l'âge"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="age"
+                        placeholder="âge"
+                      />
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Sexe</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Sélectionner le sexe"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <select
+                        class="form-select form-select-solid"
+                        data-control="select2"
+                        data-hide-search="true"
+                        data-placeholder="Sexe"
+                      >
+                        <option value=""></option>
+                        <option value="Masculin">Masculin</option>
+                        <option value="Feminin">Féminin</option>
+                      </select>
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Type</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Sélectionner le type"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <select
+                        class="form-select form-select-solid"
+                        data-control="select2"
+                        data-hide-search="true"
+                        data-placeholder="Enfant ou conjoint"
+                      >
+                        <option value=""></option>
+                        <option value="enfant">Enfant</option>
+                        <option value="conjoint">Conjoint.e</option>
+                      </select>
+                    </div>
+                    <div class="fv-row w-10 d-flex align-items-end mb-10">
+                      <button class="btn btn-danger" (click)="removeFamille(i)">
+                        Supprimer
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary btn-active-light-primary"
+                  (click)="addFamille()"
+                >
+                  Ajouter membre de la famille
+                </button>
+              </div>
+              <!--end Step 2 Content -->
+
+              <!-- Step 3 Content -->
+              <div class="step-content" *ngIf="activeStep.number === 3">
+                <div formArrayName="attaches_familliales">
+                  <div
+                    *ngFor="
+                      let attach of attaches_familliales.controls;
+                      let i = index
+                    "
+                    [formGroupName]="i"
+                  >
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Nom</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le nom"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="nom"
+                        placeholder="nom"
+                      />
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Prénom</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le prénom"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="prenom"
+                        placeholder="prénom"
+                      />
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Numéro de téléphone</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le numéro de téléphone"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="numero_de_telephone"
+                        placeholder="numéro de téléphone"
+                      />
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Adresse</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer l'adresse"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="adresse"
+                        placeholder="adresse"
+                      />
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Lien de parenté</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le lien de parenté"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <select
+                        class="form-select form-select-solid"
+                        data-control="select2"
+                        data-hide-search="true"
+                        data-placeholder="Lien de parenté"
+                      >
+                        <option value=""></option>
+                        <option value="mere">Mère</option>
+                        <option value="pere">Père</option>
+                        <option value="tante">Tante</option>
+                        <option value="oncle">Oncle</option>
+                        <option value="soeur">Soeur</option>
+                        <option value="frere">Frère</option>
+                      </select>
+                    </div>
+                    <div class="fv-row w-10 d-flex align-items-end mb-10">
+                      <button
+                        class="btn btn-danger"
+                        (click)="removeAttacheFamilliale(i)"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary btn-active-light-primary"
+                  (click)="addAttacheFamilliale()"
+                >
+                  Ajouter attache familiale
+                </button>
+              </div>
+              <!--end Step 3 Content -->
+              <!-- end form -->
+            </div>
+            <!-- end content -->
+          </div>
+        </div>
+        <!--Start modal's Footer-->
+        <div class="modal-footer d-flex flex-stack">
+          <!-- First step: only "Next" button -->
+          <button
+            type="button"
+            class="btn btn-primary btn-active-light-primary ms-auto"
+            *ngIf="activeStep.number === 1"
+            (click)="nextStep()"
+          >
+            Suivant
+          </button>
+
+          <!-- Intermediate steps: "Previous" and "Next" buttons -->
+          <div
+            *ngIf="isBetweenStep()"
+            class="d-flex justify-content-between w-100"
+          >
+            <button
+              type="button"
+              class="btn btn-primary btn-active-light-primary me-2"
+              (click)="prevStep()"
+            >
+              Precedant
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-active-light-primary ms-auto"
+              (click)="nextStep()"
+            >
+              Suivant
+            </button>
+          </div>
+
+          <!-- Last step: "Previous" and "Submit" buttons -->
+          <div
+            *ngIf="isLastStep()"
+            class="d-flex justify-content-between w-100"
+          >
+            <button
+              type="button"
+              class="btn btn-primary btn-active-light-primary me-2"
+              (click)="prevStep()"
+            >
+              Precedant
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary btn-active-light-primary ms-auto"
+              data-kt-stepper-action="submit"
+            >
+              Soumettre
+            </button>
+          </div>
+        </div>
+        <!--End modal's Footer-->
+      </form>
+    </div>
+  </div>
+</div>
