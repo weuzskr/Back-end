@@ -7,6 +7,7 @@ import com.starterkit.repository.CitoyenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 @Service
 public class CitoyenService {
@@ -16,6 +17,10 @@ public class CitoyenService {
     @Autowired
     public CitoyenService(CitoyenRepository citoyenRepository) {
         this.citoyenRepository = citoyenRepository;
+    }
+
+    public Optional<Citoyen> getCitoyenById(Long id) {
+        return citoyenRepository.findById(id);
     }
 
     @Transactional
