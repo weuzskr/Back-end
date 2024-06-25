@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.Citoyen;
@@ -31,7 +32,9 @@ public class CitoyenDataLoader implements ApplicationRunner {
     @Autowired
     public CitoyenDataLoader(CitoyenRepository citoyenRepository, ProfessionRepository professionRepository,
                              AttacherFamillialeRepository attacherFamillialeRepository, FamilleRepository familleRepository,
-                             ConsulatRepository consulatRepository) {
+                             ConsulatRepository consulatRepository)*/
+/**//*
+ {
         this.citoyenRepository = citoyenRepository;
         this.professionRepository = professionRepository;
         this.attacherFamillialeRepository = attacherFamillialeRepository;
@@ -59,4 +62,4 @@ public class CitoyenDataLoader implements ApplicationRunner {
             System.out.println("Data already exists in Citoyen table. Skipping insertion.");
         }
     }
-}
+}*/

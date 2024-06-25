@@ -27,9 +27,11 @@ public class Famille {
 
     @Column(name = "type")
     private String type;
+
     @ManyToOne
     @JoinColumn(name = "citoyen_id", nullable = false)
     private Citoyen citoyen;
+
     // Constructeurs, getters et setters
 
     public Famille() {
@@ -43,6 +45,8 @@ public class Famille {
         this.sexe = sexe;
         this.type = type;
     }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -98,5 +102,13 @@ public class Famille {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Citoyen getCitoyen() {
+        return citoyen;
+    }
+
+    public void setCitoyen(Citoyen citoyen) {
+        this.citoyen = citoyen;
     }
 }
