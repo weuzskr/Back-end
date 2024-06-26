@@ -22,9 +22,11 @@ public class CitoyenController {
     public CitoyenController(CitoyenService citoyenService) {
         this.citoyenService = citoyenService;
     }
+
     @Autowired
     private CitoyenRepository citoyenRepository;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/par-id/{id}")
     public ResponseEntity<?> getCitoyenById(@PathVariable("id") Long id) {
         Optional<Citoyen> optionalCitoyen = citoyenService.getCitoyenById(id);
@@ -34,11 +36,13 @@ public class CitoyenController {
         return ResponseEntity.ok(optionalCitoyen.get());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/tous")
     public ResponseEntity<List<Citoyen>> getAllCitoyens() {
         List<Citoyen> citoyens = citoyenRepository.findAll();
         return ResponseEntity.ok(citoyens);
     }
+
     // Endpoint pour rechercher un citoyen par son nom
     @GetMapping("/rechercher")
     public ResponseEntity<List<Citoyen>> searchCitoyenByName(@RequestParam String nom) {
@@ -46,15 +50,19 @@ public class CitoyenController {
         return ResponseEntity.ok(citoyens);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/enroler")
     public ResponseEntity<?> enregistrerCitoyen(@RequestBody Citoyen citoyen) {
         try {
             Citoyen savedCitoyen = citoyenService.saveCitoyenWithRelations(citoyen);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedCitoyen);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'enregistrement du citoyen : " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur lors de l'enregistrement du citoyen : " + e.getMessage());
         }
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/par-admin")
     public ResponseEntity<List<Citoyen>> getCitoyensByAdmin(@AuthenticationPrincipal Admin admin) {
         if (admin == null || admin.getConsulat() == null) {
@@ -65,6 +73,5 @@ public class CitoyenController {
         List<Citoyen> citoyens = citoyenRepository.findByConsulatId(consulatId);
         return ResponseEntity.ok(citoyens);
     }
-
 
 }

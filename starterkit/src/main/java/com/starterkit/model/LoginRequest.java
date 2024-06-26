@@ -1,3 +1,4 @@
+
 package com.starterkit.model;
 
 public class LoginRequest {
