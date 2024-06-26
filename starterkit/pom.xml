@@ -71,11 +71,11 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.2.0.Final</version> <!-- Version actuelle au moment de la rédaction -->
-		</dependency>
+			<version>6.2.0.Final</version> &lt;!&ndash; Version actuelle au moment de la rédaction &ndash;&gt;
+		</dependency>-->
 
 
 	</dependencies>

@@ -1,5 +1,9 @@
 package com.starterkit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,6 +34,7 @@ public class AttacherFamilliale {
 
     @ManyToOne
     @JoinColumn(name = "citoyen_id", nullable = false)
+    @JsonIgnoreProperties("attacherFamilliales")
     private Citoyen citoyen;
 
     public AttacherFamilliale() {

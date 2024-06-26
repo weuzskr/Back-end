@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class FamilleService {
 
@@ -23,5 +25,8 @@ public class FamilleService {
                 .orElseThrow(() -> new IllegalArgumentException("Citoyen not found"));
         famille.setCitoyen(citoyen);
         return familleRepository.save(famille);
+    }
+    public List<Famille> getAllFamilles() {
+        return familleRepository.findAll();
     }
 }
