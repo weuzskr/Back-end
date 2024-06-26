@@ -28,58 +28,34 @@ export class StepperComponent implements OnInit {
     private CitoyenService: CitoyenService
   ) {
     this.citoyenForm = this.fb.group({
-      matricule: ['JP001', Validators.required],
-      nom: ['Tanaka', Validators.required],
-      prenom: ['Hiroshi', Validators.required],
-      dateDeNaissance: ['1985-03-15', Validators.required],
-      lieuDeNaissance: ['Tokyo', Validators.required],
-      paysDeNaissance: ['Japon', Validators.required],
-      sexe: ['M', Validators.required],
-      taille: [172.0, Validators.required],
-      numeroDeTelephone: ['+819012345678', Validators.required],
-      photo: ['hiroshi_tanaka.jpg', Validators.required],
-      signature: ['hiroshi_tanaka_signature.jpg', Validators.required],
-      lieuDactivites: ['Tokyo', Validators.required],
-      empreinteDigitale: ['GHI789', Validators.required],
-      situationMatrimoniale: ['Marié', Validators.required],
+      matricule: ['', Validators.required],
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
+      dateDeNaissance: ['', Validators.required],
+      lieuDeNaissance: ['', Validators.required],
+      paysDeNaissance: ['', Validators.required],
+      sexe: ['', Validators.required],
+      taille: ['', Validators.required],
+      numeroDeTelephone: ['', Validators.required],
+      photo: ['', Validators.required],
+      signature: ['', Validators.required],
+      lieuDactivites: ['', Validators.required],
+      empreinteDigitale: ['', Validators.required],
+      situationMatrimoniale: ['', Validators.required],
       profession: this.fb.group({
         id: [1, Validators.required],
       }),
-      attaches_familliales: this.fb.array([
+      attacherFamilliales: this.fb.array([
         this.createAttachFamillialeGroup({
-          matricule: 'JAF003',
-          prenom: 'Yuki',
-          nom: 'Tanaka',
-          numeroDeTelephone: '+819012345679',
-          lienDeParente: 'Conjointe',
-          adresse: 'Tokyo'
-        }),
-        this.createAttachFamillialeGroup({
-          matricule: 'JAF004',
-          prenom: 'Ken',
-          nom: 'Tanaka',
-          numeroDeTelephone: '+819012345680',
-          lienDeParente: 'Enfant',
-          adresse: 'Tokyo'
-        }),
+          matricule: '',
+          prenom: '',
+          nom: '',
+          numeroDeTelephone: '',
+          lienDeParente: '',
+          adresse: ''
+        })
       ]),
       familles: this.fb.array([
-        this.createFamilleGroup({
-          matricule: 'JF003',
-          prenom: 'Akira',
-          nom: 'Tanaka',
-          age: 32,
-          sexe: 'M',
-          type: 'Frère'
-        }),
-        this.createFamilleGroup({
-          matricule: 'JF004',
-          prenom: 'Aya',
-          nom: 'Tanaka',
-          age: 29,
-          sexe: 'F',
-          type: 'Sœur'
-        }),
       ]),
       consulat: this.fb.group({
         id: [1, Validators.required],
@@ -109,8 +85,8 @@ export class StepperComponent implements OnInit {
     });
   }
 
-  get attaches_familliales() {
-    return this.citoyenForm.get('attaches_familliales') as FormArray;
+  get attacherFamilliales() {
+    return this.citoyenForm.get('attacherFamilliales') as FormArray;
   }
 
   get familles() {
@@ -118,7 +94,7 @@ export class StepperComponent implements OnInit {
   }
 
   addAttacheFamilliale() {
-    this.attaches_familliales.push(this.createAttachFamillialeGroup());
+    this.attacherFamilliales.push(this.createAttachFamillialeGroup());
   }
 
   addFamille() {
@@ -126,16 +102,21 @@ export class StepperComponent implements OnInit {
   }
 
   removeAttacheFamilliale(index: number) {
-    this.attaches_familliales.removeAt(index);
+    this.attacherFamilliales.removeAt(index);
   }
 
   removeFamille(index: number) {
     this.familles.removeAt(index);
   }
+  CloseModal() {
+    const element = document.querySelector('#close-modal') as HTMLElement | null;
+    if (element) {
+      element.click();
+    }
+  }
 
   onSubmit() {
     // if (this.citoyenForm.valid) {
-    console.log("Les données que j'envoie", this.citoyenForm.value);
 
     this.CitoyenService.createCitoyen(this.citoyenForm.value)
       .subscribe(
@@ -151,6 +132,8 @@ export class StepperComponent implements OnInit {
           // );
         },
         error => {
+          this.CloseModal()
+
           console.log("Erreur lors de l'ajout", error);
 
           sweetAlertMessage("error", "Erreur lors de l'ajout du citoyen", "Veuillez vérifier les données que vous avez fournies");

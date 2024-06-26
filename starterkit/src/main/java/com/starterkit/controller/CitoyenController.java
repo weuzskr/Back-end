@@ -26,7 +26,7 @@ public class CitoyenController {
     @Autowired
     private CitoyenRepository citoyenRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     @GetMapping("/par-id/{id}")
     public ResponseEntity<?> getCitoyenById(@PathVariable("id") Long id) {
         Optional<Citoyen> optionalCitoyen = citoyenService.getCitoyenById(id);
@@ -36,7 +36,7 @@ public class CitoyenController {
         return ResponseEntity.ok(optionalCitoyen.get());
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     @GetMapping("/tous")
     public ResponseEntity<List<Citoyen>> getAllCitoyens() {
         List<Citoyen> citoyens = citoyenRepository.findAll();
@@ -50,7 +50,7 @@ public class CitoyenController {
         return ResponseEntity.ok(citoyens);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     @PostMapping("/enroler")
     public ResponseEntity<?> enregistrerCitoyen(@RequestBody Citoyen citoyen) {
         try {
@@ -62,7 +62,7 @@ public class CitoyenController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     @GetMapping("/par-admin")
     public ResponseEntity<List<Citoyen>> getCitoyensByAdmin(@AuthenticationPrincipal Admin admin) {
         if (admin == null || admin.getConsulat() == null) {
