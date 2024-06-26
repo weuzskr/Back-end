@@ -53,7 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable();
     }
 
-
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

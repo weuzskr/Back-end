@@ -21,7 +21,7 @@
             class="btn btn-sm btn-icon btn-active-color-primary"
             data-bs-dismiss="modal"
           >
-            <i class="ki-outline ki-cross fs-1"></i>
+            <i id="close-modal" class="ki-outline ki-cross fs-1"></i>
           </div>
           <!--end Close-->
         </div>
@@ -216,7 +216,7 @@
                       </span>
                     </label>
                     <input
-                      type="number"
+                      type="tel"
                       class="form-control form-control-lg form-control-solid"
                       formControlName="numeroDeTelephone"
                       placeholder="votre numéro de téléphone"
@@ -248,6 +248,28 @@
                     <label
                       class="d-flex align-items-center fs-5 fw-semibold mb-2"
                     >
+                      <span>photo</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre photo"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="photo"
+                      placeholder="votre photo"
+                    />
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
                       <span>Sexe</span>
                       <span
                         class="ms-1"
@@ -263,7 +285,6 @@
                       formControlName="sexe"
                       class="form-select form-select-solid"
                     >
-                      <option value=""></option>
                       <option value="Masculin">Masculin</option>
                       <option value="Feminin">Féminin</option>
                     </select>
@@ -287,7 +308,6 @@
                       formControlName="situationMatrimoniale"
                       class="form-select form-select-solid"
                     >
-                      <option value=""></option>
                       <option value="celibataire">Célibataire</option>
                       <option value="marie">Marié</option>
                       <option value="divorce">Divorcé</option>
@@ -310,13 +330,12 @@
                       </span>
                     </label>
                     <select
-                      formControlName="Profession_id"
+                      formControlName="Profession"
                       class="form-select form-select-solid"
                     >
-                      <option value=""></option>
                       <option
                         *ngFor="let profession of professions"
-                        [value]="profession.id"
+                        value="profession.id"
                       >
                         {{ profession.secteurDactivite }}
                       </option>
@@ -480,8 +499,10 @@
                           ></i>
                         </span>
                       </label>
-                      <select class="form-select form-select-solid">
-                        <option value=""></option>
+                      <select
+                        formControlName="sexe"
+                        class="form-select form-select-solid"
+                      >
                         <option value="Masculin">Masculin</option>
                         <option value="Feminin">Féminin</option>
                       </select>
@@ -505,7 +526,6 @@
                         class="form-select form-select-solid"
                         formControlName="type"
                       >
-                        <option value=""></option>
                         <option value="enfant">Enfant</option>
                         <option value="conjoint">Conjoint.e</option>
                       </select>
@@ -528,10 +548,10 @@
 
               <!-- Step 3 Content -->
               <div class="step-content" *ngIf="activeStep.number === 3">
-                <div formArrayName="attaches_familliales">
+                <div formArrayName="attacherFamilliales">
                   <div
                     *ngFor="
-                      let attach of attaches_familliales.controls;
+                      let attach of attacherFamilliales.controls;
                       let i = index
                     "
                     [formGroupName]="i"
@@ -596,7 +616,7 @@
                         </span>
                       </label>
                       <input
-                        type="number"
+                        type="tel"
                         class="form-control form-control-lg form-control-solid"
                         formControlName="numeroDeTelephone"
                         placeholder="numéro de téléphone"
@@ -643,7 +663,6 @@
                         class="form-select form-select-solid"
                         formControlName="lienDeParente"
                       >
-                        <option value=""></option>
                         <option value="mere">Mère</option>
                         <option value="pere">Père</option>
                         <option value="tante">Tante</option>
