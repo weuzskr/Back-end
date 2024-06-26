@@ -36,7 +36,7 @@ export class TableComponent implements OnInit {
   loadCitoyens() {
     this.CitoyenService.getAllcitoyens().subscribe(
       (response) => {
-        this.citoyens = response.citoyens;
+        this.citoyens = response;
         this.totalPages = Math.ceil(this.citoyens.length / this.itemsPerPage);
         this.paginateCitoyens();
         console.log("Citoyens du composants ministre", this.citoyens);
@@ -51,7 +51,7 @@ export class TableComponent implements OnInit {
     // Récupérer les citoyens avec le consulat spécifique pour chancelier
     this.CitoyenService.getCitoyensByChancelier().subscribe(
       (data) => {
-        this.citoyens = data.citoyens;
+        this.citoyens = data;
         this.totalPages = Math.ceil(this.citoyens.length / this.itemsPerPage);
         this.paginateCitoyens();
         console.log("les citoyens pour le composant chancelier ", this.citoyens);

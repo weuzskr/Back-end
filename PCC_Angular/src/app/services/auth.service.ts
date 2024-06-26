@@ -18,7 +18,7 @@ export class AuthService {
 
   login(user: any) {
     // return this.http.post(`${url}/login`, user)
-    return this.http.post(`http://127.0.0.1:8080/api/login`, user)
+    return this.http.post(`${url}/login`, user)
   }
 
   // Logout du backend 

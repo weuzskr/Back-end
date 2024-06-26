@@ -23,11 +23,7 @@ import { DefaultModule } from './admin/layout/default.module';
     HttpClientModule,
 
   ],
-  providers: [AuthService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

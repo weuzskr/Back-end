@@ -16,26 +16,24 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // let userConnect:any;
-    // if(localStorage.getItem('userConnect')){
-    //   userConnect = JSON.parse(localStorage.getItem('userConnect') || '');
+    let userConnect: any;
+    if (localStorage.getItem('userConnect')) {
+      userConnect = JSON.parse(localStorage.getItem('userConnect') || '');
 
-    // }
+    }
 
     // Assurez-vous que userConnect et userConnect.authorization sont définis
-    // if ( userConnect && userConnect.token) {
-    //   const token = userConnect.token;
-    //   request = request.clone({
-    //     setHeaders: {
-    //       Authorization: `Bearer ${token}`,
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json',
-    //       'Access-Control-Allow-Origin': '*',
-    //       'Access-Control-Allow-Methods': '*',
-    //       'Access-Control-Allow-Headers': '*',
-    //     },
-    //   });
-    // }
+    if (userConnect) {
+      request = request.clone({
+        setHeaders: {
+          'Content-Type': 'application/json',
+          'Accept': '*/*',
+          'Access-Control-Allow-Origin': 'http://localhost:4200',
+          'Access-Control-Allow-Methods': '*',
+          'Access-Control-Allow-Headers': '*',
+        },
+      });
+    }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {

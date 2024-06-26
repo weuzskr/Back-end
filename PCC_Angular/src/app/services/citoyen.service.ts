@@ -12,17 +12,17 @@ export class CitoyenService {
 
   // Fonction pour enroller un citoyen
   createCitoyen(data: any): Observable<any> {
-    return this.http.post(`${url}/citoyens`, data);
+    return this.http.post(`${url}/citoyens/enroler`, data);
   }
   // Recuperer la listes des citoyens
   getAllcitoyens() {
-    return this.http.get<any>(`${url}/citoyens`);
+    return this.http.get<any>(`${url}/citoyens/tous`);
     // return this.http.get<any>(`http://127.0.0.1:8080/api/citoyens/`);
   }
 
   // Fonction pour récupérer les citoyens par chancelier
   getCitoyensByChancelier(): Observable<any> {
-    return this.http.get<any>(`${url}/admin/citoyens`);
+    return this.http.get<any>(`${url}/citoyens/par-admin`);
     // return this.http.get<any>(`http://127.0.0.1:8080/api/citoyens/`);
 
   }

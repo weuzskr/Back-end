@@ -28,23 +28,135 @@ export class StepperComponent implements OnInit {
     private CitoyenService: CitoyenService
   ) {
     this.citoyenForm = this.fb.group({
-      date_de_naissance: ['', Validators.required],
-      lieu_de_naissance: ['', Validators.required],
-      nom: ['', Validators.required],
-      numero_de_telephone: ['', Validators.required],
-      pays_de_naissance: ['', Validators.required],
-      prenom: ['', Validators.required],
-      sexe: ['', Validators.required],
-      lieu_dactivite: ['', Validators.required],
-      empreinte_digitale: ['', Validators.required],
-      signature: ['', Validators.required],
-      profession_id: ['', Validators.required],
-      situation_matrimoniale: ['', Validators.required],
-      famille: this.fb.array([]),
+      matricule: ['JP001', Validators.required],
+      nom: ['Tanaka', Validators.required],
+      prenom: ['Hiroshi', Validators.required],
+      dateDeNaissance: ['1985-03-15', Validators.required],
+      lieuDeNaissance: ['Tokyo', Validators.required],
+      paysDeNaissance: ['Japon', Validators.required],
+      sexe: ['M', Validators.required],
+      taille: [172.0, Validators.required],
+      numeroDeTelephone: ['+819012345678', Validators.required],
+      photo: ['hiroshi_tanaka.jpg', Validators.required],
+      signature: ['hiroshi_tanaka_signature.jpg', Validators.required],
+      lieuDactivites: ['Tokyo', Validators.required],
+      empreinteDigitale: ['GHI789', Validators.required],
+      situationMatrimoniale: ['Marié', Validators.required],
+      profession: this.fb.group({
+        id: [1, Validators.required],
+      }),
       attaches_familliales: this.fb.array([
-        this.createAttachFamillialeGroup()
-      ])
+        this.createAttachFamillialeGroup({
+          matricule: 'JAF003',
+          prenom: 'Yuki',
+          nom: 'Tanaka',
+          numeroDeTelephone: '+819012345679',
+          lienDeParente: 'Conjointe',
+          adresse: 'Tokyo'
+        }),
+        this.createAttachFamillialeGroup({
+          matricule: 'JAF004',
+          prenom: 'Ken',
+          nom: 'Tanaka',
+          numeroDeTelephone: '+819012345680',
+          lienDeParente: 'Enfant',
+          adresse: 'Tokyo'
+        }),
+      ]),
+      familles: this.fb.array([
+        this.createFamilleGroup({
+          matricule: 'JF003',
+          prenom: 'Akira',
+          nom: 'Tanaka',
+          age: 32,
+          sexe: 'M',
+          type: 'Frère'
+        }),
+        this.createFamilleGroup({
+          matricule: 'JF004',
+          prenom: 'Aya',
+          nom: 'Tanaka',
+          age: 29,
+          sexe: 'F',
+          type: 'Sœur'
+        }),
+      ]),
+      consulat: this.fb.group({
+        id: [1, Validators.required],
+      }),
     });
+  }
+
+  createAttachFamillialeGroup(data?: any): FormGroup {
+    return this.fb.group({
+      matricule: [data ? data.matricule : '', Validators.required],
+      adresse: [data ? data.adresse : '', Validators.required],
+      lienDeParente: [data ? data.lienDeParente : '', Validators.required],
+      nom: [data ? data.nom : '', Validators.required],
+      numeroDeTelephone: [data ? data.numeroDeTelephone : '', Validators.required],
+      prenom: [data ? data.prenom : '', Validators.required],
+    });
+  }
+
+  createFamilleGroup(data?: any): FormGroup {
+    return this.fb.group({
+      matricule: [data ? data.matricule : ''],
+      age: [data ? data.age : ''],
+      nom: [data ? data.nom : ''],
+      prenom: [data ? data.prenom : ''],
+      sexe: [data ? data.sexe : ''],
+      type: [data ? data.type : ''],
+    });
+  }
+
+  get attaches_familliales() {
+    return this.citoyenForm.get('attaches_familliales') as FormArray;
+  }
+
+  get familles() {
+    return this.citoyenForm.get('familles') as FormArray;
+  }
+
+  addAttacheFamilliale() {
+    this.attaches_familliales.push(this.createAttachFamillialeGroup());
+  }
+
+  addFamille() {
+    this.familles.push(this.createFamilleGroup());
+  }
+
+  removeAttacheFamilliale(index: number) {
+    this.attaches_familliales.removeAt(index);
+  }
+
+  removeFamille(index: number) {
+    this.familles.removeAt(index);
+  }
+
+  onSubmit() {
+    // if (this.citoyenForm.valid) {
+    console.log("Les données que j'envoie", this.citoyenForm.value);
+
+    this.CitoyenService.createCitoyen(this.citoyenForm.value)
+      .subscribe(
+        response => {
+          sweetAlertMessage("success", "Ajout reussie", "Citoyen créé avec succès");
+          // this.CitoyenService.getAllcitoyens().subscribe(
+          //   (data) => {
+          //     this.citoyens = data.citoyens;
+          //   },
+          //   (error) => {
+          //     console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
+          //   }
+          // );
+        },
+        error => {
+          console.log("Erreur lors de l'ajout", error);
+
+          sweetAlertMessage("error", "Erreur lors de l'ajout du citoyen", "Veuillez vérifier les données que vous avez fournies");
+        }
+      );
+    // }
   }
 
 
@@ -59,49 +171,7 @@ export class StepperComponent implements OnInit {
       }
     );
   }
-  createAttachFamillialeGroup(): FormGroup {
-    return this.fb.group({
-      adresse: ['', Validators.required],
-      lien_de_parente: ['', Validators.required],
-      nom: ['', Validators.required],
-      numero_de_telephone: ['', Validators.required],
-      prenom: ['', Validators.required],
-    });
-  }
 
-  createFamilleGroup(): FormGroup {
-    return this.fb.group({
-      age: [''],
-      nom: [''],
-      prenom: [''],
-      sexe: [''],
-      type: [''],
-    });
-  }
-
-  get famille() {
-    return this.citoyenForm.get('famille') as FormArray;
-  }
-
-  get attaches_familliales() {
-    return this.citoyenForm.get('attaches_familliales') as FormArray;
-  }
-
-  addFamille() {
-    this.famille.push(this.createFamilleGroup());
-  }
-
-  addAttacheFamilliale() {
-    this.attaches_familliales.push(this.createAttachFamillialeGroup());
-  }
-
-  removeFamille(index: number) {
-    this.famille.removeAt(index);
-  }
-
-  removeAttacheFamilliale(index: number) {
-    this.attaches_familliales.removeAt(index);
-  }
 
   steps = [
     {
@@ -167,26 +237,4 @@ export class StepperComponent implements OnInit {
     return index < this.steps.length - 1;
   }
 
-  onSubmit() {
-    if (this.citoyenForm.valid) {
-      this.CitoyenService.createCitoyen(this.citoyenForm.value)
-        .subscribe(
-          response => {
-            sweetAlertMessage("success", "Ajout reussie", "Citoyen créé avec succès")
-            this.CitoyenService.getAllcitoyens().subscribe(
-              (data) => {
-                this.citoyens = data.citoyens;
-              },
-              (error) => {
-                console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
-              }
-            );
-
-          },
-          error => {
-            sweetAlertMessage("error", "Erreur lors de l'ajout du citoyen", "Veuillez vérfier les données que vous avez fournies")
-          }
-        );
-    }
-  }
 }
