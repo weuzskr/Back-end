@@ -24,7 +24,7 @@ export class TableComponent implements OnInit {
   constructor(private CitoyenService: CitoyenService) { }
 
   ngOnInit() {
-    console.log("Le type de l'utilisateur connecté", this.type);
+    // console.log("Le type de l'utilisateur connecté", this.type);
 
     if (this.type == "ministre") {
       this.loadCitoyens();
@@ -54,7 +54,7 @@ export class TableComponent implements OnInit {
         this.citoyens = data;
         this.totalPages = Math.ceil(this.citoyens.length / this.itemsPerPage);
         this.paginateCitoyens();
-        console.log("les citoyens pour le composant chancelier ", this.citoyens);
+        // console.log("les citoyens pour le composant chancelier ", this.citoyens);
       },
       (error) => {
         console.error('Erreur lors de la récupération des citoyens pour le chancelier :', error);
@@ -66,7 +66,7 @@ export class TableComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.paginatedCitoyens = this.citoyens.slice(startIndex, endIndex);
-    console.log("les citoyens apres la pagination", this.paginatedCitoyens);
+    // console.log("les citoyens apres la pagination", this.paginatedCitoyens);
   }
 
   goToPage(page: number): void {

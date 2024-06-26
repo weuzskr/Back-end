@@ -14,7 +14,8 @@ public class Profession {
     private String secteurDactivites;
 
     // Default constructor
-    public Profession() {}
+    public Profession() {
+    }
 
     // Constructor with parameters
     public Profession(String secteurDactivites) {
