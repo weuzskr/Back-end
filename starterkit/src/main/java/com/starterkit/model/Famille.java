@@ -1,7 +1,7 @@
 package com.starterkit.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import java.util.Random;
 import javax.persistence.*;
 
 @Entity
@@ -40,8 +40,8 @@ public class Famille {
     public Famille() {
     }
 
-    public Famille(String matricule, String prenom, String nom, int age, String sexe, String type) {
-        this.matricule = matricule;
+    public Famille(/*String matricule,*/ String prenom, String nom, int age, String sexe, String type) {
+        //this.matricule = matricule;
         this.prenom = prenom;
         this.nom = nom;
         this.age = age;
@@ -114,4 +114,13 @@ public class Famille {
     public void setCitoyen(Citoyen citoyen) {
         this.citoyen = citoyen;
     }
+
+    @PrePersist
+    private void generateMatricule() {
+        // Générer un matricule aléatoire de format "FAM-XXXXX"
+        Random random = new Random();
+        int matriculeNumber = random.nextInt(90000) + 10000; // Pour générer un nombre aléatoire à 5 chiffres
+        this.matricule = "FAM-" + matriculeNumber;
+    }
+
 }

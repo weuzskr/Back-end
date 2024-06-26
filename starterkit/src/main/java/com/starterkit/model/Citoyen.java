@@ -3,6 +3,7 @@ package com.starterkit.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -80,12 +81,12 @@ public class Citoyen {
     private Consulat consulat;
 
     // Constructeur avec de nombreux paramètres
-    public Citoyen(String matricule, String nom, String prenom, LocalDate dateDeNaissance,
+    public Citoyen(/*String matricule,*/ String nom, String prenom, LocalDate dateDeNaissance,
             String lieuDeNaissance, String paysDeNaissance, String sexe, Float taille,
             String numeroDeTelephone, String photo, String signature, String lieuDactivites,
             String empreinteDigitale, String situationMatrimoniale, Profession profession,
             List<AttacherFamilliale> attacherFamilliales, List<Famille> familles, Consulat consulat) {
-        this.matricule = matricule;
+        /*this.matricule = matricule;*/
         this.nom = nom;
         this.prenom = prenom;
         this.dateDeNaissance = dateDeNaissance;
@@ -257,5 +258,13 @@ public class Citoyen {
 
     public void setConsulat(Consulat consulat) {
         this.consulat = consulat;
+    }
+
+    @PrePersist
+    private void generateMatricule() {
+        // Générer un matricule aléatoire de format "FAM-XXXXX"
+        Random random = new Random();
+        int matriculeNumber = random.nextInt(90000) + 10000; // Pour générer un nombre aléatoire à 5 chiffres
+        this.matricule = "CIT-" + matriculeNumber;
     }
 }

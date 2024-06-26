@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Random;
 
 @Entity
 @Table(name = "attacher_familliale")
@@ -40,9 +41,9 @@ public class AttacherFamilliale {
     public AttacherFamilliale() {
     }
 
-    public AttacherFamilliale(String matricule, String prenom, String nom, String numeroDeTelephone,
+    public AttacherFamilliale(/*String matricule,*/ String prenom, String nom, String numeroDeTelephone,
             String lienDeParente, String adresse) {
-        this.matricule = matricule;
+       /* this.matricule = matricule;*/
         this.prenom = prenom;
         this.nom = nom;
         this.numeroDeTelephone = numeroDeTelephone;
@@ -112,5 +113,12 @@ public class AttacherFamilliale {
 
     public void setCitoyen(Citoyen citoyen) {
         this.citoyen = citoyen;
+    }
+    @PrePersist
+    private void generateMatricule() {
+        // Générer un matricule aléatoire de format "FAM-XXXXX"
+        Random random = new Random();
+        int matriculeNumber = random.nextInt(90000) + 10000; // Pour générer un nombre aléatoire à 5 chiffres
+        this.matricule = "ATF-" + matriculeNumber;
     }
 }
