@@ -4,6 +4,11 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "citoyen")
 public class Citoyen {
@@ -59,9 +64,11 @@ public class Citoyen {
     private Profession profession;
 
     @OneToMany(mappedBy = "citoyen", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("citoyen")
     private List<AttacherFamilliale> attacherFamilliales;
 
     @OneToMany(mappedBy = "citoyen", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("citoyen")
     private List<Famille> familles;
 
 
@@ -226,6 +233,7 @@ public class Citoyen {
     public void setProfession(Profession profession) {
         this.profession = profession;
     }
+
 
     public List<AttacherFamilliale> getAttacherFamilliales() {
         return attacherFamilliales;

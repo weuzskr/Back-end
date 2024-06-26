@@ -1,5 +1,7 @@
 package com.starterkit.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,6 +32,7 @@ public class Famille {
 
     @ManyToOne
     @JoinColumn(name = "citoyen_id", nullable = false)
+    @JsonIgnoreProperties("familles")
     private Citoyen citoyen;
 
     // Constructeurs, getters et setters
