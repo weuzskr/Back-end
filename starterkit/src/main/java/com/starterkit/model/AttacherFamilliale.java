@@ -32,9 +32,11 @@ public class AttacherFamilliale {
     @JoinColumn(name = "citoyen_id", nullable = false)
     private Citoyen citoyen;
 
-    public AttacherFamilliale() {}
+    public AttacherFamilliale() {
+    }
 
-    public AttacherFamilliale(String matricule, String prenom, String nom, String numeroDeTelephone, String lienDeParente, String adresse) {
+    public AttacherFamilliale(String matricule, String prenom, String nom, String numeroDeTelephone,
+            String lienDeParente, String adresse) {
         this.matricule = matricule;
         this.prenom = prenom;
         this.nom = nom;

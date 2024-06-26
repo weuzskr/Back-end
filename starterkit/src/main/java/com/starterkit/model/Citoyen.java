@@ -64,20 +64,20 @@ public class Citoyen {
     @OneToMany(mappedBy = "citoyen", cascade = CascadeType.ALL)
     private List<Famille> familles;
 
-
     // Constructeur par défaut
     public Citoyen() {
     }
+
     @ManyToOne
     @JoinColumn(name = "consulat_id")
     private Consulat consulat;
 
     // Constructeur avec de nombreux paramètres
     public Citoyen(String matricule, String nom, String prenom, LocalDate dateDeNaissance,
-                   String lieuDeNaissance, String paysDeNaissance, String sexe, Float taille,
-                   String numeroDeTelephone, String photo, String signature, String lieuDactivites,
-                   String empreinteDigitale, String situationMatrimoniale, Profession profession,
-                   List<AttacherFamilliale> attacherFamilliales, List<Famille> familles, Consulat consulat) {
+            String lieuDeNaissance, String paysDeNaissance, String sexe, Float taille,
+            String numeroDeTelephone, String photo, String signature, String lieuDactivites,
+            String empreinteDigitale, String situationMatrimoniale, Profession profession,
+            List<AttacherFamilliale> attacherFamilliales, List<Famille> familles, Consulat consulat) {
         this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
