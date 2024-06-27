@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
           // Redirection en fonction du role_id
           if (role === "ROLE_ADMIN") {
             this.route.navigateByUrl('/ministre');
-          } else if (role === "ROLE_MANAGER") {
+          } else if (role === "ROLE_USER") {
             this.route.navigateByUrl('/chancelier');
           }
           this.email = "";

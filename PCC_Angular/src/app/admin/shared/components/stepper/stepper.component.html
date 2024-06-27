@@ -285,7 +285,7 @@
                       formControlName="sexe"
                       class="form-select form-select-solid"
                     >
-                      <option value="Masculin">Masculin</option>
+                      <option value="Masculin" selected>Masculin</option>
                       <option value="Feminin">Féminin</option>
                     </select>
                   </div>
@@ -308,13 +308,13 @@
                       formControlName="situationMatrimoniale"
                       class="form-select form-select-solid"
                     >
-                      <option value="celibataire">Célibataire</option>
+                      <option value="celibataire" selected>Célibataire</option>
                       <option value="marie">Marié</option>
                       <option value="divorce">Divorcé</option>
                       <option value="veuf">Veuf</option>
                     </select>
                   </div>
-                  <div class="fv-row mb-10">
+                  <div class="fv-row mb-10" formGroupName="profession">
                     <label
                       class="d-flex align-items-center fs-5 fw-semibold mb-2"
                     >
@@ -330,14 +330,14 @@
                       </span>
                     </label>
                     <select
-                      formControlName="Profession"
+                      formControlName="id"
                       class="form-select form-select-solid"
                     >
                       <option
                         *ngFor="let profession of professions"
-                        value="profession.id"
+                        [value]="profession.id"
                       >
-                        {{ profession.secteurDactivite }}
+                        {{ profession.secteurDactivites }}
                       </option>
                     </select>
                   </div>
@@ -531,13 +531,18 @@
                       </select>
                     </div>
                     <div class="fv-row w-10 d-flex align-items-end mb-10">
-                      <button class="btn btn-danger" (click)="removeFamille(i)">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="removeFamille(i)"
+                      >
                         Supprimer
                       </button>
                     </div>
                   </div>
                 </div>
                 <button
+                  type="button"
                   class="btn btn-primary btn-active-light-primary"
                   (click)="addFamille()"
                 >
@@ -663,8 +668,8 @@
                         class="form-select form-select-solid"
                         formControlName="lienDeParente"
                       >
+                        <option value="pere" selected>Père</option>
                         <option value="mere">Mère</option>
-                        <option value="pere">Père</option>
                         <option value="tante">Tante</option>
                         <option value="oncle">Oncle</option>
                         <option value="soeur">Soeur</option>
@@ -673,6 +678,7 @@
                     </div>
                     <div class="fv-row w-10 d-flex align-items-end mb-10">
                       <button
+                        type="button"
                         class="btn btn-danger"
                         (click)="removeAttacheFamilliale(i)"
                       >
@@ -682,6 +688,7 @@
                   </div>
                 </div>
                 <button
+                  type="button"
                   class="btn btn-primary btn-active-light-primary"
                   (click)="addAttacheFamilliale()"
                 >

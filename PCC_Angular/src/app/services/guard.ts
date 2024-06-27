@@ -10,10 +10,10 @@ export const AuthGuardConsul = () => {
   if (localStorage.getItem("userConnect")) {
     user = JSON.parse(localStorage.getItem("userConnect") || "");
   }
-  role = user.user.role_id;
-  
+  role = user.user.role;
 
-  if (role !== 2) {
+
+  if (role !== "ROLE_USER") {
     router.navigateByUrl('/');
     return false;
   }
@@ -29,8 +29,8 @@ export const AuthGuardMinistre = () => {
   if (localStorage.getItem("userConnect")) {
     user = JSON.parse(localStorage.getItem("userConnect") || "");
   }
-  role = user.user.role_id;
-  if (role !== 1) {
+  role = user.user.role;
+  if (role !== "ROLE_ADMIN") {
     router.navigateByUrl('/');
     return false;
   }

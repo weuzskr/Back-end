@@ -6,6 +6,8 @@ import { ChancelierComponent } from './admin/modules/chancelier/chancelier.compo
 import { LoginComponent } from './admin/login/login.component';
 import { AuthGuardConsul, AuthGuardMinistre } from './services/guard';
 import { DefaultComponent } from './admin/layout/default/default.component';
+import { OverviewComponent } from './admin/modules/overview/overview.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent, title: 'Login' },
@@ -14,16 +16,27 @@ const routes: Routes = [
       [{
         path: '',
         component: MinistreComponent,
-        title: 'Ministre'
-        // canActivate: [AuthGuardMinistre]
-      }]
+        title: 'Ministre',
+        canActivate: [AuthGuardMinistre]
+      }
+      ]
+  },
+  {
+    path: 'citoyen/overview', component: DefaultComponent, children:
+      [{
+        path: '',
+        component: OverviewComponent,
+        title: 'Overview',
+        // canActivate: [AuthGuardConsul]
+      }
+      ]
   },
   {
     path: 'chancelier', component: DefaultComponent, children: [{
       path: '',
       component: ChancelierComponent,
-      title: 'Chancelier'
-      // canActivate: [AuthGuardConsul]
+      title: 'Chancelier',
+      canActivate: [AuthGuardConsul]
     }]
   },
   { path: '**', component: NotFoundComponent }
