@@ -22,7 +22,8 @@ public class CitoyenController {
     private final AdminRepository adminRepository;
 
     @Autowired
-    public CitoyenController(CitoyenService citoyenService, CitoyenRepository citoyenRepository, AdminRepository adminRepository) {
+    public CitoyenController(CitoyenService citoyenService, CitoyenRepository citoyenRepository,
+            AdminRepository adminRepository) {
         this.citoyenService = citoyenService;
         this.citoyenRepository = citoyenRepository;
         this.adminRepository = adminRepository;
@@ -65,20 +66,22 @@ public class CitoyenController {
     }
 
     @CrossOrigin
-    @GetMapping("/par-admin")
-    public ResponseEntity<List<Citoyen>> getCitoyensByAdmin(@AuthenticationPrincipal org.springframework.security.core.userdetails.User principal) {
-        if (principal == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Ou une autre réponse d'erreur appropriée
-        }
+    @GetMapping("/par-admin/{consulat_id}")
+    public ResponseEntity<List<Citoyen>> getCitoyensByConsulatId(
+            @PathVariable("consulat_id") Long consulatId,
+            @AuthenticationPrincipal org.springframework.security.core.userdetails.User principal) {
 
-        Admin admin = adminRepository.findByUsername(principal.getUsername())
-                .orElseThrow(() -> new RuntimeException("Admin not found"));
+        // if (principal == null) {
+        // return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Ou une
+        // autre réponse d'erreur appropriée
+        // }
 
-        if (admin.getConsulat() == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Ou une autre réponse d'erreur appropriée
-        }
+        // Vous pouvez toujours vérifier l'admin connecté si nécessaire, sinon, cette
+        // partie peut être supprimée
+        // Admin admin = adminRepository.findByUsername(principal.getUsername())
+        // .orElseThrow(() -> new RuntimeException("Admin not found"));
 
-        Long consulatId = admin.getConsulat().getId();
+        // Utiliser le consulatId directement
         List<Citoyen> citoyens = citoyenRepository.findByConsulatId(consulatId);
         return ResponseEntity.ok(citoyens);
     }
