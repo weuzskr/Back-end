@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.Poste;
@@ -55,3 +56,4 @@ public class PosteDataLoader implements ApplicationRunner {
         }
     }
 }
+*/

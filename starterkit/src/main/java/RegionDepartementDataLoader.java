@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.Region;
@@ -76,3 +77,4 @@ public class RegionDepartementDataLoader implements ApplicationRunner {
         System.out.println("Region and Departement data loaded successfully.");
     }
 }
+*/

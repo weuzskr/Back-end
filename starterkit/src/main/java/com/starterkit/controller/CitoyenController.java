@@ -2,6 +2,7 @@ package com.starterkit.controller;
 
 import com.starterkit.model.Citoyen;
 import com.starterkit.model.Admin;
+import com.starterkit.repository.AdminRepository;
 import com.starterkit.repository.CitoyenRepository;
 import com.starterkit.service.CitoyenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,15 @@ import java.util.Optional;
 public class CitoyenController {
 
     private final CitoyenService citoyenService;
+    private final CitoyenRepository citoyenRepository;
+    private final AdminRepository adminRepository;
 
     @Autowired
-    public CitoyenController(CitoyenService citoyenService) {
+    public CitoyenController(CitoyenService citoyenService, CitoyenRepository citoyenRepository, AdminRepository adminRepository) {
         this.citoyenService = citoyenService;
+        this.citoyenRepository = citoyenRepository;
+        this.adminRepository = adminRepository;
     }
-
-    @Autowired
-    private CitoyenRepository citoyenRepository;
 
     @CrossOrigin
     @GetMapping("/par-id/{id}")
@@ -64,8 +66,15 @@ public class CitoyenController {
 
     @CrossOrigin
     @GetMapping("/par-admin")
-    public ResponseEntity<List<Citoyen>> getCitoyensByAdmin(@AuthenticationPrincipal Admin admin) {
-        if (admin == null || admin.getConsulat() == null) {
+    public ResponseEntity<List<Citoyen>> getCitoyensByAdmin(@AuthenticationPrincipal org.springframework.security.core.userdetails.User principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Ou une autre réponse d'erreur appropriée
+        }
+
+        Admin admin = adminRepository.findByUsername(principal.getUsername())
+                .orElseThrow(() -> new RuntimeException("Admin not found"));
+
+        if (admin.getConsulat() == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Ou une autre réponse d'erreur appropriée
         }
 

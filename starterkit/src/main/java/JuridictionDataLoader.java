@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.Juridiction;
@@ -100,3 +101,4 @@ public class JuridictionDataLoader implements ApplicationRunner {
         }
     }
 }
+*/

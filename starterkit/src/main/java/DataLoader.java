@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.Profession;
@@ -47,3 +48,4 @@ public class DataLoader implements ApplicationRunner {
         }
     }
 }
+*/

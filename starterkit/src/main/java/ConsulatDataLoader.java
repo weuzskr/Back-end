@@ -1,3 +1,4 @@
+/*
 package com.starterkit;
 
 import com.starterkit.model.Consulat;
@@ -65,3 +66,4 @@ public class ConsulatDataLoader implements ApplicationRunner {
         System.out.println("Consulat data loaded successfully.");
     }
 }
+*/
