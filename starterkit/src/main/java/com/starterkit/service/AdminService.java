@@ -13,7 +13,10 @@ public class AdminService {
     @Autowired
     private AdminRepository adminRepository;
 
-    public Optional<Admin> findByUsername(String username) {
+   public Optional<Admin> findByUsername(String username) {
         return adminRepository.findByUsername(username);
     }
+   public Optional<Admin> findByEmail(String email) {
+       return adminRepository.findByEmail(email);
+   }
 }
