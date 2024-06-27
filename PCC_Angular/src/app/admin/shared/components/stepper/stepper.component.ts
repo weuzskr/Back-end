@@ -1,11 +1,12 @@
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { ProfessionService } from './../../../../services/profession.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { url } from 'src/app/services/apiUrl';
 import { sweetAlertMessage } from 'src/app/services/sweetAlert/alert.service';
+import { TableComponent } from '../table/table.component';
 
 
 @Component({
@@ -19,12 +20,14 @@ export class StepperComponent implements OnInit {
   citoyens: any;
   consulat_id: number = 0;
   user: any;
+  // @Input() totalPages: number = 0;
+  @ViewChild(TableComponent) table!: TableComponent;
   get_id() {
     if (localStorage.getItem("userConnect")) {
       this.user = JSON.parse(localStorage.getItem("userConnect") || "");
       this.consulat_id = this.user.user.consulatId;
-      console.log(this.consulat_id);
-      console.log("L'utilisateur connecté est :", this.user.user);
+      // console.log(this.consulat_id);
+      // console.log("L'utilisateur connecté est :", this.user.user);
 
     }
   }
@@ -127,25 +130,28 @@ export class StepperComponent implements OnInit {
   onSubmit() {
     if (this.citoyenForm.valid) {
 
-      console.log("les données que je veux envoyé", this.citoyenForm.value);
+      // console.log("les données que je veux envoyé", this.citoyenForm.value);
       this.CitoyenService.createCitoyen(this.citoyenForm.value)
 
         .subscribe(
           response => {
             sweetAlertMessage("success", "Ajout reussie", "Citoyen créé avec succès");
-            this.CitoyenService.getAllcitoyens().subscribe(
-              (data) => {
-                this.citoyens = data.citoyens;
-              },
-              (error) => {
-                console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
-              }
-            );
+            // this.get_id
+            // this.CitoyenService.getCitoyensByChancelier(this.consulat_id).subscribe(
+            //   (data) => {
+            //     this.citoyens = data;
+            //     this.table.updateTotalPages();
+            //     this.table.paginateCitoyens();
+            //   },
+            //   (error) => {
+            //     console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
+            //   }
+            // );
             this.CloseModal()
           },
           error => {
 
-            console.error("Erreur lors de l'enrollement :", error);
+            // console.error("Erreur lors de l'enrollement :", error);
 
             sweetAlertMessage("error", "Erreur lors de l'ajout du citoyen", "Veuillez vérifier les données que vous avez fournies");
           }

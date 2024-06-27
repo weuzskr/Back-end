@@ -5,7 +5,6 @@ import { ChancelierComponent } from '../modules/chancelier/chancelier.component'
 import { MinistreComponent } from '../modules/ministre/ministre.component';
 import { DefaultComponent } from './default/default.component';
 import { SharedModule } from '../shared/shared.module';
-import { OverviewComponent } from '../modules/overview/overview.component';
 
 
 
@@ -14,7 +13,6 @@ import { OverviewComponent } from '../modules/overview/overview.component';
         DefaultComponent,
         MinistreComponent,
         ChancelierComponent,
-        OverviewComponent
     ],
     imports: [
         CommonModule,

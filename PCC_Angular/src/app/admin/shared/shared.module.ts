@@ -10,6 +10,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from 'src/app/search.pipe';
+import { OverviewComponent } from './components/overview/overview.component';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -17,7 +18,8 @@ import { SearchPipe } from 'src/app/search.pipe';
     HeaderComponent,
     NotFoundComponent,
     TableComponent,
-    StepperComponent
+    StepperComponent,
+    OverviewComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { SearchPipe } from 'src/app/search.pipe';
     HeaderComponent,
     NotFoundComponent,
     TableComponent,
-    StepperComponent
+    StepperComponent,
+    OverviewComponent
   ],
   providers: [
     CitoyenService

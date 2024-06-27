@@ -10,6 +10,7 @@
         <div class="card card-flush">
           <!--begin Card header-->
           <div
+            *ngIf="citoyen_id == 0"
             class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
           >
             <!--begin Card title-->
@@ -60,7 +61,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#kt_modal_create_citoyen"
               >
-                Enroller un citoyen
+                Enroler un citoyen
               </button>
               <!--end add un citoyen-->
             </div>
@@ -73,6 +74,7 @@
             <table
               class="table align-middle table-row-dashed fs-6 gy-5"
               id="kt_ecommerce_products_table"
+              *ngIf="citoyen_id == 0"
             >
               <thead>
                 <tr
@@ -139,8 +141,7 @@
                     <div class="d-flex gap-2">
                       <a
                         class="btn btn-primary ki-outline ki-menu fs-3"
-                        [routerLink]="['/citoyen/overview', citoyen.id]"
-                        routerLinkActive="router-link-active"
+                        (click)="showcitoyen(citoyen.id)"
                       >
                         Voir details
                       </a>
@@ -157,10 +158,18 @@
               </tbody>
             </table>
             <!--end Table-->
+
+            <!-- begin overview -->
+            <app-overview
+              [citoyen_id]="citoyen_id"
+              [citoyen]="citoyen"
+            ></app-overview>
+            <!-- end overview -->
           </div>
           <!--end Card body-->
           <!-- begin card footer -->
           <div
+            *ngIf="citoyen_id == 0"
             class="d-flex justify-content-between card-footer mb-15 align-items-center py-5 gap-2 gap-md-5"
           >
             <!--begin::Pagination-->
@@ -229,3 +238,7 @@
   <!--end Content wrapper-->
 </div>
 <!--end :Main-->
+
+<!-- begin stepper -->
+<app-stepper></app-stepper>
+<!-- end stepper -->

@@ -12,7 +12,6 @@ import { MinistreComponent } from 'src/app/admin/modules/ministre/ministre.compo
 export class TableComponent implements OnInit {
   SearchText = "";
   citoyens: any[] = [];
-
   @Input() showConsulat: any;
   @Input() type!: string;
   paginatedCitoyens: any[] = [];
@@ -23,6 +22,8 @@ export class TableComponent implements OnInit {
   @ViewChild(ChancelierComponent) chancelier!: ChancelierComponent;
   consulat_id: number = 0;
   user: any;
+  citoyen_id: number = 0;
+  citoyen: any = {};
 
 
   constructor(private CitoyenService: CitoyenService, private router: Router) { }
@@ -51,8 +52,8 @@ export class TableComponent implements OnInit {
     if (localStorage.getItem("userConnect")) {
       this.user = JSON.parse(localStorage.getItem("userConnect") || "");
       this.consulat_id = this.user.user.consulatId;
-      console.log(this.consulat_id);
-      console.log("L'utilisateur connecté est :", this.user.user);
+      // console.log(this.consulat_id);
+      // console.log("L'utilisateur connecté est :", this.user.user);
 
     }
   }
@@ -69,6 +70,21 @@ export class TableComponent implements OnInit {
       }
     );
   }
+
+  loardcitoyenbyID(citoyen_id: number) {
+
+
+    this.CitoyenService.getCitoyensById(citoyen_id).subscribe(
+      (data) => {
+        this.citoyen = data;
+        console.log(this.citoyen);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des citoyens pour le ID :', error);
+      }
+    );
+  }
+
 
   updateTotalPages() {
     this.totalPages = Math.ceil(this.citoyens.length / this.itemsPerPage);
@@ -117,11 +133,9 @@ export class TableComponent implements OnInit {
     this.updateTotalPages();
     this.paginateCitoyens();
   }
-  // Fonction pour montrer un citoyen
-  showCitoyen(citoyen_id: number) {
-    this.router.navigate(['citoyen/overview', citoyen_id]);
+  showcitoyen(id: number) {
+    this.citoyen_id = id;
+    this.loardcitoyenbyID(id)
   }
-  getcitoyen() {
 
-  }
 }

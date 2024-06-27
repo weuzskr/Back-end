@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
       (response: any) => {
 
         if (response.user) {
-          sweetAlertMessage("success", "Connexion reussie", response.message)
+          // sweetAlertMessage("success", "Connexion reussie", response.message)
           this.authService.isAuthenticated = true;
           // On stocke les info de la requete dans notre localstorage
           localStorage.setItem("userConnect", JSON.stringify(response));
@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.log("mon user que je veux connecté", user);
-        console.log("Erreur lors de la connexion avec le backend", error);
+        // console.log("Erreur lors de la connexion avec le backend", error);
 
         this.messageErreur = "Email ou mot de passe incorrect";
         sweetAlertMessage("error", "Connexion echouer", this.messageErreur)
