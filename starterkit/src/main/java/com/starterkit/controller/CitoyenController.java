@@ -86,4 +86,22 @@ public class CitoyenController {
         return ResponseEntity.ok(citoyens);
     }
 
+    /*@CrossOrigin
+    @GetMapping("/par-adminn")
+    public ResponseEntity<List<Citoyen>> getCitoyensByAdmin(@AuthenticationPrincipal User principal, @RequestParam Long consulatId) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Ou une autre réponse d'erreur appropriée
+        }
+
+        Admin admin = adminRepository.findByUsername(principal.getUsername())
+                .orElseThrow(() -> new RuntimeException("Admin not found"));
+
+        if (admin.getConsulat() == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Ou une autre réponse d'erreur appropriée
+        }
+
+        List<Citoyen> citoyens = citoyenRepository.findByConsulatId(consulatId);
+        return ResponseEntity.ok(citoyens);
+    }*/
+
 }

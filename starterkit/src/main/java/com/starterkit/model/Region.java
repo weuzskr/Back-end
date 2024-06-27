@@ -1,5 +1,7 @@
 package com.starterkit.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ public class Region {
     private String nom;
 
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("region")
     private Set<Departement> departements;
 
     public Region() {
