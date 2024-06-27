@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
-                .antMatchers("/api/home").authenticated()
+                .antMatchers("/api/home","/api/citoyens/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .cors() // Activer la configuration CORS

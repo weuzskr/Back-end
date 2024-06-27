@@ -4,14 +4,25 @@ public class UserDetailsResponse {
     private String role;
     private String email;
     private String username;
+    private Long consulatId;
 
-    public UserDetailsResponse() {
+    public Long getConsulatId() {
+        return consulatId;
     }
 
-    public UserDetailsResponse(String role, String email, String username) {
+    public void setConsulatId(Long consulatId) {
+        this.consulatId = consulatId;
+    }
+
+    public UserDetailsResponse(Long consulatId) {
+        this.consulatId = consulatId;
+    }
+
+    public UserDetailsResponse(String role, String email, String username, Long consulatId) {
         this.role = role;
         this.email = email;
         this.username = username;
+        this.consulatId = consulatId;
     }
 
     // Getters et setters
