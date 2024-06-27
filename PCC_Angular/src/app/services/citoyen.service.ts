@@ -21,8 +21,14 @@ export class CitoyenService {
   }
 
   // Fonction pour récupérer les citoyens par chancelier
-  getCitoyensByChancelier(): Observable<any> {
-    return this.http.get<any>(`${url}/citoyens/par-admin`);
+  getCitoyensByChancelier(consulat_id: number): Observable<any> {
+    return this.http.get<any>(`${url}/citoyens/par-admin/${consulat_id}`);
+    // return this.http.get<any>(`http://127.0.0.1:8080/api/citoyens/`);
+
+  }
+  // Fonction pour récupérer les citoyens par chancelier
+  getCitoyensById(id: number): Observable<any> {
+    return this.http.get<any>(`${url}/citoyens/par-id/${id}`);
     // return this.http.get<any>(`http://127.0.0.1:8080/api/citoyens/`);
 
   }

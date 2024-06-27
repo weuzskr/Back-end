@@ -1,3 +1,9 @@
 .root {
   background-image: url("src/assets/media/auth/bg13.jpg");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 100% of the viewport height */
+  width: 100vw; /* 100% of the viewport width */
 }

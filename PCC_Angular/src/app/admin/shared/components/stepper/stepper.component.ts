@@ -17,6 +17,18 @@ export class StepperComponent implements OnInit {
   citoyenForm: FormGroup;
   professions: any;
   citoyens: any;
+  consulat_id: number = 0;
+  user: any;
+  get_id() {
+    if (localStorage.getItem("userConnect")) {
+      this.user = JSON.parse(localStorage.getItem("userConnect") || "");
+      this.consulat_id = this.user.user.consulatId;
+      console.log(this.consulat_id);
+      console.log("L'utilisateur connecté est :", this.user.user);
+
+    }
+  }
+
   ngOnInit() {
     this.loadProfessions(); // Charger les professions lors de l'initialisation
   }
@@ -27,8 +39,8 @@ export class StepperComponent implements OnInit {
     private ProfessionService: ProfessionService,
     private CitoyenService: CitoyenService
   ) {
+    this.get_id()
     this.citoyenForm = this.fb.group({
-      matricule: ['', Validators.required],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       dateDeNaissance: ['', Validators.required],
@@ -43,11 +55,10 @@ export class StepperComponent implements OnInit {
       empreinteDigitale: ['', Validators.required],
       situationMatrimoniale: ['', Validators.required],
       profession: this.fb.group({
-        id: [1, Validators.required],
+        id: ['', Validators.required],
       }),
       attacherFamilliales: this.fb.array([
         this.createAttachFamillialeGroup({
-          matricule: '',
           prenom: '',
           nom: '',
           numeroDeTelephone: '',
@@ -58,14 +69,13 @@ export class StepperComponent implements OnInit {
       familles: this.fb.array([
       ]),
       consulat: this.fb.group({
-        id: [1, Validators.required],
+        id: [this.consulat_id, Validators.required],
       }),
     });
   }
 
   createAttachFamillialeGroup(data?: any): FormGroup {
     return this.fb.group({
-      matricule: [data ? data.matricule : '', Validators.required],
       adresse: [data ? data.adresse : '', Validators.required],
       lienDeParente: [data ? data.lienDeParente : '', Validators.required],
       nom: [data ? data.nom : '', Validators.required],
@@ -76,7 +86,6 @@ export class StepperComponent implements OnInit {
 
   createFamilleGroup(data?: any): FormGroup {
     return this.fb.group({
-      matricule: [data ? data.matricule : ''],
       age: [data ? data.age : ''],
       nom: [data ? data.nom : ''],
       prenom: [data ? data.prenom : ''],
@@ -116,30 +125,33 @@ export class StepperComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.citoyenForm.valid) {
+    if (this.citoyenForm.valid) {
 
-    this.CitoyenService.createCitoyen(this.citoyenForm.value)
-      .subscribe(
-        response => {
-          sweetAlertMessage("success", "Ajout reussie", "Citoyen créé avec succès");
-          // this.CitoyenService.getAllcitoyens().subscribe(
-          //   (data) => {
-          //     this.citoyens = data.citoyens;
-          //   },
-          //   (error) => {
-          //     console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
-          //   }
-          // );
-        },
-        error => {
-          this.CloseModal()
+      console.log("les données que je veux envoyé", this.citoyenForm.value);
+      this.CitoyenService.createCitoyen(this.citoyenForm.value)
 
-          console.log("Erreur lors de l'ajout", error);
+        .subscribe(
+          response => {
+            sweetAlertMessage("success", "Ajout reussie", "Citoyen créé avec succès");
+            this.CitoyenService.getAllcitoyens().subscribe(
+              (data) => {
+                this.citoyens = data.citoyens;
+              },
+              (error) => {
+                console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
+              }
+            );
+            this.CloseModal()
+          },
+          error => {
 
-          sweetAlertMessage("error", "Erreur lors de l'ajout du citoyen", "Veuillez vérifier les données que vous avez fournies");
-        }
-      );
-    // }
+            console.error("Erreur lors de l'enrollement :", error);
+
+            sweetAlertMessage("error", "Erreur lors de l'ajout du citoyen", "Veuillez vérifier les données que vous avez fournies");
+          }
+        );
+    }
+    // this.get_id()
   }
 
 
@@ -147,7 +159,7 @@ export class StepperComponent implements OnInit {
   loadProfessions() {
     this.ProfessionService.getProfessions().subscribe(
       (data) => {
-        this.professions = data.data; // Assigner les professions récupérées
+        this.professions = data; // Assigner les professions récupérées
       },
       (error) => {
         console.error('Erreur lors de la récupération des professions', error);
