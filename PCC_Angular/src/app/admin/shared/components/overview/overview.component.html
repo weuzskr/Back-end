@@ -1,0 +1,335 @@
+<!--begin Navbar-->
+<div *ngIf="citoyen_id != 0" class="card mb-5 mb-xl-10">
+  <!--begin details View-->
+  <div
+    *ngIf="citoyen_id != 0"
+    class="card mb-5 mb-xl-10"
+    id="kt_profile_details_view"
+  >
+    <!--begin Card header-->
+    <div class="card-header d-flex justify-content-center cursor-pointer">
+      <!--begin Card title-->
+      <div class="card-title m-0">
+        <h3 class="fw-bold m-0">Informations du citoyen</h3>
+      </div>
+      <!--end Card title-->
+    </div>
+    <!--end Card header-->
+    <!--begin Card body-->
+    <div class="card-body p-9">
+      <!--begin Row-->
+      <div class="row mb-7">
+        <!--begin: Pic-->
+        <div class="col-12 d-flex justify-content-center mb-4">
+          <div
+            class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative"
+          >
+            <img src="assets/media/avatars/300-1.jpg" alt="image" />
+            <div
+              class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"
+            ></div>
+          </div>
+        </div>
+        <!--end Pic-->
+      </div>
+      <!--end Row-->
+      <!--begin Row-->
+      <div class="row mb-7">
+        <label class="col-lg-4 fw-bold">Matricule</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800">{{
+            citoyen.matricule
+          }}</span>
+        </div>
+      </div>
+      <!--end Row-->
+      <div class="row mb-7">
+        <label class="col-lg-4 fw-bold">Nom complet</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800"
+            >{{ citoyen.prenom }} {{ citoyen.nom }}</span
+          >
+        </div>
+      </div>
+      <div class="row mb-7">
+        <label class="col-lg-4 fw-bold">Telephone</label>
+        <div class="col-lg-8 d-flex align-items-center">
+          <span class="fw-bold fs-6 text-gray-800 me-2">{{
+            citoyen.numeroDeTelephone
+          }}</span>
+          <span class="badge badge-success">Verified</span>
+        </div>
+      </div>
+      <div class="row mb-7">
+        <label class="col-lg-4 fw-bold">Profession</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800 me-2">{{
+            citoyen.profession.secteurDactivites
+          }}</span>
+        </div>
+      </div>
+      <div class="row mb-7">
+        <label class="col-lg-4 fw-bold">Date de Naissance</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800">{{
+            citoyen.dateDeNaissance
+          }}</span>
+        </div>
+      </div>
+      <div class="row mb-7">
+        <label class="col-lg-4 fw-bold">Lieux de naissance</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800">{{
+            citoyen.lieuDeNaissance
+          }}</span>
+        </div>
+      </div>
+      <div class="row mb-10">
+        <label class="col-lg-4 fw-bold">Taille (cm)</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800">{{ citoyen.taille }}</span>
+        </div>
+      </div>
+      <div class="row mb-10">
+        <label class="col-lg-4 fw-bold">Sexe</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800">{{ citoyen.sexe }}</span>
+        </div>
+      </div>
+      <div class="row mb-10">
+        <label class="col-lg-4 fw-bold">Situation Matrimoniale</label>
+        <div class="col-lg-8">
+          <span class="fw-bold fs-6 text-gray-800">{{
+            citoyen.situationMatrimoniale
+          }}</span>
+        </div>
+      </div>
+    </div>
+    <!--end Card body-->
+
+    <!--end details View-->
+
+    <!--begin  Content-->
+    <div
+      *ngIf="citoyen_id != 0"
+      id="kt_app_content"
+      class="app-content flex-column-fluid"
+    >
+      <!--begin Content container-->
+      <div id="kt_app_content_container" class="app-container container-fluid">
+        <!--begin Card-->
+
+        <!--begin Card body-->
+        <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+          <div class="d-flex flex-column flex-column-fluid">
+            <div id="kt_app_content" class="app-content app-content-stretch">
+              <div class="app-container container-fluid">
+                <div class="card card-flush">
+                  <div class="card-body py-4">
+                    <div class="row">
+                      <!-- Column for Familles-->
+                      <div class="col-md-12 mb-5">
+                        <div
+                          class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
+                        >
+                          <div class="card-title">
+                            <div
+                              class="d-flex align-items-center position-relative my-1"
+                            >
+                              <i
+                                class="ki-outline ki-magnifier fs-3 position-absolute ms-4"
+                              ></i>
+                              <input
+                                type="text"
+                                data-kt-ecommerce-product-filter="search"
+                                class="form-control form-control-solid w-250px ps-12"
+                                placeholder="Rechercher une famille"
+                                [(ngModel)]="searchTextFamille"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="card-toolbar flex-row-fluid gap-5 d-flex justify-content-between align-items-center"
+                          >
+                            <div class="d-flex gap-2">
+                              <div class="w-100 mw-150px">
+                                <select
+                                  class="form-select form-select-solid"
+                                  [(ngModel)]="itemsPerPageFamilles"
+                                  (ngModelChange)="paginateFamilles()"
+                                  (change)="changeItemsPerPageFamilles($event)"
+                                >
+                                  <option [value]="5">5</option>
+                                  <option [value]="10">10</option>
+                                  <option [value]="25">25</option>
+                                  <option [value]="50">50</option>
+                                  <option [value]="75">75</option>
+                                  <option [value]="100">100</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div><h3>Famille</h3></div>
+                          </div>
+                        </div>
+                        <div class="card-body pt-0">
+                          <table
+                            class="table align-middle table-row-dashed fs-6 gy-5"
+                          >
+                            <thead>
+                              <tr
+                                class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
+                              >
+                                <th class="min-w-200px">Matricule</th>
+                                <th class="min-w-200px">Prénom</th>
+                                <th class="min-w-200px">Nom</th>
+                                <th class="min-w-200px">Age</th>
+                                <th class="min-w-200px">Sexe</th>
+                                <th class="text-center min-w-100px">Statut</th>
+                              </tr>
+                            </thead>
+                            <tbody class="fw-semibold text-gray-600">
+                              <tr
+                                *ngFor="
+                                  let famille of paginatedFamilles
+                                    | search : searchTextFamille
+                                "
+                              >
+                                <td>{{ famille.matricule }}</td>
+                                <td>{{ famille.prenom }}</td>
+                                <td>{{ famille.nom }}</td>
+                                <td>{{ famille.age }}</td>
+                                <td>{{ famille.sexe }}</td>
+                                <td class="text-center">
+                                  {{ famille.type }}
+                                </td>
+                              </tr>
+                              <tr *ngIf="paginatedFamilles.length === 0">
+                                <td colspan="3" class="text-center">
+                                  <span class="text-gray-600">
+                                    <h3>
+                                      Aucune donnée disponible pour cette table.
+                                    </h3>
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="d-flex justify-content-between">
+                            <!-- Pagination controls -->
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Column for Attaches Familiales -->
+                      <div class="col-md-12">
+                        <div
+                          class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
+                        >
+                          <div class="card-title">
+                            <div
+                              class="d-flex align-items-center position-relative my-1"
+                            >
+                              <i
+                                class="ki-outline ki-magnifier fs-3 position-absolute ms-4"
+                              ></i>
+                              <input
+                                type="text"
+                                data-kt-ecommerce-product-filter="search"
+                                class="form-control form-control-solid w-250px ps-12"
+                                placeholder="Rechercher une attache familiale"
+                                [(ngModel)]="searchTextAttache"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="card-toolbar flex-row-fluid gap-5 d-flex justify-content-between align-items-center"
+                          >
+                            <div class="d-flex gap-2">
+                              <div class="w-100 mw-150px">
+                                <select
+                                  class="form-select form-select-solid"
+                                  [(ngModel)]="itemsPerPageAttaches"
+                                  (ngModelChange)="paginateAttaches()"
+                                  (change)="changeItemsPerPageAttaches($event)"
+                                >
+                                  <option [value]="5">5</option>
+                                  <option [value]="10">10</option>
+                                  <option [value]="25">25</option>
+                                  <option [value]="50">50</option>
+                                  <option [value]="75">75</option>
+                                  <option [value]="100">100</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div><h3>Attaches Familiales</h3></div>
+                          </div>
+                        </div>
+                        <div class="card-body pt-0">
+                          <table
+                            class="table align-middle table-row-dashed fs-6 gy-5"
+                          >
+                            <thead>
+                              <tr
+                                class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
+                              >
+                                <th class="min-w-200px">Matricule</th>
+                                <th class="min-w-200px">Prénom</th>
+                                <th class="min-w-200px">Nom</th>
+                                <th class="min-w-200px">Numero de Telephone</th>
+                                <th class="min-w-200px">Adresse</th>
+                                <th class="text-center min-w-100px">
+                                  Lien de parenté
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody class="fw-semibold text-gray-600">
+                              <tr
+                                *ngFor="
+                                  let attache of paginatedAttaches
+                                    | search : searchTextAttache
+                                "
+                              >
+                                <td>{{ attache.matricule }}</td>
+                                <td>{{ attache.prenom }}</td>
+                                <td>{{ attache.nom }}</td>
+                                <td>{{ attache.numeroDeTelephone }}</td>
+                                <td>{{ attache.adresse }}</td>
+                                <td class="text-center">
+                                  {{ attache.lienDeParente }}
+                                </td>
+                              </tr>
+                              <tr *ngIf="paginatedAttaches.length === 0">
+                                <td colspan="3" class="text-center">
+                                  <span class="text-gray-600">
+                                    <h3>
+                                      Aucune donnée disponible pour cette table.
+                                    </h3>
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="d-flex justify-content-between">
+                            <!-- Pagination controls -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Détails du citoyen -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--end Card body-->
+
+        <!--end Card-->
+      </div>
+      <!--end Content container-->
+    </div>
+  </div>
+  <!--end  Content-->
+</div>
