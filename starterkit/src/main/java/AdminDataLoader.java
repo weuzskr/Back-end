@@ -54,7 +54,8 @@ public class AdminDataLoader implements ApplicationRunner {
 
 
 }
-*/
+*//*
+
 package com.starterkit;
 
 import com.starterkit.model.Admin;
@@ -120,3 +121,4 @@ public class AdminDataLoader implements ApplicationRunner {
         }
     }
 }
+*/
