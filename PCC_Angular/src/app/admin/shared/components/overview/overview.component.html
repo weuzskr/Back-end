@@ -116,220 +116,354 @@
       class="app-content flex-column-fluid"
     >
       <!--begin Content container-->
-      <div id="kt_app_content_container" class="app-container container-fluid">
-        <!--begin Card-->
+      <!-- <div id="kt_app_content_container" class="app-container container-fluid"> -->
+      <!--begin Card-->
 
-        <!--begin Card body-->
-        <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-          <div class="d-flex flex-column flex-column-fluid">
-            <div id="kt_app_content" class="app-content app-content-stretch">
-              <div class="app-container container-fluid">
-                <div class="card card-flush">
-                  <div class="card-body py-4">
-                    <div class="row">
-                      <!-- Column for Familles-->
-                      <div class="col-md-12 mb-5">
-                        <div
-                          class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
-                        >
-                          <div class="card-title">
-                            <div
-                              class="d-flex align-items-center position-relative my-1"
-                            >
-                              <i
-                                class="ki-outline ki-magnifier fs-3 position-absolute ms-4"
-                              ></i>
-                              <input
-                                type="text"
-                                data-kt-ecommerce-product-filter="search"
-                                class="form-control form-control-solid w-250px ps-12"
-                                placeholder="Rechercher une famille"
-                                [(ngModel)]="searchTextFamille"
-                              />
-                            </div>
-                          </div>
+      <!--begin Card body-->
+      <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+        <div class="d-flex flex-column flex-column-fluid">
+          <div id="kt_app_content" class="app-content app-content-stretch">
+            <div class="app-container container-fluid">
+              <div class="card card-flush">
+                <div class="card-body py-4">
+                  <div class="row">
+                    <!-- Column for Familles-->
+                    <div class="col-md-12 mb-5">
+                      <div
+                        class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
+                      >
+                        <div class="card-title">
                           <div
-                            class="card-toolbar flex-row-fluid gap-5 d-flex justify-content-between align-items-center"
+                            class="d-flex align-items-center position-relative my-1"
                           >
-                            <div class="d-flex gap-2">
-                              <div class="w-100 mw-150px">
-                                <select
-                                  class="form-select form-select-solid"
-                                  [(ngModel)]="itemsPerPageFamilles"
-                                  (ngModelChange)="paginateFamilles()"
-                                  (change)="changeItemsPerPageFamilles($event)"
-                                >
-                                  <option [value]="5">5</option>
-                                  <option [value]="10">10</option>
-                                  <option [value]="25">25</option>
-                                  <option [value]="50">50</option>
-                                  <option [value]="75">75</option>
-                                  <option [value]="100">100</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div><h3>Famille</h3></div>
+                            <i
+                              class="ki-outline ki-magnifier fs-3 position-absolute ms-4"
+                            ></i>
+                            <input
+                              type="text"
+                              data-kt-ecommerce-product-filter="search"
+                              class="form-control form-control-solid w-250px ps-12"
+                              placeholder="Rechercher une famille"
+                              [(ngModel)]="searchTextFamille"
+                            />
                           </div>
                         </div>
-                        <div class="card-body pt-0">
-                          <table
-                            class="table align-middle table-row-dashed fs-6 gy-5"
-                          >
-                            <thead>
-                              <tr
-                                class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
+                        <div
+                          class="card-toolbar flex-row-fluid gap-5 d-flex justify-content-between align-items-center"
+                        >
+                          <div class="d-flex gap-2">
+                            <div class="w-100 mw-150px">
+                              <select
+                                class="form-select form-select-solid"
+                                [(ngModel)]="itemsPerPageFamilles"
+                                (ngModelChange)="paginateFamilles()"
+                                (change)="changeItemsPerPageFamilles($event)"
                               >
-                                <th class="min-w-200px">Matricule</th>
-                                <th class="min-w-200px">Prénom</th>
-                                <th class="min-w-200px">Nom</th>
-                                <th class="min-w-200px">Age</th>
-                                <th class="min-w-200px">Sexe</th>
-                                <th class="text-center min-w-100px">Statut</th>
-                              </tr>
-                            </thead>
-                            <tbody class="fw-semibold text-gray-600">
-                              <tr
-                                *ngFor="
-                                  let famille of paginatedFamilles
-                                    | search : searchTextFamille
-                                "
-                              >
-                                <td>{{ famille.matricule }}</td>
-                                <td>{{ famille.prenom }}</td>
-                                <td>{{ famille.nom }}</td>
-                                <td>{{ famille.age }}</td>
-                                <td>{{ famille.sexe }}</td>
-                                <td class="text-center">
-                                  {{ famille.type }}
-                                </td>
-                              </tr>
-                              <tr *ngIf="paginatedFamilles.length === 0">
-                                <td colspan="3" class="text-center">
-                                  <span class="text-gray-600">
-                                    <h3>
-                                      Aucune donnée disponible pour cette table.
-                                    </h3>
-                                  </span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <div class="d-flex justify-content-between">
-                            <!-- Pagination controls -->
+                                <option [value]="5">5</option>
+                                <option [value]="10">10</option>
+                                <option [value]="25">25</option>
+                                <option [value]="50">50</option>
+                                <option [value]="75">75</option>
+                                <option [value]="100">100</option>
+                              </select>
+                            </div>
                           </div>
+                          <div><h3>Famille</h3></div>
                         </div>
                       </div>
-
-                      <!-- Column for Attaches Familiales -->
-                      <div class="col-md-12">
-                        <div
-                          class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
+                      <div class="card-body pt-0">
+                        <table
+                          class="table align-middle table-row-dashed fs-6 gy-5"
                         >
-                          <div class="card-title">
-                            <div
-                              class="d-flex align-items-center position-relative my-1"
+                          <thead>
+                            <tr
+                              class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
                             >
-                              <i
-                                class="ki-outline ki-magnifier fs-3 position-absolute ms-4"
-                              ></i>
-                              <input
-                                type="text"
-                                data-kt-ecommerce-product-filter="search"
-                                class="form-control form-control-solid w-250px ps-12"
-                                placeholder="Rechercher une attache familiale"
-                                [(ngModel)]="searchTextAttache"
-                              />
-                            </div>
+                              <th class="min-w-200px">Matricule</th>
+                              <th class="min-w-200px">Prénom</th>
+                              <th class="min-w-200px">Nom</th>
+                              <th class="min-w-200px">Age</th>
+                              <th class="min-w-200px">Sexe</th>
+                              <th class="text-center min-w-100px">Statut</th>
+                            </tr>
+                          </thead>
+                          <tbody class="fw-semibold text-gray-600">
+                            <tr
+                              *ngFor="
+                                let famille of paginatedFamilles
+                                  | search : searchTextFamille
+                              "
+                            >
+                              <td>{{ famille.matricule }}</td>
+                              <td>{{ famille.prenom }}</td>
+                              <td>{{ famille.nom }}</td>
+                              <td>{{ famille.age }}</td>
+                              <td>{{ famille.sexe }}</td>
+                              <td class="text-center">
+                                {{ famille.type }}
+                              </td>
+                            </tr>
+                            <tr *ngIf="paginatedFamilles.length === 0">
+                              <td colspan="3" class="text-center">
+                                <span class="text-gray-600">
+                                  <h3>
+                                    Aucune donnée disponible pour cette table.
+                                  </h3>
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="d-flex justify-content-between">
+                          <div class="fs-6 fw-semibold text-gray-700">
+                            Affichage de
+                            {{
+                              (currentPageFamilles - 1) * itemsPerPageFamilles +
+                                1
+                            }}
+                            à
+                            {{
+                              currentPageFamilles * itemsPerPageFamilles >
+                              paginatedFamilles.length
+                                ? paginatedFamilles.length
+                                : currentPageFamilles * itemsPerPageFamilles
+                            }}
+                            sur {{ paginatedFamilles.length }} entrées
                           </div>
-                          <div
-                            class="card-toolbar flex-row-fluid gap-5 d-flex justify-content-between align-items-center"
-                          >
-                            <div class="d-flex gap-2">
-                              <div class="w-100 mw-150px">
-                                <select
-                                  class="form-select form-select-solid"
-                                  [(ngModel)]="itemsPerPageAttaches"
-                                  (ngModelChange)="paginateAttaches()"
-                                  (change)="changeItemsPerPageAttaches($event)"
-                                >
-                                  <option [value]="5">5</option>
-                                  <option [value]="10">10</option>
-                                  <option [value]="25">25</option>
-                                  <option [value]="50">50</option>
-                                  <option [value]="75">75</option>
-                                  <option [value]="100">100</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div><h3>Attaches Familiales</h3></div>
-                          </div>
-                        </div>
-                        <div class="card-body pt-0">
-                          <table
-                            class="table align-middle table-row-dashed fs-6 gy-5"
-                          >
-                            <thead>
-                              <tr
-                                class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
-                              >
-                                <th class="min-w-200px">Matricule</th>
-                                <th class="min-w-200px">Prénom</th>
-                                <th class="min-w-200px">Nom</th>
-                                <th class="min-w-200px">Numero de Telephone</th>
-                                <th class="min-w-200px">Adresse</th>
-                                <th class="text-center min-w-100px">
-                                  Lien de parenté
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody class="fw-semibold text-gray-600">
-                              <tr
-                                *ngFor="
-                                  let attache of paginatedAttaches
-                                    | search : searchTextAttache
+                          <ul class="pagination">
+                            <li
+                              class="page-item previous"
+                              [class.disabled]="currentPageFamilles === 1"
+                            >
+                              <span
+                                class="page-link"
+                                (click)="previousPageFamilles()"
+                                [style.cursor]="
+                                  currentPageFamilles === 1
+                                    ? 'not-allowed'
+                                    : 'pointer'
                                 "
                               >
-                                <td>{{ attache.matricule }}</td>
-                                <td>{{ attache.prenom }}</td>
-                                <td>{{ attache.nom }}</td>
-                                <td>{{ attache.numeroDeTelephone }}</td>
-                                <td>{{ attache.adresse }}</td>
-                                <td class="text-center">
-                                  {{ attache.lienDeParente }}
-                                </td>
-                              </tr>
-                              <tr *ngIf="paginatedAttaches.length === 0">
-                                <td colspan="3" class="text-center">
-                                  <span class="text-gray-600">
-                                    <h3>
-                                      Aucune donnée disponible pour cette table.
-                                    </h3>
-                                  </span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <div class="d-flex justify-content-between">
-                            <!-- Pagination controls -->
+                                <i class="previous"></i> Précédent
+                              </span>
+                            </li>
+                            <li
+                              class="page-item"
+                              *ngFor="let page of getPagesFamilles()"
+                              [class.active]="page === currentPageFamilles"
+                            >
+                              <span
+                                class="page-link"
+                                (click)="goToPageFamilles(page)"
+                                [style.cursor]="
+                                  page === currentPageFamilles
+                                    ? 'default'
+                                    : 'pointer'
+                                "
+                              >
+                                {{ page }}
+                              </span>
+                            </li>
+                            <li
+                              class="page-item next"
+                              [class.disabled]="
+                                currentPageFamilles === totalPagesFamilles
+                              "
+                            >
+                              <span
+                                class="page-link"
+                                (click)="nextPageFamilles()"
+                                [style.cursor]="
+                                  currentPageFamilles === totalPagesFamilles
+                                    ? 'not-allowed'
+                                    : 'pointer'
+                                "
+                              >
+                                Suivant <i class="next"></i>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Column for Attaches Familiales -->
+                    <div class="col-md-12">
+                      <div
+                        class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
+                      >
+                        <div class="card-title">
+                          <div
+                            class="d-flex align-items-center position-relative my-1"
+                          >
+                            <i
+                              class="ki-outline ki-magnifier fs-3 position-absolute ms-4"
+                            ></i>
+                            <input
+                              type="text"
+                              data-kt-ecommerce-product-filter="search"
+                              class="form-control form-control-solid w-250px ps-12"
+                              placeholder="Rechercher une attache familiale"
+                              [(ngModel)]="searchTextAttache"
+                            />
                           </div>
+                        </div>
+                        <div
+                          class="card-toolbar flex-row-fluid gap-5 d-flex justify-content-between align-items-center"
+                        >
+                          <div class="d-flex gap-2">
+                            <div class="w-100 mw-150px">
+                              <select
+                                class="form-select form-select-solid"
+                                [(ngModel)]="itemsPerPageAttaches"
+                                (ngModelChange)="paginateAttaches()"
+                                (change)="changeItemsPerPageAttaches($event)"
+                              >
+                                <option [value]="5">5</option>
+                                <option [value]="10">10</option>
+                                <option [value]="25">25</option>
+                                <option [value]="50">50</option>
+                                <option [value]="75">75</option>
+                                <option [value]="100">100</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div><h3>Attaches Familiales</h3></div>
+                        </div>
+                      </div>
+                      <div class="card-body pt-0">
+                        <table
+                          class="table align-middle table-row-dashed fs-6 gy-5"
+                        >
+                          <thead>
+                            <tr
+                              class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
+                            >
+                              <th class="min-w-200px">Matricule</th>
+                              <th class="min-w-200px">Prénom</th>
+                              <th class="min-w-200px">Nom</th>
+                              <th class="min-w-200px">Numero de Telephone</th>
+                              <th class="min-w-200px">Adresse</th>
+                              <th class="text-center min-w-100px">
+                                Lien de parenté
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="fw-semibold text-gray-600">
+                            <tr
+                              *ngFor="
+                                let attache of paginatedAttaches
+                                  | search : searchTextAttache
+                              "
+                            >
+                              <td>{{ attache.matricule }}</td>
+                              <td>{{ attache.prenom }}</td>
+                              <td>{{ attache.nom }}</td>
+                              <td>{{ attache.numeroDeTelephone }}</td>
+                              <td>{{ attache.adresse }}</td>
+                              <td class="text-center">
+                                {{ attache.lienDeParente }}
+                              </td>
+                            </tr>
+                            <tr *ngIf="paginatedAttaches.length === 0">
+                              <td colspan="3" class="text-center">
+                                <span class="text-gray-600">
+                                  <h3>
+                                    Aucune donnée disponible pour cette table.
+                                  </h3>
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="d-flex justify-content-between">
+                          <div class="fs-6 fw-semibold text-gray-700">
+                            Affichage de
+                            {{
+                              (currentPageAttaches - 1) * itemsPerPageAttaches +
+                                1
+                            }}
+                            à
+                            {{
+                              currentPageAttaches * itemsPerPageAttaches >
+                              paginatedAttaches.length
+                                ? paginatedAttaches.length
+                                : currentPageAttaches * itemsPerPageAttaches
+                            }}
+                            sur {{ paginatedAttaches.length }} entrées
+                          </div>
+                          <ul class="pagination">
+                            <li
+                              class="page-item previous"
+                              [class.disabled]="currentPageAttaches === 1"
+                            >
+                              <span
+                                class="page-link"
+                                (click)="previousPageAttaches()"
+                                [style.cursor]="
+                                  currentPageAttaches === 1
+                                    ? 'not-allowed'
+                                    : 'pointer'
+                                "
+                              >
+                                <i class="previous"></i> Précédent
+                              </span>
+                            </li>
+                            <li
+                              class="page-item"
+                              *ngFor="let page of getPagesAttaches()"
+                              [class.active]="page === currentPageAttaches"
+                            >
+                              <span
+                                class="page-link"
+                                (click)="goToPageAttaches(page)"
+                                [style.cursor]="
+                                  page === currentPageAttaches
+                                    ? 'default'
+                                    : 'pointer'
+                                "
+                              >
+                                {{ page }}
+                              </span>
+                            </li>
+                            <li
+                              class="page-item next"
+                              [class.disabled]="
+                                currentPageAttaches === totalPagesAttaches
+                              "
+                            >
+                              <span
+                                class="page-link"
+                                (click)="nextPageAttaches()"
+                                [style.cursor]="
+                                  currentPageAttaches === totalPagesAttaches
+                                    ? 'not-allowed'
+                                    : 'pointer'
+                                "
+                              >
+                                Suivant <i class="next"></i>
+                              </span>
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>
                   </div>
-
-                  <!-- Détails du citoyen -->
                 </div>
+
+                <!-- Détails du citoyen -->
               </div>
             </div>
           </div>
         </div>
-
-        <!--end Card body-->
-
-        <!--end Card-->
       </div>
-      <!--end Content container-->
+
+      <!--end Card body-->
+
+      <!--end Card-->
     </div>
+    <!--end Content container-->
   </div>
+  <!-- </div> -->
   <!--end  Content-->
 </div>

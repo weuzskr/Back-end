@@ -33,14 +33,14 @@ export class AuthService {
 
 
   logout() {
-    this.logoutAPI().subscribe(
-      (response: any) => {
-        this.isAuthenticated = false;
-        this.router.navigate(['/']);
-        sweetAlertMessage('success', "Deconnexion reussi", "Vous avez été deconnecter de la plateforme")
-        localStorage.setItem("userConnect", JSON.stringify(""));
-      }
-    )
+    // this.logoutAPI().subscribe(
+    //   (response: any) => {
+    //     this.isAuthenticated = false;
+    this.router.navigate(['/']);
+    sweetAlertMessage('success', "Deconnexion reussi", "Vous avez été deconnecter de la plateforme")
+    localStorage.setItem("userConnect", JSON.stringify(""));
+    //   }
+    // )
 
   }
 }
