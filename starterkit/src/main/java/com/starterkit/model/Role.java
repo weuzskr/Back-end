@@ -1,5 +1,7 @@
 package com.starterkit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +16,8 @@ public class Role  {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+
+    @JsonBackReference
     private Set<Admin> admins;
 
     // Constructors, getters, and setters
