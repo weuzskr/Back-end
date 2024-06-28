@@ -1,5 +1,9 @@
 package com.starterkit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -24,6 +28,7 @@ public class Admin {
             joinColumns = @JoinColumn(name = "admin_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonManagedReference
     private Set<Role> roles;
 
     @OneToOne
@@ -72,6 +77,7 @@ public class Admin {
         this.email = email;
     }
 
+    //@JsonBackReference
     public Set<Role> getRoles() {
         return roles;
     }
@@ -80,9 +86,11 @@ public class Admin {
         this.roles = roles;
     }
 
+    @JsonIgnore
     public Consulat getConsulat() {
         return consulat;
     }
+
 
     public void setConsulat(Consulat consulat) {
         this.consulat = consulat;
