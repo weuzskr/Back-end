@@ -4,7 +4,7 @@
   class="app-sidebar"
   data-kt-drawer="true"
   data-kt-drawer-name="app-sidebar"
-  data-kt-drawer-activate="{default: true, lg: false}"
+  data-kt-drawer-activate="{default   true, lg   false}"
   data-kt-drawer-overlay="true"
   data-kt-drawer-width="225px"
   data-kt-drawer-direction="start"
@@ -17,7 +17,7 @@
     data-kt-scroll="true"
     data-kt-scroll-activate="true"
     data-kt-scroll-height="auto"
-    data-kt-scroll-dependencies="{default: false, lg: '#kt_app_header'}"
+    data-kt-scroll-dependencies="{default   false, lg   '#kt_app_header'}"
     data-kt-scroll-offset="5px"
   >
     <!--begin    Filter-->
@@ -41,15 +41,15 @@
       <!--begin    Menu item-->
       <div
         class="menu-item px-5"
-        data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+        data-kt-menu-trigger="{default   'click', lg   'hover'}"
         data-kt-menu-placement="left-start"
         data-kt-menu-offset="-15px, 0"
       >
         <span class="menu-title menu-link px-5 position-relative"
           >Changer de thème
           <span class="ms-5 position-absolute translate-middle-y top-50 end-0">
-            <i class="ki-outline ki-night-day theme-light-show fs-2"></i>
-            <i class="ki-outline ki-moon theme-dark-show fs-2"></i> </span
+            <i class="ki-outline ki-night-day theme-light-show fs-1"></i>
+            <i class="ki-outline ki-moon theme-dark-show fs-1"></i> </span
         ></span>
 
         <!--begin    Menu-->
@@ -66,7 +66,7 @@
               data-kt-value="light"
             >
               <span class="menu-icon" data-kt-element="icon">
-                <i class="ki-outline ki-night-day fs-2"></i>
+                <i class="ki-outline ki-night-day fs-1"></i>
               </span>
               <span class="menu-title">Thème clair</span>
             </div>
@@ -80,7 +80,7 @@
               data-kt-value="dark"
             >
               <span class="menu-icon" data-kt-element="icon">
-                <i class="ki-outline ki-moon fs-2"></i>
+                <i class="ki-outline ki-moon fs-1"></i>
               </span>
               <span class="menu-title">Thème sombre</span>
             </div>
@@ -94,7 +94,7 @@
               data-kt-value="system"
             >
               <span class="menu-icon" data-kt-element="icon">
-                <i class="ki-outline ki-screen fs-2"></i>
+                <i class="ki-outline ki-screen fs-1"></i>
               </span>
               <span class="menu-title">Thème du système</span>
             </div>
@@ -113,24 +113,324 @@
       data-kt-menu="true"
       data-kt-menu-expand="true"
     >
-      <!--begin:Menu item-->
-      <div class="menu-item py-1">
-        <!--begin:Menu content-->
+      <!--begin  Menu item-->
+      <div class="menu-item py-1" *ngIf="gettype() == 'chancelier'">
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
-      <!-- *ngIf="!showConsulat" -->
-      <button
-        class="btn btn-light ki-outline ki-menu fs-3"
-        data-bs-toggle="modal"
-        data-bs-target="#kt_modal_create_citoyen"
+      <!--end  Menu item-->
+
+      <!--begin  Menu item-->
+      <div
+        data-kt-menu-trigger="click"
+        *ngIf="gettype() == 'ministre'"
+        class="menu-item menu-accordion show"
       >
-        Enroller un citoyen
-      </button>
+        <!--begin  Menu link-->
+        <span class="menu-link">
+          <span class="menu-title"><h4>Gestion des chanceliers</h4></span>
+          <span class="menu-arrow"></span>
+        </span>
+        <!--end  Menu link-->
+        <!--begin  Menu sub-->
+        <div
+          class="menu-sub menu-sub-accordion menu-state-gray-900 menu-fit open"
+        >
+          <!--begin  Menu item-->
+          <div class="menu-item menu-accordion menu-fit">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <i class="ki-duotone ki-book fs-1 text-warning">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+                <span class="path4"></span>
+              </i>
+              <span class="menu-title ps-5"><h5>Liste des chancelier</h5></span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <i class="ki-duotone ki-folder-down fs-1 text-success">
+                <span class="path1"></span>
+                <span class="path2"></span>
+              </i>
+              <span class="menu-title ps-5">Ajouter un chancelier</span>
+              <span class="menu-badge">
+                <button
+                  class="btn btn-sm btn-icon btn-action"
+                  data-bs-toggle="modal"
+                  data-bs-target="#kt_modal_new_card"
+                >
+                  <i class="ki-outline ki-plus fs-4"></i>
+                </button>
+              </span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-calendar fs-4 text-success"></i>
+              </span>
+              <span class="menu-title">Modifier un chancelier</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-picture fs-4 text-info"></i>
+              </span>
+              <span class="menu-title">Gallery</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-element-2 fs-4 text-warning"></i>
+              </span>
+              <span class="menu-title">Kanban</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-abstract-44 fs-4 text-danger"></i>
+              </span>
+              <span class="menu-title">Timeline</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+        </div>
+        <!--end  Menu sub-->
+      </div>
+      <!--end  Menu item-->
 
+      <!--begin:Menu item-->
+      <div class="menu-item py-1" *ngIf="gettype() == 'ministre'">
+        <!--begin:Menu content-->
+        <div class="menu-content">
+          <div class="separator separator-dashed"></div>
+        </div>
+        <!--end:Menu content-->
+      </div>
+      <!--end:Menu item-->
+      <!--begin  Menu item-->
+      <div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
+        <!--begin  Menu link-->
+        <span class="menu-link">
+          <span class="menu-title ps-10">Gestion des citoyens</span>
+          <span class="menu-arrow"></span>
+        </span>
+        <!--end  Menu link-->
+        <!--begin  Menu sub-->
+        <div
+          class="menu-sub menu-sub-accordion menu-state-gray-900 menu-fit open"
+        >
+          <!--begin  Menu item-->
+          <div class="menu-item py-1">
+            <!--begin  Menu link-->
+            <a (click)="reset()" btn class="menu-link">
+              <i class="ki-duotone ki-book fs-1 text-warning">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+                <span class="path4"></span>
+              </i>
+              <span class="menu-title ps-5">La liste des citoyens</span>
+            </a>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <i class="ki-duotone ki-folder-down text-succes fs-1">
+                <span class="path1"></span>
+                <span class="path2"></span>
+              </i>
+              <span class="menu-title ps-5"> Enroler un citoyen</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-calendar fs-4 text-success"></i>
+              </span>
+              <span class="menu-title">Calendar</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-picture fs-4 text-info"></i>
+              </span>
+              <span class="menu-title">Gallery</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-element-2 fs-4 text-warning"></i>
+              </span>
+              <span class="menu-title">Kanban</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-abstract-44 fs-4 text-danger"></i>
+              </span>
+              <span class="menu-title">Timeline</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+        </div>
+        <!--end  Menu sub-->
+      </div>
+      <!--end  Menu item-->
+      <!--begin:Menu item-->
+      <div class="menu-item py-1">
+        <!--begin:Menu content-->
+        <div class="menu-content">
+          <div class="separator separator-dashed"></div>
+        </div>
+        <!--end:Menu content-->
+      </div>
+      <!--end:Menu item-->
+      <!--begin  Menu item-->
+      <div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
+        <!--begin  Menu link-->
+        <span class="menu-link">
+          <span class="menu-title ps-10">Gestion des professions</span>
+          <span class="menu-arrow"></span>
+        </span>
+        <!--end  Menu link-->
+        <!--begin  Menu sub-->
+        <div
+          class="menu-sub menu-sub-accordion menu-state-gray-900 menu-fit open"
+        >
+          <!--begin  Menu item-->
+          <div class="menu-item py-1">
+            <!--begin  Menu link-->
+            <a (click)="reset()" btn class="menu-link">
+              <i class="ki-duotone ki-book fs-1 text-warning">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+                <span class="path4"></span>
+              </i>
+              <span class="menu-title ps-5">La liste des professions</span>
+            </a>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <i class="ki-duotone ki-folder-down text-succes fs-1">
+                <span class="path1"></span>
+                <span class="path2"></span>
+              </i>
+              <span class="menu-title ps-5"> Enroler un profession</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-calendar fs-4 text-success"></i>
+              </span>
+              <span class="menu-title">Calendar</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-picture fs-4 text-info"></i>
+              </span>
+              <span class="menu-title">Gallery</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-element-2 fs-4 text-warning"></i>
+              </span>
+              <span class="menu-title">Kanban</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-abstract-44 fs-4 text-danger"></i>
+              </span>
+              <span class="menu-title">Timeline</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+        </div>
+        <!--end  Menu sub-->
+      </div>
+      <!--end  Menu item-->
       <!--begin:Menu item-->
       <div class="menu-item py-1">
         <!--begin:Menu content-->
@@ -141,18 +441,149 @@
       </div>
       <!--end:Menu item-->
 
+      <!--begin  Menu item-->
+      <div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
+        <!--begin  Menu link-->
+        <span class="menu-link">
+          <span class="menu-title ps-10">Gestion des citoyens</span>
+          <span class="menu-arrow"></span>
+        </span>
+        <!--end  Menu link-->
+        <!--begin  Menu sub-->
+        <div
+          class="menu-sub menu-sub-accordion menu-state-gray-900 menu-fit open"
+        >
+          <!--begin  Menu item-->
+          <div class="menu-item py-1">
+            <!--begin  Menu link-->
+            <a (click)="reset()" btn class="menu-link">
+              <i class="ki-duotone ki-book fs-1 text-warning">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+                <span class="path4"></span>
+              </i>
+              <span class="menu-title ps-5">La liste des citoyens</span>
+            </a>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <i class="ki-duotone ki-folder-down text-succes fs-1">
+                <span class="path1"></span>
+                <span class="path2"></span>
+              </i>
+              <span class="menu-title ps-5"> Enroler un citoyen</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-calendar fs-4 text-success"></i>
+              </span>
+              <span class="menu-title">Calendar</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-picture fs-4 text-info"></i>
+              </span>
+              <span class="menu-title">Gallery</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-element-2 fs-4 text-warning"></i>
+              </span>
+              <span class="menu-title">Kanban</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+          <!--begin  Menu item-->
+          <div class="menu-item">
+            <!--begin  Menu link-->
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-abstract-44 fs-4 text-danger"></i>
+              </span>
+              <span class="menu-title">Timeline</span>
+            </span>
+            <!--end  Menu link-->
+          </div>
+          <!--end  Menu item-->
+        </div>
+        <!--end  Menu sub-->
+      </div>
+      <!--end  Menu item-->
       <!--begin:Menu item-->
       <div class="menu-item py-1">
-        <!--begin:Menu link-->
+        <!--begin:Menu content-->
+        <div class="menu-content">
+          <div class="separator separator-dashed"></div>
+        </div>
+        <!--end:Menu content-->
+      </div>
+      <!--end:Menu item-->
+
+      <!--begin  Menu item-->
+      <div class="menu-item py-1">
+        <!--begin  Menu link-->
+        <a (click)="reset()" btn class="menu-link">
+          <i class="ki-duotone ki-book fs-1 text-warning">
+            <span class="path1"></span>
+            <span class="path2"></span>
+            <span class="path3"></span>
+            <span class="path4"></span>
+          </i>
+          <span class="menu-title ps-10"><h4>La liste des citoyens</h4></span>
+        </a>
+        <!--end  Menu link-->
+      </div>
+      <!--end  Menu item-->
+      <!--begin:Menu item-->
+      <div class="menu-item py-1">
+        <!--begin:Menu content-->
+        <div class="menu-content">
+          <div class="separator separator-dashed"></div>
+        </div>
+        <!--end:Menu content-->
+      </div>
+      <!--end:Menu item-->
+
+      <!--end  Menu item-->
+      <!--begin  Menu item-->
+      <div class="menu-item py-1">
+        <!--begin  Menu link-->
         <a (click)="logout()" btn class="menu-link">
           <span class="menu-icon">
-            <i class="ki-outline ki-logout fs-4 text-gray-700"></i>
+            <i class="ki-duotone ki-exit-left fs-1 text-danger">
+              <span class="path1"></span>
+              <span class="path2"></span>
+            </i>
           </span>
-          <span class="menu-title">Déconnexion</span>
+          <span class="menu-title ps-10">Déconnexion</span>
         </a>
-        <!--end:Menu link-->
+        <!--end  Menu link-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
     </div>
     <!--end    Menu-->
   </div>

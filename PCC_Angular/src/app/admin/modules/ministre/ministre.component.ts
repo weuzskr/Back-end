@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { Component, OnInit } from '@angular/core';
 // import { ConsulatService } from 'src/app/services/consulat.service';
@@ -14,8 +15,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MinistreComponent implements OnInit {
   data: any[] = [];
-  type: string = "ministre";
-  showConsulat: boolean = true;
   // consulats: any[] = [];
   // postes: any[] = [];
   // juridictions: any[] = [];
@@ -31,7 +30,7 @@ export class MinistreComponent implements OnInit {
   // totalDepartements: number = 0;
 
   constructor(
-    private CitoyenService: CitoyenService,
+    private CitoyenService: CitoyenService, private AuthService: AuthService
     // private consulatService: ConsulatService,
     // private posteService: PosteService,
     // private juridictionService: JuridictionService,
@@ -40,6 +39,7 @@ export class MinistreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.AuthService.settype("ministre")
     // this.loadConsulats();
     // this.loadPostes();
     // this.loadJuridictions();

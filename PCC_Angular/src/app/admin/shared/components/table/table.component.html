@@ -11,7 +11,7 @@
         <div class="card card-flush">
           <!--begin Card header-->
           <div
-            *ngIf="citoyen_id == 0"
+            *ngIf="get_citoyen_id() == 0"
             class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
           >
             <!--begin Card title-->
@@ -57,11 +57,15 @@
               <div class="d-flex gap-2"></div>
               <!--begin add un citoyen-->
               <button
-                class="btn btn-primary ki-outline ki-menu fs-3"
-                *ngIf="!showConsulat"
+                class="btn btn-primary"
+                *ngIf="getType() == 'chancelier'"
                 data-bs-toggle="modal"
                 data-bs-target="#kt_modal_create_citoyen"
               >
+                <i class="ki-duotone ki-folder-down fs-1 text-white">
+                  <span class="path1"></span>
+                  <span class="path2"></span>
+                </i>
                 Enroler un citoyen
               </button>
               <!--end add un citoyen-->
@@ -75,7 +79,7 @@
             <table
               class="table align-middle table-row-dashed fs-6 gy-5"
               id="kt_ecommerce_products_table"
-              *ngIf="citoyen_id == 0"
+              *ngIf="get_citoyen_id() == 0"
             >
               <thead>
                 <tr
@@ -93,7 +97,10 @@
                   <th class="text-center min-w-150px">
                     <h5>Numéro de Téléphone</h5>
                   </th>
-                  <th class="text-center min-w-100px" *ngIf="showConsulat">
+                  <th
+                    class="text-center min-w-100px"
+                    *ngIf="getType() == 'ministre'"
+                  >
                     <h5>Consulat</h5>
                   </th>
                   <th class="text-center min-w-70px"><h5>Actions</h5></th>
@@ -134,16 +141,21 @@
                     <span class="fw-bold">{{ citoyen.numeroDeTelephone }}</span>
                   </td>
                   <td class="text-center pe-0">
-                    <span class="fw-bold" *ngIf="showConsulat">{{
+                    <span class="fw-bold" *ngIf="getType() == 'ministre'">{{
                       citoyen.consulat?.nom
                     }}</span>
                   </td>
                   <td class="text-center">
                     <div class="d-flex gap-2">
                       <a
-                        class="btn btn-primary ki-outline ki-menu fs-3"
+                        class="btn btn-primary"
                         (click)="showcitoyen(citoyen.id)"
                       >
+                        <i class="ki-duotone ki-eye fs-1">
+                          <span class="path1"></span>
+                          <span class="path2"></span>
+                          <span class="path3"></span>
+                        </i>
                         Voir details
                       </a>
                     </div>
@@ -161,19 +173,17 @@
             <!--end Table-->
 
             <!-- begin overview -->
-            <app-overview
-              [citoyen_id]="citoyen_id"
-              [citoyen]="citoyen"
-            ></app-overview>
+            <!-- [citoyen_id]="citoyen_id" -->
+            <app-overview></app-overview>
             <!-- end overview -->
           </div>
           <!--end Card body-->
           <!-- begin card footer -->
           <div
-            *ngIf="citoyen_id == 0"
+            *ngIf="get_citoyen_id() == 0"
             class="d-flex justify-content-between card-footer mb-15 align-items-center py-5 gap-2 gap-md-5"
           >
-            <!--begin::Pagination-->
+            <!--begin Pagination-->
             <div class="fs-6 fw-semibold text-gray-700">
               Affichage de {{ (currentPage - 1) * itemsPerPage + 1 }} à
               {{
@@ -183,7 +193,7 @@
               }}
               sur {{ citoyens.length }} entrées
             </div>
-            <!--begin::Pages-->
+            <!--begin Pages-->
             <div></div>
             <ul class="pagination">
               <li
@@ -225,8 +235,8 @@
                 </span>
               </li>
             </ul>
-            <!--end::Pages-->
-            <!--end::Pagination-->
+            <!--end Pages-->
+            <!--end Pagination-->
           </div>
           <!-- end card footer -->
         </div>

@@ -8,17 +8,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './interceptors/interceptor';
-import { DefaultModule } from './admin/layout/default.module';
+import { MinistreComponent } from './admin/modules/ministre/ministre.component';
+import { ChancelierComponent } from './admin/modules/chancelier/chancelier.component';
+import { SharedModule } from './admin/shared/shared.module';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    MinistreComponent,
+    ChancelierComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
+    CommonModule,
     FormsModule,
-    DefaultModule,
+    RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
 

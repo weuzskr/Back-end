@@ -7,8 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './overview.component.css'
 })
 export class OverviewComponent {
-  // @Input() citoyen_id: number = 0;
-  @Input() citoyen: any = {};
+  citoyen: any = {};
 
 
   searchTextFamille = "";
@@ -21,18 +20,21 @@ export class OverviewComponent {
   currentPageFamilles: number = 1;
   totalPagesAttaches: number = 0;
   totalPagesFamilles: number = 0;
-  private _citoyen_id: number = 0;
+  // private _citoyen_id: number = 0;
 
-  @Input()
-  set citoyen_id(value: number) {
-    this._citoyen_id = value;
-    if (this._citoyen_id !== 0) {
-      this.loadCitoyen();
-    }
-  }
+  // @Input()
+  // set citoyen_id(value: number) {
+  //   this._citoyen_id = value;
+  //   if (this._citoyen_id !== 0) {
+  //     this.loadCitoyen();
+  //   }
+  // }
 
-  get citoyen_id(): number {
-    return this._citoyen_id;
+  // get citoyen_id(): number {
+  //   return this._citoyen_id;
+  // }
+  getid(): number {
+    return this.citoyenService.getcitoyen_id();
   }
 
 
@@ -40,9 +42,12 @@ export class OverviewComponent {
 
   loadCitoyen(): void {
     // Appelez le service pour charger les détails du citoyen par ID
-    this.citoyenService.getCitoyensById(this._citoyen_id).subscribe(
+    // this.citoyenService.getCitoyensById(this._citoyen_id).subscribe(
+    this.citoyenService.getCitoyensById(this.citoyenService.getcitoyen_id()).subscribe(
       (data) => {
         this.citoyen = data;
+
+        console.log("Le citoyent recuperer dans le composant overview", this.citoyen);
         this.updateTotalPagesFamilles();
         this.paginateFamilles();
         this.updateTotalPagesAtttaches();

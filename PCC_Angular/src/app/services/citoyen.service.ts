@@ -8,8 +8,15 @@ import { url } from './apiUrl';
 })
 export class CitoyenService {
 
+  private citoyen_id: number = 0;
   constructor(private http: HttpClient) { }
 
+  getcitoyen_id(): number {
+    return this.citoyen_id;
+  }
+  setcitoyen_id(id: number) {
+    this.citoyen_id = id;
+  }
   // Fonction pour enroller un citoyen
   createCitoyen(data: any): Observable<any> {
     return this.http.post(`${url}/citoyens/enroler`, data);

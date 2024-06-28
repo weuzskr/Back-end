@@ -1,3 +1,20 @@
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert" class="text-center">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>
+
 <div
   class="modal fade"
   tabindex="-1"
@@ -10,6 +27,7 @@
     <div class="modal-content">
       <form
         (ngSubmit)="onSubmit()"
+        novalidate="novalidate"
         [formGroup]="citoyenForm"
         id="kt_modal_create_app_form"
       >
@@ -110,7 +128,35 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="nom"
                       placeholder="votre nom"
+                      [ngClass]="{
+                        'is-invalid': citoyenForm.controls['nom'].invalid,
+                        'is-valid': citoyenForm.controls['nom'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le nom est requis',
+                        control: citoyenForm.controls['nom']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minLength',
+                        message: 'Le nom doit avoir au minimum 3 caractères',
+                        control: citoyenForm.controls['nom']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message: 'Le nom doit avoir au maximum 100 caractères',
+                        control: citoyenForm.controls['nom']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -132,7 +178,36 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="prenom"
                       placeholder="votre prénom"
+                      [ngClass]="{
+                        'is-invalid': citoyenForm.controls['prenom'].invalid,
+                        'is-valid': citoyenForm.controls['prenom'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le prenom est requis',
+                        control: citoyenForm.controls['prenom']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minLength',
+                        message: 'Le prenom doit avoir au minimum 3 caractères',
+                        control: citoyenForm.controls['prenom']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message:
+                          'Le prenom doit avoir au maximum 100 caractères',
+                        control: citoyenForm.controls['prenom']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -154,7 +229,30 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="dateDeNaissance"
                       placeholder="votre date de naissance"
+                      [ngClass]="{
+                        'is-invalid':
+                          citoyenForm.controls['dateDeNaissance'].invalid,
+                        'is-valid':
+                          citoyenForm.controls['dateDeNaissance'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le date de naissance est requis',
+                        control: citoyenForm.controls['dateDeNaissance']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message:
+                          'Le dateDeNaissance doit avoir au maximum 100 caractères',
+                        control: citoyenForm.controls['dateDeNaissance']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -176,7 +274,39 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="lieuDeNaissance"
                       placeholder="votre lieu de naissance"
+                      [ngClass]="{
+                        'is-invalid':
+                          citoyenForm.controls['lieuDeNaissance'].invalid,
+                        'is-valid':
+                          citoyenForm.controls['lieuDeNaissance'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le lieu de naissance est requis',
+                        control: citoyenForm.controls['lieuDeNaissance']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minLength',
+                        message:
+                          'Le lieu de naissance doit avoir au minimum 3 caractères',
+                        control: citoyenForm.controls['lieuDeNaissance']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message:
+                          'Le lieu de naissance doit avoir au maximum 100 caractères',
+                        control: citoyenForm.controls['lieuDeNaissance']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -198,7 +328,39 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="paysDeNaissance"
                       placeholder="votre pays de naissance"
+                      [ngClass]="{
+                        'is-invalid':
+                          citoyenForm.controls['paysDeNaissance'].invalid,
+                        'is-valid':
+                          citoyenForm.controls['paysDeNaissance'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le pays de naissance est requis',
+                        control: citoyenForm.controls['paysDeNaissance']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minLength',
+                        message:
+                          'Le pays de naissance doit avoir au minimum 3 caractères',
+                        control: citoyenForm.controls['paysDeNaissance']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message:
+                          'Le pays de naissance doit avoir au maximum 100 caractères',
+                        control: citoyenForm.controls['paysDeNaissance']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -220,7 +382,39 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="numeroDeTelephone"
                       placeholder="votre numéro de téléphone"
+                      [ngClass]="{
+                        'is-invalid':
+                          citoyenForm.controls['numeroDeTelephone'].invalid,
+                        'is-valid':
+                          citoyenForm.controls['numeroDeTelephone'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le numero de telephone est requis',
+                        control: citoyenForm.controls['numeroDeTelephone']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minLength',
+                        message:
+                          'Le numero de telephone doit sous un format valide',
+                        control: citoyenForm.controls['numeroDeTelephone']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message:
+                          'Le numero de telephone doit sous un format valide',
+                        control: citoyenForm.controls['numeroDeTelephone']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -242,7 +436,35 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="taille"
                       placeholder="votre taille"
+                      [ngClass]="{
+                        'is-invalid': citoyenForm.controls['taille'].invalid,
+                        'is-valid': citoyenForm.controls['taille'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'La taille est requise',
+                        control: citoyenForm.controls['taille']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minLength',
+                        message: 'La taille doit avoir au minimum 1 chiffre',
+                        control: citoyenForm.controls['taille']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message: 'La taille doit avoir au maximum 3 chiffres',
+                        control: citoyenForm.controls['taille']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -264,7 +486,21 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="photo"
                       placeholder="votre photo"
+                      [ngClass]="{
+                        'is-invalid':
+                          citoyenForm.controls['paysDeNaissance'].invalid,
+                        'is-valid':
+                          citoyenForm.controls['paysDeNaissance'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'La photo est requise',
+                        control: citoyenForm.controls['paysDeNaissance']
+                      }"
+                    ></ng-container>
                   </div>
                   <div class="fv-row mb-10">
                     <label
@@ -284,7 +520,19 @@
                     <select
                       formControlName="sexe"
                       class="form-select form-select-solid"
+                      [ngClass]="{
+                        'is-invalid': citoyenForm.controls['sexe'].invalid,
+                        'is-valid': citoyenForm.controls['sexe'].valid
+                      }"
                     >
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'Le sexe est requis',
+                          control: citoyenForm.controls['sexe']
+                        }"
+                      ></ng-container>
                       <option value="Masculin" selected>Masculin</option>
                       <option value="Feminin">Féminin</option>
                     </select>
@@ -307,7 +555,21 @@
                     <select
                       formControlName="situationMatrimoniale"
                       class="form-select form-select-solid"
+                      [ngClass]="{
+                        'is-invalid':
+                          citoyenForm.controls['situationMatrimoniale'].invalid,
+                        'is-valid':
+                          citoyenForm.controls['situationMatrimoniale'].valid
+                      }"
                     >
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'La situation matrimoniale est requise',
+                          control: citoyenForm.controls['situationMatrimoniale']
+                        }"
+                      ></ng-container>
                       <option value="celibataire" selected>Célibataire</option>
                       <option value="marie">Marié</option>
                       <option value="divorce">Divorcé</option>
@@ -361,9 +623,40 @@
                       class="form-control form-control-lg form-control-solid"
                       formControlName="lieuDactivites"
                       placeholder="votre lieu d'activité"
+                      [ngClass]="{
+                        'is-invalid':
+                          citoyenForm.controls['lieuDactivites'].invalid,
+                        'is-valid': citoyenForm.controls['lieuDactivites'].valid
+                      }"
                     />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le lieu d\'activite est requis',
+                        control: citoyenForm.controls['lieuDactivites']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minLength',
+                        message:
+                          'Le lieu d\'activite doit avoir au minimum 3 caractères',
+                        control: citoyenForm.controls['lieuDactivites']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxLength',
+                        message:
+                          'Le lieu d\'activite doit avoir au maximum 100 caractères',
+                        control: citoyenForm.controls['lieuDactivites']
+                      }"
+                    ></ng-container>
                   </div>
-                  <div class="fv-row mb-10">
+                  <!-- <div class="fv-row mb-10">
                     <label
                       class="d-flex align-items-center fs-5 fw-semibold mb-2"
                     >
@@ -406,7 +699,7 @@
                       formControlName="signature"
                       placeholder="votre signature"
                     />
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <!-- end step 1 content -->
@@ -526,6 +819,7 @@
                         class="form-select form-select-solid"
                         formControlName="type"
                       >
+                        <option value="parent">Parent</option>
                         <option value="enfant">Enfant</option>
                         <option value="conjoint">Conjoint.e</option>
                       </select>

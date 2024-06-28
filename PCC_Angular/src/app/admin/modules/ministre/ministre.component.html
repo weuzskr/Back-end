@@ -1,11 +1,25 @@
-<div class="wrapper">
-  <div class="page-inner">
-    <app-table [type]="type" [showConsulat]="showConsulat"></app-table>
+<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+  <!--begin Page-->
+  <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+    <!--begin Header-->
+    <app-header></app-header>
+    <!--end Header-->
+    <!-- wrapper start -->
+    <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+      <!--begin sidebar-->
+      <app-sidebar></app-sidebar>
+      <!--end sidebar-->
+      <div class="wrapper">
+        <div class="page-inner">
+          <app-table></app-table>
+        </div>
+
+        <!-- Footer -->
+        <app-footer></app-footer>
+        <!-- Footer -->
+
+        <!-- Content End -->
+      </div>
+    </div>
   </div>
-
-  <!-- Footer -->
-  <app-footer></app-footer>
-  <!-- Footer -->
-
-  <!-- Content End -->
 </div>

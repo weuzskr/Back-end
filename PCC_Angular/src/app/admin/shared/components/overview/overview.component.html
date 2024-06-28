@@ -1,8 +1,9 @@
 <!--begin Navbar-->
-<div *ngIf="citoyen_id != 0" class="card mb-5 mb-xl-10">
+<div *ngIf="getid() != 0" class="card mb-5 mb-xl-10">
+  <div id="load-citoyen" (click)="loadCitoyen()"></div>
   <!--begin details View-->
   <div
-    *ngIf="citoyen_id != 0"
+    *ngIf="getid() != 0"
     class="card mb-5 mb-xl-10"
     id="kt_profile_details_view"
   >
@@ -38,7 +39,7 @@
         <label class="col-lg-4 fw-bold">Matricule</label>
         <div class="col-lg-8">
           <span class="fw-bold fs-6 text-gray-800">{{
-            citoyen.matricule
+            citoyen?.matricule
           }}</span>
         </div>
       </div>
@@ -47,7 +48,7 @@
         <label class="col-lg-4 fw-bold">Nom complet</label>
         <div class="col-lg-8">
           <span class="fw-bold fs-6 text-gray-800"
-            >{{ citoyen.prenom }} {{ citoyen.nom }}</span
+            >{{ citoyen?.prenom }} {{ citoyen?.nom }}</span
           >
         </div>
       </div>
@@ -55,7 +56,7 @@
         <label class="col-lg-4 fw-bold">Telephone</label>
         <div class="col-lg-8 d-flex align-items-center">
           <span class="fw-bold fs-6 text-gray-800 me-2">{{
-            citoyen.numeroDeTelephone
+            citoyen?.numeroDeTelephone
           }}</span>
           <span class="badge badge-success">Verified</span>
         </div>
@@ -64,7 +65,7 @@
         <label class="col-lg-4 fw-bold">Profession</label>
         <div class="col-lg-8">
           <span class="fw-bold fs-6 text-gray-800 me-2">{{
-            citoyen.profession.secteurDactivites
+            citoyen?.profession?.secteurDactivites
           }}</span>
         </div>
       </div>
@@ -72,7 +73,7 @@
         <label class="col-lg-4 fw-bold">Date de Naissance</label>
         <div class="col-lg-8">
           <span class="fw-bold fs-6 text-gray-800">{{
-            citoyen.dateDeNaissance
+            citoyen?.dateDeNaissance
           }}</span>
         </div>
       </div>
@@ -80,27 +81,27 @@
         <label class="col-lg-4 fw-bold">Lieux de naissance</label>
         <div class="col-lg-8">
           <span class="fw-bold fs-6 text-gray-800">{{
-            citoyen.lieuDeNaissance
+            citoyen?.lieuDeNaissance
           }}</span>
         </div>
       </div>
       <div class="row mb-10">
         <label class="col-lg-4 fw-bold">Taille (cm)</label>
         <div class="col-lg-8">
-          <span class="fw-bold fs-6 text-gray-800">{{ citoyen.taille }}</span>
+          <span class="fw-bold fs-6 text-gray-800">{{ citoyen?.taille }}</span>
         </div>
       </div>
       <div class="row mb-10">
         <label class="col-lg-4 fw-bold">Sexe</label>
         <div class="col-lg-8">
-          <span class="fw-bold fs-6 text-gray-800">{{ citoyen.sexe }}</span>
+          <span class="fw-bold fs-6 text-gray-800">{{ citoyen?.sexe }}</span>
         </div>
       </div>
       <div class="row mb-10">
         <label class="col-lg-4 fw-bold">Situation Matrimoniale</label>
         <div class="col-lg-8">
           <span class="fw-bold fs-6 text-gray-800">{{
-            citoyen.situationMatrimoniale
+            citoyen?.situationMatrimoniale
           }}</span>
         </div>
       </div>
@@ -111,7 +112,7 @@
 
     <!--begin  Content-->
     <div
-      *ngIf="citoyen_id != 0"
+      *ngIf="getid() != 0"
       id="kt_app_content"
       class="app-content flex-column-fluid"
     >

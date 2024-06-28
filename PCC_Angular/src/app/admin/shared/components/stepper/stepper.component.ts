@@ -44,19 +44,52 @@ export class StepperComponent implements OnInit {
   ) {
     this.get_id()
     this.citoyenForm = this.fb.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      dateDeNaissance: ['', Validators.required],
-      lieuDeNaissance: ['', Validators.required],
-      paysDeNaissance: ['', Validators.required],
-      sexe: ['', Validators.required],
-      taille: ['', Validators.required],
-      numeroDeTelephone: ['', Validators.required],
+      nom: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      prenom: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      dateDeNaissance: ['',
+        Validators.required],
+      lieuDeNaissance: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      paysDeNaissance: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      sexe: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      taille: ['', Validators.compose([
+        Validators.required,
+        Validators.min(1),
+        Validators.max(300),
+      ])],
+      numeroDeTelephone: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ])],
       photo: ['', Validators.required],
-      signature: ['', Validators.required],
+      signature: ['signature.jpeg', Validators.required],
       lieuDactivites: ['', Validators.required],
-      empreinteDigitale: ['', Validators.required],
-      situationMatrimoniale: ['', Validators.required],
+      empreinteDigitale: ['empreinte_digitale.jpeg', Validators.required],
+      situationMatrimoniale: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
       profession: this.fb.group({
         id: ['', Validators.required],
       }),
@@ -79,21 +112,61 @@ export class StepperComponent implements OnInit {
 
   createAttachFamillialeGroup(data?: any): FormGroup {
     return this.fb.group({
-      adresse: [data ? data.adresse : '', Validators.required],
-      lienDeParente: [data ? data.lienDeParente : '', Validators.required],
-      nom: [data ? data.nom : '', Validators.required],
-      numeroDeTelephone: [data ? data.numeroDeTelephone : '', Validators.required],
-      prenom: [data ? data.prenom : '', Validators.required],
+      adresse: [data ? data.adresse : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      lienDeParente: [data ? data.lienDeParente : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      nom: [data ? data.nom : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      numeroDeTelephone: [data ? data.numeroDeTelephone : '', Validators.compose([
+        Validators.required,
+        Validators.pattern(/^(77|78|76|70|75|33)[0-9]{7}$/),
+
+      ])],
+      prenom: [data ? data.prenom : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
     });
   }
 
   createFamilleGroup(data?: any): FormGroup {
     return this.fb.group({
-      age: [data ? data.age : ''],
-      nom: [data ? data.nom : ''],
-      prenom: [data ? data.prenom : ''],
-      sexe: [data ? data.sexe : ''],
-      type: [data ? data.type : ''],
+      age: [data ? data.age : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(3),
+      ])],
+      nom: [data ? data.nom : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      prenom: [data ? data.prenom : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      sexe: [data ? data.sexe : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
+      type: [data ? data.type : '', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+      ])],
     });
   }
 

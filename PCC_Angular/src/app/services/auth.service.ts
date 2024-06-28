@@ -15,6 +15,13 @@ export class AuthService {
 
   // Variable superglobale pour l'authentification 
   isAuthenticated = false;
+  private type: string = "";
+  settype(type: string) {
+    this.type = type;
+  }
+  gettype() {
+    return this.type;
+  }
 
   login(user: any) {
     // return this.http.post(`${url}/login`, user)

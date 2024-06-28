@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { CitoyenService } from './../../../services/citoyen.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
@@ -7,15 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChancelierComponent implements OnInit {
 
-  citoyens: any[] = [];
-  type: string = "chancelier";
-  showConsulat: boolean = false;
-
-  constructor(private CitoyenService: CitoyenService) { }
+  constructor(private AuthService: AuthService) { }
 
   ngOnInit() {
-
-    // this.loardcitoyenbychancelier();
+    this.AuthService.settype("chancelier")
   }
+
 
 }

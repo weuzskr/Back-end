@@ -1,8 +1,10 @@
+import { OverviewComponent } from './../overview/overview.component';
 import { Router } from '@angular/router';
 import { CitoyenService } from './../../../../services/citoyen.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChancelierComponent } from 'src/app/admin/modules/chancelier/chancelier.component';
 import { MinistreComponent } from 'src/app/admin/modules/ministre/ministre.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-table',
@@ -12,8 +14,6 @@ import { MinistreComponent } from 'src/app/admin/modules/ministre/ministre.compo
 export class TableComponent implements OnInit {
   SearchText = "";
   citoyens: any[] = [];
-  @Input() showConsulat: any;
-  @Input() type!: string;
   paginatedCitoyens: any[] = [];
   itemsPerPage: number = 5; // Par défaut, 5 éléments par page
   currentPage: number = 1;
@@ -22,20 +22,20 @@ export class TableComponent implements OnInit {
   @ViewChild(ChancelierComponent) chancelier!: ChancelierComponent;
   consulat_id: number = 0;
   user: any;
-  citoyen_id: number = 0;
-  citoyen: any = {};
+  @ViewChild(OverviewComponent) overview!: OverviewComponent;
 
-
-  constructor(private CitoyenService: CitoyenService, private router: Router) { }
+  constructor(private CitoyenService: CitoyenService, private router: Router, private AuthService: AuthService) { }
 
   ngOnInit() {
-    if (this.type == "ministre") {
+    if (this.getType() == "ministre") {
       this.loadCitoyens();
-    } else if (this.type == "chancelier") {
+    } else if (this.getType() == "chancelier") {
       this.loardcitoyenbychancelier();
     }
   }
-
+  getType(): string {
+    return this.AuthService.gettype();
+  }
   loadCitoyens() {
     this.CitoyenService.getAllcitoyens().subscribe(
       (response) => {
@@ -71,19 +71,6 @@ export class TableComponent implements OnInit {
     );
   }
 
-  loardcitoyenbyID(citoyen_id: number) {
-
-
-    this.CitoyenService.getCitoyensById(citoyen_id).subscribe(
-      (data) => {
-        this.citoyen = data;
-        console.log(this.citoyen);
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des citoyens pour le ID :', error);
-      }
-    );
-  }
 
 
   updateTotalPages() {
@@ -134,8 +121,14 @@ export class TableComponent implements OnInit {
     this.paginateCitoyens();
   }
   showcitoyen(id: number) {
-    this.citoyen_id = id;
-    this.loardcitoyenbyID(id)
+    this.CitoyenService.setcitoyen_id(id);
+    this.overview.loadCitoyen();
   }
+
+  get_citoyen_id() {
+    return this.CitoyenService.getcitoyen_id();
+  }
+
+
 
 }
