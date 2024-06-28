@@ -17,7 +17,7 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
             "FROM admin a\n" +
             "JOIN admin_roles ar ON a.id = ar.admin_id\n" +
             "JOIN role r ON ar.role_id = r.id\n" +
-            "WHERE r.id = 1;\n", nativeQuery = true)
+            "WHERE r.id = 2;\n", nativeQuery = true)
 
     List<Admin> findAdminsByRoleId(@Param("roleId") String roleId);
 
