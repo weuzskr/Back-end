@@ -8,7 +8,7 @@
     *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
   >
     <div class="fv-plugins-message-container">
-      <span role="alert" class="text-center">
+      <span role="alert" class="custom-alert">
         {{ message }}
       </span>
     </div>
@@ -112,56 +112,6 @@
                     <label
                       class="d-flex align-items-center fs-5 fw-semibold mb-2"
                     >
-                      <span class="required">Nom</span>
-                      <span
-                        class="ms-1"
-                        data-bs-toggle="tooltip"
-                        title="Entrer votre nom"
-                      >
-                        <i
-                          class="ki-outline ki-information-5 text-gray-500 fs-6"
-                        ></i>
-                      </span>
-                    </label>
-                    <input
-                      type="text"
-                      class="form-control form-control-lg form-control-solid"
-                      formControlName="nom"
-                      placeholder="votre nom"
-                      [ngClass]="{
-                        'is-invalid': citoyenForm.controls['nom'].invalid,
-                        'is-valid': citoyenForm.controls['nom'].valid
-                      }"
-                    />
-                    <ng-container
-                      [ngTemplateOutlet]="formError"
-                      [ngTemplateOutletContext]="{
-                        validation: 'required',
-                        message: 'Le nom est requis',
-                        control: citoyenForm.controls['nom']
-                      }"
-                    ></ng-container>
-                    <ng-container
-                      [ngTemplateOutlet]="formError"
-                      [ngTemplateOutletContext]="{
-                        validation: 'minLength',
-                        message: 'Le nom doit avoir au minimum 3 caractères',
-                        control: citoyenForm.controls['nom']
-                      }"
-                    ></ng-container>
-                    <ng-container
-                      [ngTemplateOutlet]="formError"
-                      [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
-                        message: 'Le nom doit avoir au maximum 100 caractères',
-                        control: citoyenForm.controls['nom']
-                      }"
-                    ></ng-container>
-                  </div>
-                  <div class="fv-row mb-10">
-                    <label
-                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
-                    >
                       <span>Prénom</span>
                       <span
                         class="ms-1"
@@ -194,7 +144,7 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'minLength',
+                        validation: 'minlength',
                         message: 'Le prenom doit avoir au minimum 3 caractères',
                         control: citoyenForm.controls['prenom']
                       }"
@@ -202,10 +152,60 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
+                        validation: 'maxlength',
                         message:
                           'Le prenom doit avoir au maximum 100 caractères',
                         control: citoyenForm.controls['prenom']
+                      }"
+                    ></ng-container>
+                  </div>
+                  <div class="fv-row mb-10">
+                    <label
+                      class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                    >
+                      <span class="required">Nom</span>
+                      <span
+                        class="ms-1"
+                        data-bs-toggle="tooltip"
+                        title="Entrer votre nom"
+                      >
+                        <i
+                          class="ki-outline ki-information-5 text-gray-500 fs-6"
+                        ></i>
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      formControlName="nom"
+                      placeholder="votre nom"
+                      [ngClass]="{
+                        'is-invalid': citoyenForm.controls['nom'].invalid,
+                        'is-valid': citoyenForm.controls['nom'].valid
+                      }"
+                    />
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'required',
+                        message: 'Le nom est requis',
+                        control: citoyenForm.controls['nom']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'minlength',
+                        message: 'Le nom doit avoir au minimum 3 caractères',
+                        control: citoyenForm.controls['nom']
+                      }"
+                    ></ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                        validation: 'maxlength',
+                        message: 'Le nom doit avoir au maximum 100 caractères',
+                        control: citoyenForm.controls['nom']
                       }"
                     ></ng-container>
                   </div>
@@ -247,7 +247,7 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
+                        validation: 'maxlength',
                         message:
                           'Le dateDeNaissance doit avoir au maximum 100 caractères',
                         control: citoyenForm.controls['dateDeNaissance']
@@ -292,7 +292,7 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'minLength',
+                        validation: 'minlength',
                         message:
                           'Le lieu de naissance doit avoir au minimum 3 caractères',
                         control: citoyenForm.controls['lieuDeNaissance']
@@ -301,7 +301,7 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
+                        validation: 'maxlength',
                         message:
                           'Le lieu de naissance doit avoir au maximum 100 caractères',
                         control: citoyenForm.controls['lieuDeNaissance']
@@ -346,7 +346,7 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'minLength',
+                        validation: 'minlength',
                         message:
                           'Le pays de naissance doit avoir au minimum 3 caractères',
                         control: citoyenForm.controls['paysDeNaissance']
@@ -355,7 +355,7 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
+                        validation: 'maxlength',
                         message:
                           'Le pays de naissance doit avoir au maximum 100 caractères',
                         control: citoyenForm.controls['paysDeNaissance']
@@ -400,18 +400,18 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'minLength',
+                        validation: 'minlength',
                         message:
-                          'Le numero de telephone doit sous un format valide',
+                          'Le numero de telephone doit avoir 10 chaffres',
                         control: citoyenForm.controls['numeroDeTelephone']
                       }"
                     ></ng-container>
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
+                        validation: 'maxlength',
                         message:
-                          'Le numero de telephone doit sous un format valide',
+                          'Le numero de telephone doit avoir 10 chaffres',
                         control: citoyenForm.controls['numeroDeTelephone']
                       }"
                     ></ng-container>
@@ -452,16 +452,16 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'minLength',
-                        message: 'La taille doit avoir au minimum 1 chiffre',
+                        validation: 'min',
+                        message: 'La taille doit avoir au minimum 100',
                         control: citoyenForm.controls['taille']
                       }"
                     ></ng-container>
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
-                        message: 'La taille doit avoir au maximum 3 chiffres',
+                        validation: 'max',
+                        message: 'La taille doit avoir au maximum 300',
                         control: citoyenForm.controls['taille']
                       }"
                     ></ng-container>
@@ -487,10 +487,8 @@
                       formControlName="photo"
                       placeholder="votre photo"
                       [ngClass]="{
-                        'is-invalid':
-                          citoyenForm.controls['paysDeNaissance'].invalid,
-                        'is-valid':
-                          citoyenForm.controls['paysDeNaissance'].valid
+                        'is-invalid': citoyenForm.controls['photo'].invalid,
+                        'is-valid': citoyenForm.controls['photo'].valid
                       }"
                     />
                     <ng-container
@@ -498,7 +496,7 @@
                       [ngTemplateOutletContext]="{
                         validation: 'required',
                         message: 'La photo est requise',
-                        control: citoyenForm.controls['paysDeNaissance']
+                        control: citoyenForm.controls['photo']
                       }"
                     ></ng-container>
                   </div>
@@ -594,7 +592,19 @@
                     <select
                       formControlName="id"
                       class="form-select form-select-solid"
+                      [ngClass]="{
+                        'is-invalid': citoyenForm.get('profession.id')?.invalid,
+                        'is-valid': citoyenForm.get('profession.id')?.valid
+                      }"
                     >
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'La profession est requise',
+                          control: citoyenForm.get('profession.id')
+                        }"
+                      ></ng-container>
                       <option
                         *ngFor="let profession of professions"
                         [value]="profession.id"
@@ -640,7 +650,7 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'minLength',
+                        validation: 'minlength',
                         message:
                           'Le lieu d\'activite doit avoir au minimum 3 caractères',
                         control: citoyenForm.controls['lieuDactivites']
@@ -649,9 +659,9 @@
                     <ng-container
                       [ngTemplateOutlet]="formError"
                       [ngTemplateOutletContext]="{
-                        validation: 'maxLength',
+                        validation: 'maxlength',
                         message:
-                          'Le lieu d\'activite doit avoir au maximum 100 caractères',
+                          'Le lieu d\'activite doit avoir au maximum 255 caractères',
                         control: citoyenForm.controls['lieuDactivites']
                       }"
                     ></ng-container>
@@ -715,28 +725,6 @@
                       <label
                         class="d-flex align-items-center fs-5 fw-semibold mb-2"
                       >
-                        <span>Nom</span>
-                        <span
-                          class="ms-1"
-                          data-bs-toggle="tooltip"
-                          title="Entrer le nom"
-                        >
-                          <i
-                            class="ki-outline ki-information-5 text-gray-500 fs-6"
-                          ></i>
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        class="form-control form-control-lg form-control-solid"
-                        formControlName="nom"
-                        placeholder="nom"
-                      />
-                    </div>
-                    <div class="fv-row mb-10">
-                      <label
-                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
-                      >
                         <span>Prénom</span>
                         <span
                           class="ms-1"
@@ -753,7 +741,88 @@
                         class="form-control form-control-lg form-control-solid"
                         formControlName="prenom"
                         placeholder="prénom"
+                        [ngClass]="{
+                          'is-invalid': member.get('prenom')?.invalid,
+                          'is-valid': member.get('prenom')?.valid
+                        }"
                       />
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'Le prénom est requis',
+                          control: member.get('prenom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'minlength',
+                          message:
+                            'Le prénom doit avoir au minimum 3 caractères',
+                          control: member.get('prenom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'maxlength',
+                          message:
+                            'Le prénom doit avoir au maximum 100 caractères',
+                          control: member.get('prenom')
+                        }"
+                      ></ng-container>
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Nom</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le nom"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="nom"
+                        placeholder="nom"
+                        [ngClass]="{
+                          'is-invalid': member.get('nom')?.invalid,
+                          'is-valid': member.get('nom')?.valid
+                        }"
+                      />
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'Le nom est requis',
+                          control: member.get('nom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'minlength',
+                          message: 'Le nom doit avoir au minimum 3 caractères',
+                          control: member.get('nom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'maxlength',
+                          message:
+                            'Le nom doit avoir au maximum 100 caractères',
+                          control: member.get('nom')
+                        }"
+                      ></ng-container>
                     </div>
                     <div class="fv-row mb-10">
                       <label
@@ -775,7 +844,35 @@
                         class="form-control form-control-lg form-control-solid"
                         formControlName="age"
                         placeholder="âge"
+                        [ngClass]="{
+                          'is-invalid': member.get('age')?.invalid,
+                          'is-valid': member.get('age')?.valid
+                        }"
                       />
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'L\'age est requis',
+                          control: member.get('age')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'min',
+                          message: 'L\'age doit être au minimum 1',
+                          control: member.get('age')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'max',
+                          message: 'L\'age doit être au maximum 150',
+                          control: member.get('age')
+                        }"
+                      ></ng-container>
                     </div>
                     <div class="fv-row mb-10">
                       <label
@@ -795,6 +892,10 @@
                       <select
                         formControlName="sexe"
                         class="form-select form-select-solid"
+                        [ngClass]="{
+                          'is-invalid': member.get('sexe')?.invalid,
+                          'is-valid': member.get('sexe')?.valid
+                        }"
                       >
                         <option value="Masculin">Masculin</option>
                         <option value="Feminin">Féminin</option>
@@ -818,6 +919,10 @@
                       <select
                         class="form-select form-select-solid"
                         formControlName="type"
+                        [ngClass]="{
+                          'is-invalid': member.get('type')?.invalid,
+                          'is-valid': member.get('type')?.valid
+                        }"
                       >
                         <option value="parent">Parent</option>
                         <option value="enfant">Enfant</option>
@@ -859,28 +964,6 @@
                       <label
                         class="d-flex align-items-center fs-5 fw-semibold mb-2"
                       >
-                        <span>Nom</span>
-                        <span
-                          class="ms-1"
-                          data-bs-toggle="tooltip"
-                          title="Entrer le nom"
-                        >
-                          <i
-                            class="ki-outline ki-information-5 text-gray-500 fs-6"
-                          ></i>
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        class="form-control form-control-lg form-control-solid"
-                        formControlName="nom"
-                        placeholder="nom"
-                      />
-                    </div>
-                    <div class="fv-row mb-10">
-                      <label
-                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
-                      >
                         <span>Prénom</span>
                         <span
                           class="ms-1"
@@ -897,7 +980,88 @@
                         class="form-control form-control-lg form-control-solid"
                         formControlName="prenom"
                         placeholder="prénom"
+                        [ngClass]="{
+                          'is-invalid': attach.get('prenom')?.invalid,
+                          'is-valid': attach.get('prenom')?.valid
+                        }"
                       />
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'Le prénom est requis',
+                          control: attach.get('prenom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'minlength',
+                          message:
+                            'Le prénom doit avoir au minimum 3 caractères',
+                          control: attach.get('prenom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'maxlength',
+                          message:
+                            'Le prénom doit avoir au maximum 100 caractères',
+                          control: attach.get('prenom')
+                        }"
+                      ></ng-container>
+                    </div>
+                    <div class="fv-row mb-10">
+                      <label
+                        class="d-flex align-items-center fs-5 fw-semibold mb-2"
+                      >
+                        <span>Nom</span>
+                        <span
+                          class="ms-1"
+                          data-bs-toggle="tooltip"
+                          title="Entrer le nom"
+                        >
+                          <i
+                            class="ki-outline ki-information-5 text-gray-500 fs-6"
+                          ></i>
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg form-control-solid"
+                        formControlName="nom"
+                        placeholder="nom"
+                        [ngClass]="{
+                          'is-invalid': attach.get('nom')?.invalid,
+                          'is-valid': attach.get('nom')?.valid
+                        }"
+                      />
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'Le nom est requis',
+                          control: attach.get('nom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'minlength',
+                          message: 'Le nom doit avoir au minimum 3 caractères',
+                          control: attach.get('nom')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'maxlength',
+                          message:
+                            'Le nom doit avoir au maximum 100 caractères',
+                          control: attach.get('nom')
+                        }"
+                      ></ng-container>
                     </div>
                     <div class="fv-row mb-10">
                       <label
@@ -915,11 +1079,33 @@
                         </span>
                       </label>
                       <input
-                        type="tel"
+                        type="text"
                         class="form-control form-control-lg form-control-solid"
                         formControlName="numeroDeTelephone"
                         placeholder="numéro de téléphone"
+                        [ngClass]="{
+                          'is-invalid':
+                            attach.get('numeroDeTelephone')?.invalid,
+                          'is-valid': attach.get('numeroDeTelephone')?.valid
+                        }"
                       />
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'Le numero de telephone est requis',
+                          control: attach.get('numeroDeTelephone')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'pattern',
+                          message:
+                            'Le numero de telephone doit etre un numero de telephone senegalais valide',
+                          control: attach.get('numeroDeTelephone')
+                        }"
+                      ></ng-container>
                     </div>
                     <div class="fv-row mb-10">
                       <label
@@ -941,7 +1127,37 @@
                         class="form-control form-control-lg form-control-solid"
                         formControlName="adresse"
                         placeholder="adresse"
+                        [ngClass]="{
+                          'is-invalid': attach.get('adresse')?.invalid,
+                          'is-valid': attach.get('adresse')?.valid
+                        }"
                       />
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'required',
+                          message: 'L\'adresse est requis',
+                          control: attach.get('adresse')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'minlength',
+                          message:
+                            'L\'adresse doit avoir au minimum 3 caractères',
+                          control: attach.get('adresse')
+                        }"
+                      ></ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                          validation: 'maxlength',
+                          message:
+                            'L\'adresse doit avoir au maximum 100 caractères',
+                          control: attach.get('adresse')
+                        }"
+                      ></ng-container>
                     </div>
                     <div class="fv-row mb-10">
                       <label
@@ -961,6 +1177,10 @@
                       <select
                         class="form-select form-select-solid"
                         formControlName="lienDeParente"
+                        [ngClass]="{
+                          'is-invalid': attach.get('lienDeParente')?.invalid,
+                          'is-valid': attach.get('lienDeParente')?.valid
+                        }"
                       >
                         <option value="pere" selected>Père</option>
                         <option value="mere">Mère</option>

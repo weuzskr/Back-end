@@ -7,3 +7,8 @@
   height: 100vh; /* 100% of the viewport height */
   width: 100vw; /* 100% of the viewport width */
 }
+.custom-alert {
+  color: #ff0000; /* Exemple de couleur rouge */
+  font-weight: bold; /* Exemple de texte en gras */
+  text-align: center; /* Centre le texte */
+}

@@ -2,3 +2,8 @@
   max-height: 350px;
   overflow-y: auto;
 }
+.custom-alert {
+  color: #ff0000; /* Exemple de couleur rouge */
+  font-weight: bold; /* Exemple de texte en gras */
+  text-align: center; /* Centre le texte */
+}

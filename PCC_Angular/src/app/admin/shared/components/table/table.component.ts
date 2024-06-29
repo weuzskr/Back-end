@@ -44,7 +44,7 @@ export class TableComponent implements OnInit {
         this.paginateCitoyens();
       },
       (error) => {
-        console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
+        // console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
       }
     );
   }
@@ -66,7 +66,7 @@ export class TableComponent implements OnInit {
         this.paginateCitoyens();
       },
       (error) => {
-        console.error('Erreur lors de la récupération des citoyens pour le chancelier :', error);
+        // console.error('Erreur lors de la récupération des citoyens pour le chancelier :', error);
       }
     );
   }

@@ -54,8 +54,7 @@ export class StepperComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(100),
       ])],
-      dateDeNaissance: ['',
-        Validators.required],
+      dateDeNaissance: ['', Validators.required],
       lieuDeNaissance: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
@@ -66,14 +65,10 @@ export class StepperComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(100),
       ])],
-      sexe: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(100),
-      ])],
+      sexe: ['', Validators.required],
       taille: ['', Validators.compose([
         Validators.required,
-        Validators.min(1),
+        Validators.min(100),
         Validators.max(300),
       ])],
       numeroDeTelephone: ['', Validators.compose([
@@ -83,13 +78,9 @@ export class StepperComponent implements OnInit {
       ])],
       photo: ['', Validators.required],
       signature: ['signature.jpeg', Validators.required],
-      lieuDactivites: ['', Validators.required],
+      lieuDactivites: ['', Validators.required, Validators.minLength(3), Validators.maxLength(255)],
       empreinteDigitale: ['empreinte_digitale.jpeg', Validators.required],
-      situationMatrimoniale: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(100),
-      ])],
+      situationMatrimoniale: ['', Validators.required],
       profession: this.fb.group({
         id: ['', Validators.required],
       }),
@@ -103,6 +94,13 @@ export class StepperComponent implements OnInit {
         })
       ]),
       familles: this.fb.array([
+        this.createFamilleGroup({
+          prenom: '',
+          nom: '',
+          age: '',
+          sexe: '',
+          type: ''
+        }),
       ]),
       consulat: this.fb.group({
         id: [this.consulat_id, Validators.required],
@@ -117,11 +115,7 @@ export class StepperComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(100),
       ])],
-      lienDeParente: [data ? data.lienDeParente : '', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(100),
-      ])],
+      lienDeParente: [data ? data.lienDeParente : '', Validators.required],
       nom: [data ? data.nom : '', Validators.compose([
         Validators.required,
         Validators.minLength(3),
@@ -144,8 +138,8 @@ export class StepperComponent implements OnInit {
     return this.fb.group({
       age: [data ? data.age : '', Validators.compose([
         Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(3),
+        Validators.min(1),
+        Validators.max(150),
       ])],
       nom: [data ? data.nom : '', Validators.compose([
         Validators.required,
@@ -157,16 +151,8 @@ export class StepperComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(100),
       ])],
-      sexe: [data ? data.sexe : '', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(100),
-      ])],
-      type: [data ? data.type : '', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(100),
-      ])],
+      sexe: [data ? data.sexe : '', Validators.required],
+      type: [data ? data.type : '', Validators.required],
     });
   }
 
@@ -209,6 +195,7 @@ export class StepperComponent implements OnInit {
         .subscribe(
           response => {
             sweetAlertMessage("success", "Ajout reussie", "Citoyen créé avec succès");
+            this.table.loardcitoyenbychancelier()
             // this.get_id
             // this.CitoyenService.getCitoyensByChancelier(this.consulat_id).subscribe(
             //   (data) => {
