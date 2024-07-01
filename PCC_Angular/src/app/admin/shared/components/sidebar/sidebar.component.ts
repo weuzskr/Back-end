@@ -16,20 +16,22 @@ export class SidebarComponent {
   logout(): void {
     this.auth.logout();
   }
-  // getid(): number {
-  //   return this.CitoyenService.getcitoyen_id();
-  // }
   reset() {
+    let user: any;
+    let role: any;
     this.CitoyenService.setcitoyen_id(0);
-    if (this.gettype() == "ministre") {
-      console.log("i'm here for the job");
+    if (localStorage.getItem("userConnect")) {
+      user = JSON.parse(localStorage.getItem("userConnect") || "");
+    }
+    role = user.user.role;
 
+
+    if (role === "ROLE_USER") {
+      this.router.navigate(['/chancelier']);
+    } else if (role === "ROLE_ADMIN") {
       this.router.navigate(['/ministre']);
 
-    } else if (this.gettype() == "chancelier") {
-      this.router.navigate(['/chancelier']);
     }
-
   }
   gettype() {
     return this.auth.gettype();

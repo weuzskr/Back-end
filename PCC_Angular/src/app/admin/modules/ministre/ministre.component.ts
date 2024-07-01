@@ -1,3 +1,4 @@
+import { CitoyenService } from 'src/app/services/citoyen.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ministre.component.css']
 })
 export class MinistreComponent implements OnInit {
-  data: any[] = [];
 
-  constructor(private AuthService: AuthService) { }
-
+  constructor(private AuthService: AuthService, private CitoyenService: CitoyenService) { }
   ngOnInit() {
     this.AuthService.settype("ministre")
+
   }
+  get_id() {
+    return this.CitoyenService.getcitoyen_id();
+  }
+
 }

@@ -12,8 +12,8 @@
       <div class="wrapper">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-md-6">
-              <div class="col-md-12 mb-5">
+            <div class="col-md-12 mb-5">
+              <div class="card border">
                 <div
                   class="card-header d-flex justify-content-between align-items-center py-5 gap-2 gap-md-5"
                 >
@@ -57,15 +57,19 @@
                   </div>
                 </div>
                 <div class="card-body pt-0">
-                  <table class="table align-middle table-row-dashed fs-6 gy-5">
+                  <table
+                    class="table table-bordered align-middle table-row-dashed fs-6 gy-5"
+                  >
                     <thead>
                       <tr
                         class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
                       >
                         <th class="min-w-200px"><h4>Nom</h4></th>
+                        <th class="min-w-200px"><h4>Consulat</h4></th>
+                        <th class="min-w-200px"><h4>Nombre de citoyen</h4></th>
                       </tr>
                     </thead>
-                    <tbody class="fw-semibold text-gray-600">
+                    <tbody>
                       <tr
                         *ngFor="
                           let region of paginatedRegions
@@ -75,10 +79,16 @@
                         <td class="text-gray-800 fs-5 fw-bold">
                           {{ region.nom }}
                         </td>
+                        <td class="text-gray-800 fs-5 fw-bold">
+                          {{ region.nom }}
+                        </td>
+                        <td class="text-gray-800 fs-5 fw-bold">
+                          {{ region.citoyensNumber }}
+                        </td>
                       </tr>
                       <tr *ngIf="paginatedRegions.length === 0">
                         <td colspan="1" class="text-center">
-                          <span class="text-gray-600">
+                          <span class="text-gray-800 fs-5 fw-bold">
                             <h3>Aucune donnée disponible pour cette table.</h3>
                           </span>
                         </td>
@@ -151,18 +161,15 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div id="regionChartDiv"></div>
-            </div>
           </div>
+          <div class="page-inner"></div>
+
+          <!-- Footer -->
+          <app-footer></app-footer>
+          <!-- Footer -->
+
+          <!-- Content End -->
         </div>
-        <div class="page-inner"></div>
-
-        <!-- Footer -->
-        <app-footer></app-footer>
-        <!-- Footer -->
-
-        <!-- Content End -->
       </div>
     </div>
   </div>

@@ -11,24 +11,36 @@
       <!--end sidebar-->
       <div class="wrapper">
         <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <app-map-chart></app-map-chart>
+          <div *ngIf="get_id() == 0" class="row justify-content-center">
+            <!-- Carte pour app-map-chart -->
+            <div class="col-md-12 mb-5">
+              <div class="card">
+                <div class="card-body">
+                  <app-map-chart></app-map-chart>
+                </div>
+              </div>
             </div>
-            <div class="col-md-6">
-              <app-xy-chart></app-xy-chart>
+
+            <!-- Carte pour app-xy-chart -->
+            <div class="col-md-12 mb-5">
+              <div class="card">
+                <div class="card-body">
+                  <app-xy-chart></app-xy-chart>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="card">
+                <app-table></app-table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="page-inner">
-          <app-table></app-table>
-        </div>
-
         <!-- Footer -->
         <app-footer></app-footer>
         <!-- Footer -->
-
-        <!-- Content End -->
       </div>
     </div>
   </div>

@@ -11,11 +11,19 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  user: any;
   constructor(private http: HttpClient, private router: Router) { }
 
   // Variable superglobale pour l'authentification 
   isAuthenticated = false;
   private type: string = "";
+  getConnectedUser() {
+    if (localStorage.getItem("userConnect")) {
+      this.user = JSON.parse(localStorage.getItem("userConnect") || "").user;
+      return this.user
+    }
+  }
+
   settype(type: string) {
     this.type = type;
   }

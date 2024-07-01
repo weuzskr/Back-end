@@ -73,7 +73,7 @@ export class XYChartComponent implements OnInit, OnDestroy {
 
       // Create axes
       let xRenderer = am5xy.AxisRendererX.new(root, {
-        minGridDistance: 70,
+        minGridDistance: 30,
         minorGridEnabled: true
       });
 

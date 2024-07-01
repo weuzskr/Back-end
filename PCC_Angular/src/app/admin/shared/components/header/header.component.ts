@@ -9,13 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent {
 
   user: any;
+  userTitle: string = "";
 
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    // this.user = this.auth.Myprofile().subscribe(user => {
-    //   this.user = user;
-    // });
+    this.user = this.auth.getConnectedUser();
+    this.userTitle = this.user.role === 'ROLE_USER' ? 'Chancelier' : 'Ministre';
   }
 
 }

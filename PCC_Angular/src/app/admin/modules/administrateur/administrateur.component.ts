@@ -6,6 +6,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { JuridictionService } from 'src/app/services/juridiction.service';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-administrateur',
@@ -13,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrl: './administrateur.component.css'
 })
 export class AdministrateurComponent implements OnInit, OnDestroy {
-  chanceliers: any[] = [];
+  chanceliers: any = [];
   citoyens: any[] = [];
   private root!: am5.Root;
 
@@ -32,19 +33,20 @@ export class AdministrateurComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.juridictionService.getJuridictions().subscribe((juridictions: any[]) => {
+    forkJoin([
+      this.juridictionService.getJuridictions(),
+      this.citoyenService.getAllcitoyens(),
+      this.authservice.getAllChancelier(),
+    ]
+    ).subscribe(([juridictions, citoyens, chanceliers]) => {
       this.juridictions = juridictions;
-    });
-    this.citoyenService.getAllcitoyens().subscribe((citoyens: any[]) => {
-      this.citoyens = citoyens;
-    });
-
-    this.authservice.getAllChancelier().subscribe((chanceliers: any) => {
       this.chanceliers = chanceliers;
+      this.citoyens = citoyens;
       this.updateTotalPagesadministrateurs();
       this.paginateadministrateurs();
-      this.setupChart();
-    });
+      // this.setupChart();
+    })
+
   }
 
 
@@ -230,7 +232,7 @@ export class AdministrateurComponent implements OnInit, OnDestroy {
   }
 
   private getcitoyensByJuridictionPosteId(posteId: number): number {
-    return this.citoyens.filter(citoyen => citoyen.administrateur?.poste?.id === posteId).length;
+    return this.citoyens.filter(citoyen => citoyen.consulat?.poste?.id === posteId).length;
   }
 
 }

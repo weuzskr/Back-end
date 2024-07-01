@@ -6,7 +6,7 @@ import { ChancelierComponent } from './admin/modules/chancelier/chancelier.compo
 import { LoginComponent } from './admin/login/login.component';
 import { AuthGuardConsul, AuthGuardMinistre } from './services/guard';
 import { RegionComponent } from './admin/modules/region/region.component';
-import { DepartemntComponent } from './admin/modules/departement/departement.component';
+import { DepartementComponent } from './admin/modules/departement/departement.component';
 import { ProfessionComponent } from './admin/modules/profession/profession.component';
 import { ConsulatComponent } from './admin/modules/consulat/consulat.component';
 import { JuridictionComponent } from './admin/modules/juridiction/juridiction.component';
@@ -27,7 +27,7 @@ const routes: Routes = [
     // canActivate: [AuthGuardMinistre || AuthGuardConsul]
   },
   {
-    path: 'departement', component: DepartemntComponent,
+    path: 'departement', component: DepartementComponent,
     title: 'Departement',
     // canActivate: [AuthGuardMinistre || AuthGuardConsul]
   },

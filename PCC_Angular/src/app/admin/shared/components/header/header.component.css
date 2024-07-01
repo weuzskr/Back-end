@@ -1,0 +1,21 @@
+/* navbar.component.css */
+.navbar-bordeaux {
+  background-color: #800020; /* Bordeaux red */
+}
+
+.navbar-bordeaux .menu-link {
+  color: #ffffff; /* White color for the links */
+}
+
+.navbar-bordeaux .menu-link:hover {
+  color: #cccccc; /* Light grey color on hover */
+}
+
+.user-info {
+  color: #ffffff; /* White text color */
+  font-size: 1rem;
+}
+
+.user-info.text-bold {
+  font-weight: bold; /* Bold text for user title */
+}

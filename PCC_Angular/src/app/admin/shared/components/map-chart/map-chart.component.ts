@@ -1,17 +1,18 @@
 import { JuridictionService } from 'src/app/services/juridiction.service';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { ConsulatService } from 'src/app/services/consulat.service';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-map-chart',
   templateUrl: './map-chart.component.html',
   styleUrls: ['./map-chart.component.css']
 })
-export class MapChartComponent implements OnInit {
+export class MapChartComponent implements OnInit, OnDestroy {
   citoyensNumber: any = [];
   citoyens: any[] = [];
   consulats: any[] = [];
@@ -27,17 +28,15 @@ export class MapChartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.citoyenService.getAllcitoyens().subscribe((citoyens: any[]) => {
+    forkJoin([
+      this.citoyenService.getAllcitoyens(),
+      this.consulatService.getConsulats(),
+      this.juridictionService.getJuridictions()
+    ]).subscribe(([citoyens, consulats, juridictions]) => {
       this.citoyens = citoyens;
-    });
-
-    this.consulatService.getConsulats().subscribe((consulats: any[]) => {
       this.consulats = consulats;
-    });
-
-    this.juridictionService.getJuridictions().subscribe((juridictions: any[]) => {
       this.juridictions = juridictions;
-      this.setupChart();
+      this.setupChart(); // Créez le graphique après le chargement des données
     });
   }
 
@@ -55,8 +54,8 @@ export class MapChartComponent implements OnInit {
       "COMORES": "KM",
       "ALGÉRIE": "DZ",
       "TURQUIE": "TR",
-      "France": "FR",
-      "Chine": "CN"
+      "FRANCE": "FR",
+      "CHINE": "CN",
     };
 
     this.zone.runOutsideAngular(() => {
@@ -159,6 +158,13 @@ export class MapChartComponent implements OnInit {
       bubbleSeries.data.setAll(transformedData);
 
       this.root = root;
+    });
+  }
+  ngOnDestroy(): void {
+    this.zone.runOutsideAngular(() => {
+      if (this.root) {
+        this.root.dispose();
+      }
     });
   }
 

@@ -14,7 +14,7 @@ import { SharedModule } from './admin/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { RegionComponent } from './admin/modules/region/region.component';
 import { SearchPipe } from './search.pipe';
-import { DepartemntComponent } from './admin/modules/departement/departement.component';
+import { DepartementComponent } from './admin/modules/departement/departement.component';
 import { ProfessionComponent } from './admin/modules/profession/profession.component';
 import { ConsulatComponent } from './admin/modules/consulat/consulat.component';
 import { JuridictionComponent } from './admin/modules/juridiction/juridiction.component';
@@ -27,7 +27,7 @@ import { AdministrateurComponent } from './admin/modules/administrateur/administ
     MinistreComponent,
     ChancelierComponent,
     RegionComponent,
-    DepartemntComponent,
+    DepartementComponent,
     ProfessionComponent,
     ConsulatComponent,
     JuridictionComponent,
