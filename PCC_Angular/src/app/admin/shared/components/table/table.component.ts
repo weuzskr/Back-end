@@ -5,6 +5,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChancelierComponent } from 'src/app/admin/modules/chancelier/chancelier.component';
 import { MinistreComponent } from 'src/app/admin/modules/ministre/ministre.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 @Component({
   selector: 'app-table',
@@ -39,6 +41,11 @@ export class TableComponent implements OnInit {
   loadCitoyens() {
     this.CitoyenService.getAllcitoyens().subscribe(
       (response) => {
+        response.forEach((citoyen: any) => {
+          if (citoyen.dateDeNaissance) {
+            citoyen.dateDeNaissance = format(new Date(citoyen.dateDeNaissance), 'dd MMMM yyyy', { locale: fr });
+          }
+        });
         this.citoyens = response;
         this.updateTotalPages();
         this.paginateCitoyens();
@@ -58,6 +65,11 @@ export class TableComponent implements OnInit {
     this.get_id()
     this.CitoyenService.getCitoyensByChancelier(this.consulat_id).subscribe(
       (data) => {
+        data.forEach((citoyen: any) => {
+          if (citoyen.dateDeNaissance) {
+            citoyen.dateDeNaissance = format(new Date(citoyen.dateDeNaissance), 'dd MMMM yyyy', { locale: fr });
+          }
+        });
         this.citoyens = data;
         this.updateTotalPages();
         this.paginateCitoyens();

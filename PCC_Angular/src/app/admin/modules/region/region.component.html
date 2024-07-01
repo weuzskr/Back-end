@@ -66,29 +66,29 @@
                       >
                         <th class="min-w-200px"><h4>Nom</h4></th>
                         <th class="min-w-200px"><h4>Consulat</h4></th>
-                        <th class="min-w-200px"><h4>Nombre de citoyen</h4></th>
+                        <!-- <th class="min-w-200px"><h4>Nombre de citoyen</h4></th> -->
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="fw-semibold text-gray-600">
                       <tr
                         *ngFor="
                           let region of paginatedRegions
                             | search : searchTextRegion
                         "
                       >
-                        <td class="text-gray-800 fs-5 fw-bold">
+                        <td>
                           {{ region.nom }}
                         </td>
-                        <td class="text-gray-800 fs-5 fw-bold">
+                        <td>
                           {{ region.nom }}
                         </td>
-                        <td class="text-gray-800 fs-5 fw-bold">
+                        <!-- <td >
                           {{ region.citoyensNumber }}
-                        </td>
+                        </td> -->
                       </tr>
                       <tr *ngIf="paginatedRegions.length === 0">
                         <td colspan="1" class="text-center">
-                          <span class="text-gray-800 fs-5 fw-bold">
+                          <span>
                             <h3>Aucune donnée disponible pour cette table.</h3>
                           </span>
                         </td>

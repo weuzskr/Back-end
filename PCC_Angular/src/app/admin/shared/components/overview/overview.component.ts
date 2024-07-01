@@ -1,6 +1,7 @@
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { Component, Input } from '@angular/core';
-
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -45,6 +46,9 @@ export class OverviewComponent {
     // this.citoyenService.getCitoyensById(this._citoyen_id).subscribe(
     this.citoyenService.getCitoyensById(this.citoyenService.getcitoyen_id()).subscribe(
       (data) => {
+
+        data.dateDeNaissance = format(new Date(data.dateDeNaissance), 'dd MMMM yyyy', { locale: fr });
+
         this.citoyen = data;
 
         console.log("Le citoyent recuperer dans le composant overview", this.citoyen);

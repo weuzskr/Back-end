@@ -78,7 +78,9 @@ export class StepperComponent implements OnInit {
       ])],
       photo: ['', Validators.required],
       signature: ['signature.jpeg', Validators.required],
-      lieuDactivites: ['', Validators.required, Validators.minLength(3), Validators.maxLength(255)],
+      lieuDactivites: ['', Validators.compose([
+        Validators.required, Validators.minLength(3), Validators.maxLength(255)
+      ])],
       empreinteDigitale: ['empreinte_digitale.jpeg', Validators.required],
       situationMatrimoniale: ['', Validators.required],
       profession: this.fb.group({
