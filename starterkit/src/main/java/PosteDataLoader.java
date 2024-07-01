@@ -9,9 +9,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-
-
 
 @Component
 public class PosteDataLoader implements ApplicationRunner {
@@ -25,35 +24,30 @@ public class PosteDataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        if (posteRepository.count() == 0) {
-            List<String> postes = Arrays.asList(
-                    "Abidjan",
-                    "Bordeaux",
-                    "Casablanca",
-                    "Djeddah",
-                    "Le Havre",
-                    "Lusaka",
-                    "Lagos",
-                    "Lyon",
-                    "Madrid",
-                    "Marseille",
-                    "Milan",
-                    "Naples",
-                    "New York",
-                    "Paris",
-                    "Gouanghzou",
-                    "Pointe Noire"
-            );
+        List<String> postes = Arrays.asList(
+                "Abidjan", "Abu Dhabi", "Abuja", "Accra", "Addis-Abeba", "Alger", "Ankara",
+                "Bamako", "Banjul", "Brazzaville", "Beijing", "Berlin", "Bissau", "Brasilia",
+                "Bruxelles", "Conakry", "Doha", "Genève", "Koweït-City", "Kuala Lumpur",
+                "La Haye", "Le Caire", "Nouakchott", "Ottawa", "Ouagadougou", "Paris", "Praia",
+                "Pretoria", "Rabat", "Libreville", "Lisbonne", "Lomé", "Londres", "Madrid",
+                "Mascate", "Moscou", "New-Delhi", "Riyadh", "Rome Quirinal", "Rome Vatican",
+                "Séoul", "Tokyo", "Tripoli", "Tunis", "Yaoundé", "Washington", "Varsovie",
+                "Téhéran", "Nairobi", "Niamey", "Kinshasa", "Bordeaux", "Casablanca", "Djeddah",
+                "Le Havre", "Lusaka", "Lagos", "Lyon", "Marseille", "Milan", "Naples",
+                "New York", "Gouanghzou", "Pointe Noire"
+        );
 
-            postes.forEach(nom -> {
+        // Trier les postes par ordre alphabétique
+        Collections.sort(postes);
+
+        postes.forEach(nom -> {
+            if (!posteRepository.existsByNom(nom)) {
                 Poste poste = new Poste(nom);
                 posteRepository.save(poste);
-            });
+            }
+        });
 
-            System.out.println("Postes loaded successfully.");
-        } else {
-            System.out.println("Postes already exist in the database. Skipping DataLoader.");
-        }
+        System.out.println("Postes loaded successfully.");
     }
 }
 */
