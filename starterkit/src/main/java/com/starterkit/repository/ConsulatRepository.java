@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ConsulatRepository extends JpaRepository<Consulat, Long> {
     List<Consulat> findByStatut(String statut);
+/*
+    List<Consulat> findByDepartements_Id(Long departementId);*/
 }

@@ -2,6 +2,7 @@ package com.starterkit.controller;
 
 import com.starterkit.model.Consulat;
 import com.starterkit.repository.ConsulatRepository;
+import com.starterkit.service.ConsulatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/consulats")
 public class ConsulatController {
+
+    @Autowired
+    private ConsulatService consulatService;
 
     private final ConsulatRepository consulatRepository;
 
@@ -24,6 +28,10 @@ public class ConsulatController {
         List<Consulat> consulats = consulatRepository.findAll();
         return ResponseEntity.ok(consulats);
     }
-
+   /* @GetMapping("/departement/{departementId}")
+    public ResponseEntity<List<Consulat>> getConsulatsByDepartement(@PathVariable Long departementId) {
+        List<Consulat> consulats = consulatService.getConsulatsByDepartement(departementId);
+        return ResponseEntity.ok().body(consulats);
+    }*/
     // Autres endpoints pour CRUD des consulats peuvent être ajoutés ici
 }
