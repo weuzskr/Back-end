@@ -80,7 +80,8 @@ private final PasswordEncoder passwordEncoder;
  }
 
 
-*/
+*//*
+
 
 package com.starterkit;
 
@@ -132,3 +133,4 @@ public class AdminDataLoader implements ApplicationRunner {
         System.out.println("Admin user '" + username + "' creer avec succes.");
     }
 }
+*/

@@ -5,9 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -30,7 +28,10 @@ public class Citoyen {
     @Column(name = "date_de_naissance", nullable = false)
     private LocalDate dateDeNaissance;
 
+
+
     @Column(name = "lieu_de_naissance", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private String lieuDeNaissance;
 
     @Column(name = "pays_de_naissance", nullable = false)
