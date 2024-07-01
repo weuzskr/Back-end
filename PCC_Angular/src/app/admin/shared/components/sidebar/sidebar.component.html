@@ -130,154 +130,212 @@
       >
         <!--begin  Menu link-->
         <span class="menu-link">
-          <i class="ki-duotone ki-book fs-1 text-warning">
-            <span class="path1"></span>
-            <span class="path2"></span>
-            <span class="path3"></span>
-            <span class="path4"></span>
-          </i>
-          <span class="menu-title ps-10"><h4>Liste des chancelier</h4></span>
+          <a
+            [routerLink]="['/admins']"
+            routerLinkActive="router-link-active"
+            btn
+            class="menu-link"
+          >
+            <i class="ki-duotone ki-book fs-1 text-warning">
+              <span class="path1"></span>
+              <span class="path2"></span>
+              <span class="path3"></span>
+              <span class="path4"></span>
+            </i>
+            <span class="menu-title ps-10"><h4>Chanceliers</h4></span>
+          </a>
         </span>
         <!--end  Menu link-->
       </div>
       <!--end  Menu item-->
 
-      <!--begin:Menu item-->
+      <!--begin  Menu item-->
       <div class="menu-item py-1" *ngIf="gettype() == 'ministre'">
-        <!--begin:Menu content-->
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
 
       <!--begin  Menu item-->
       <div class="menu-item py-1">
         <!--begin  Menu link-->
-        <a (click)="reset()" btn class="menu-link">
+        <a
+          [routerLink]="['/poste']"
+          routerLinkActive="router-link-active"
+          btn
+          class="menu-link"
+        >
           <i class="ki-duotone ki-book fs-1 text-warning">
             <span class="path1"></span>
             <span class="path2"></span>
             <span class="path3"></span>
             <span class="path4"></span>
           </i>
-          <span class="menu-title ps-10"><h4>La liste des postes</h4></span>
+          <span class="menu-title ps-10"><h4>Postes</h4></span>
         </a>
         <!--end  Menu link-->
       </div>
       <!--end  Menu item-->
 
-      <!--begin:Menu item-->
+      <!--begin  Menu item-->
       <div class="menu-item py-1">
-        <!--begin:Menu content-->
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
       <!--begin  Menu item-->
       <div class="menu-item py-1">
         <!--begin  Menu link-->
-        <a (click)="reset()" btn class="menu-link">
+        <a
+          [routerLink]="['/juridiction']"
+          routerLinkActive="router-link-active"
+          btn
+          class="menu-link"
+        >
           <i class="ki-duotone ki-book fs-1 text-warning">
             <span class="path1"></span>
             <span class="path2"></span>
             <span class="path3"></span>
             <span class="path4"></span>
           </i>
-          <span class="menu-title ps-10"
-            ><h4>La liste des juridictions</h4></span
-          >
+          <span class="menu-title ps-10"><h4>Juridictions</h4></span>
         </a>
         <!--end  Menu link-->
       </div>
       <!--end  Menu item-->
 
-      <!--begin:Menu item-->
+      <!--begin  Menu item-->
       <div class="menu-item py-1">
-        <!--begin:Menu content-->
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
       <!--begin  Menu item-->
       <div class="menu-item py-1">
         <!--begin  Menu link-->
-        <a (click)="reset()" btn class="menu-link">
+        <a
+          [routerLink]="['/consulat']"
+          routerLinkActive="current"
+          btn
+          class="menu-link"
+        >
           <i class="ki-duotone ki-book fs-1 text-warning">
             <span class="path1"></span>
             <span class="path2"></span>
             <span class="path3"></span>
             <span class="path4"></span>
           </i>
-          <span class="menu-title ps-10"><h4>La liste des consulats</h4></span>
+          <span class="menu-title ps-10"><h4>Consulats</h4></span>
         </a>
         <!--end  Menu link-->
       </div>
       <!--end  Menu item-->
 
-      <!--begin:Menu item-->
+      <!--begin  Menu item-->
       <div class="menu-item py-1">
-        <!--begin:Menu content-->
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
       <!--begin  Menu item-->
       <div class="menu-item py-1">
         <!--begin  Menu link-->
-        <a (click)="reset()" btn class="menu-link">
+        <a
+          [routerLink]="['/profession']"
+          routerLinkActive="router-link-active"
+          btn
+          class="menu-link"
+        >
           <i class="ki-duotone ki-brifecase-timer fs-1 text-warning">
             <span class="path1"></span>
             <span class="path2"></span>
             <span class="path3"></span>
           </i>
-          <span class="menu-title ps-5"><h4>La liste des professions</h4></span>
+          <span class="menu-title ps-10"><h4>Professions</h4></span>
         </a>
         <!--end  Menu link-->
       </div>
       <!--end  Menu item-->
-      <!--begin:Menu item-->
+      <!--begin  Menu item-->
       <div class="menu-item py-1">
-        <!--begin:Menu content-->
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
 
       <!--begin  Menu item-->
       <div class="menu-item py-1">
         <!--begin  Menu link-->
-        <a class="menu-link">
+        <a
+          class="menu-link"
+          [routerLink]="['/region']"
+          routerLinkActive="router-link-active"
+        >
           <i class="ki-duotone ki-book fs-1 text-warning">
             <span class="path1"></span>
             <span class="path2"></span>
             <span class="path3"></span>
             <span class="path4"></span>
           </i>
-          <span class="menu-title ps-10"><h4>La liste des regions</h4></span>
+          <span class="menu-title ps-10"><h4>Regions</h4></span>
         </a>
         <!--end  Menu link-->
       </div>
       <!--end  Menu item-->
-      <!--begin:Menu item-->
+      <!--begin  Menu item-->
       <div class="menu-item py-1">
-        <!--begin:Menu content-->
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
 
+      <!--begin  Menu item-->
+      <div class="menu-item py-1">
+        <!--begin  Menu link-->
+        <a
+          [routerLink]="['/departement']"
+          routerLinkActive="router-link-active"
+          btn
+          class="menu-link"
+        >
+          <i class="ki-duotone ki-book fs-1 text-warning">
+            <span class="path1"></span>
+            <span class="path2"></span>
+            <span class="path3"></span>
+            <span class="path4"></span>
+          </i>
+          <span class="menu-title ps-10"><h4>Departements</h4></span>
+        </a>
+        <!--end  Menu link-->
+      </div>
+      <!--end  Menu item-->
+      <!--begin  Menu item-->
+      <div class="menu-item py-1">
+        <!--begin  Menu content-->
+        <div class="menu-content">
+          <div class="separator separator-dashed"></div>
+        </div>
+        <!--end  Menu content-->
+      </div>
+      <!--end  Menu item-->
       <!--begin  Menu item-->
       <div class="menu-item py-1">
         <!--begin  Menu link-->
@@ -288,22 +346,20 @@
             <span class="path3"></span>
             <span class="path4"></span>
           </i>
-          <span class="menu-title ps-10"
-            ><h4>La liste des departements</h4></span
-          >
+          <span class="menu-title ps-10"><h4>Citoyens</h4></span>
         </a>
         <!--end  Menu link-->
       </div>
       <!--end  Menu item-->
-      <!--begin:Menu item-->
+      <!--begin  Menu item-->
       <div class="menu-item py-1">
-        <!--begin:Menu content-->
+        <!--begin  Menu content-->
         <div class="menu-content">
           <div class="separator separator-dashed"></div>
         </div>
-        <!--end:Menu content-->
+        <!--end  Menu content-->
       </div>
-      <!--end:Menu item-->
+      <!--end  Menu item-->
 
       <!--end  Menu item-->
       <!--begin  Menu item-->

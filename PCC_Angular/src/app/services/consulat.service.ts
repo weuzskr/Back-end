@@ -10,6 +10,6 @@ export class ConsulatService {
     constructor(private http: HttpClient) { }
 
     getConsulats(): Observable<any> {
-        return this.http.get(`${url}/consulats`);
+        return this.http.get(`${url}/consulats/tous`);
     }
 }

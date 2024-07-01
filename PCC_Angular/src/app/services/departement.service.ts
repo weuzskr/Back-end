@@ -10,6 +10,6 @@ export class DepartementService {
   constructor(private http: HttpClient) { }
 
   getDepartements(): Observable<any> {
-    return this.http.get(`${url}/departements`);
+    return this.http.get(`${url}/departements/tous`);
   }
 }

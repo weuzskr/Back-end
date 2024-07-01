@@ -10,6 +10,6 @@ export class PosteService {
   constructor(private http: HttpClient) { }
 
   getPostes(): Observable<any> {
-    return this.http.get(`${url}/postes`);
+    return this.http.get(`${url}/postes/tous`);
   }
 }

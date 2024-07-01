@@ -28,6 +28,10 @@ export class AuthService {
     return this.http.post(`${url}/login`, user)
   }
 
+  getAllChancelier() {
+    return this.http.get(`${url}/admins/by-role`)
+  }
+
   // Logout du backend 
   logoutAPI() {
     return this.http.get(`${url}/logout`)
@@ -40,14 +44,8 @@ export class AuthService {
 
 
   logout() {
-    // this.logoutAPI().subscribe(
-    //   (response: any) => {
-    //     this.isAuthenticated = false;
     this.router.navigate(['/']);
     sweetAlertMessage('success', "Deconnexion reussi", "Vous avez été deconnecter de la plateforme")
     localStorage.setItem("userConnect", JSON.stringify(""));
-    //   }
-    // )
-
   }
 }

@@ -12,12 +12,27 @@ import { MinistreComponent } from './admin/modules/ministre/ministre.component';
 import { ChancelierComponent } from './admin/modules/chancelier/chancelier.component';
 import { SharedModule } from './admin/shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { RegionComponent } from './admin/modules/region/region.component';
+import { SearchPipe } from './search.pipe';
+import { DepartemntComponent } from './admin/modules/departement/departement.component';
+import { ProfessionComponent } from './admin/modules/profession/profession.component';
+import { ConsulatComponent } from './admin/modules/consulat/consulat.component';
+import { JuridictionComponent } from './admin/modules/juridiction/juridiction.component';
+import { posteComponent } from './admin/modules/poste/poste.component';
+import { AdministrateurComponent } from './admin/modules/administrateur/administrateur.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MinistreComponent,
     ChancelierComponent,
+    RegionComponent,
+    DepartemntComponent,
+    ProfessionComponent,
+    ConsulatComponent,
+    JuridictionComponent,
+    posteComponent,
+    AdministrateurComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +42,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    SearchPipe,
     HttpClientModule,
 
   ],

@@ -103,7 +103,7 @@
                   >
                     <h5>Consulat</h5>
                   </th>
-                  <th class="text-center"><h5>Actions</h5></th>
+                  <th class="text-end"><h5>Actions</h5></th>
                 </tr>
               </thead>
               <tbody class="fw-semibold text-gray-600">
@@ -127,23 +127,31 @@
                     >
                   </td>
                   <td class="text-center pe-0">
-                    <span class="fw-bold">{{
+                    <span class="text-gray-800 fs-5 fw-bold">{{
                       citoyen.profession.secteurDactivites
                     }}</span>
                   </td>
                   <td class="text-center pe-0">
-                    <span class="fw-bold">{{ citoyen.dateDeNaissance }}</span>
-                  </td>
-                  <td class="text-center pe-0">
-                    <span class="fw-bold">{{ citoyen.lieuDeNaissance }}</span>
-                  </td>
-                  <td class="text-center pe-0">
-                    <span class="fw-bold">{{ citoyen.numeroDeTelephone }}</span>
-                  </td>
-                  <td class="text-center pe-0">
-                    <span class="fw-bold" *ngIf="getType() == 'ministre'">{{
-                      citoyen.consulat?.nom
+                    <span class="text-gray-800 fs-5 fw-bold">{{
+                      citoyen.dateDeNaissance
                     }}</span>
+                  </td>
+                  <td class="text-center pe-0">
+                    <span class="text-gray-800 fs-5 fw-bold">{{
+                      citoyen.lieuDeNaissance
+                    }}</span>
+                  </td>
+                  <td class="text-center pe-0">
+                    <span class="text-gray-800 fs-5 fw-bold">{{
+                      citoyen.numeroDeTelephone
+                    }}</span>
+                  </td>
+                  <td class="text-center pe-0">
+                    <span
+                      class="text-gray-800 fs-5 fw-bold"
+                      *ngIf="getType() == 'ministre'"
+                      >{{ citoyen.consulat?.nom }}</span
+                    >
                   </td>
                   <td class="text-center">
                     <div class="d-flex gap-2">

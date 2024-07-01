@@ -10,6 +10,6 @@ export class JuridictionService {
   constructor(private http: HttpClient) { }
 
   getJuridictions(): Observable<any> {
-    return this.http.get(`${url}/juridictions`);
+    return this.http.get(`${url}/juridictions/tous`);
   }
 }

@@ -10,6 +10,6 @@ export class RegionService {
   constructor(private http: HttpClient) { }
 
   getRegions(): Observable<any> {
-    return this.http.get(`${url}/regions`);
+    return this.http.get(`${url}/regions/tous`);
   }
 }

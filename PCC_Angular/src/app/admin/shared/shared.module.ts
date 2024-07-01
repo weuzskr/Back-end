@@ -11,6 +11,8 @@ import { CitoyenService } from 'src/app/services/citoyen.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from 'src/app/search.pipe';
 import { OverviewComponent } from './components/overview/overview.component';
+import { MapChartComponent } from './components/map-chart/map-chart.component';
+import { XYChartComponent } from './components/xy-chart/xy-chart.component';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -19,7 +21,9 @@ import { OverviewComponent } from './components/overview/overview.component';
     NotFoundComponent,
     TableComponent,
     StepperComponent,
-    OverviewComponent
+    OverviewComponent,
+    MapChartComponent,
+    XYChartComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import { OverviewComponent } from './components/overview/overview.component';
     NotFoundComponent,
     TableComponent,
     StepperComponent,
-    OverviewComponent
+    OverviewComponent,
+    MapChartComponent,
+    XYChartComponent
   ],
   providers: [
     CitoyenService

@@ -641,15 +641,11 @@ var KTChartsWidget13 = {
               r
                 .get("renderer")
                 .grid.template.setAll({ disabled: !0, strokeOpacity: 0 }),
-                r
-                  .get("renderer")
-                  .labels.template.setAll({
-                    fontWeight: "400",
-                    fontSize: 13,
-                    fill: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-500")
-                    ),
-                  }),
+                r.get("renderer").labels.template.setAll({
+                  fontWeight: "400",
+                  fontSize: 13,
+                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+                }),
                 r.data.setAll(l);
               var o = a.yAxes.push(
                 am5xy.ValueAxis.new(t, {
@@ -676,25 +672,17 @@ var KTChartsWidget13 = {
                   n.data.setAll(l),
                   n.appear(1e3);
               }
-              o
-                .get("renderer")
-                .grid.template.setAll({
-                  stroke: am5.color(
-                    KTUtil.getCssVariableValue("--bs-gray-300")
-                  ),
-                  strokeWidth: 1,
-                  strokeOpacity: 1,
-                  strokeDasharray: [3],
+              o.get("renderer").grid.template.setAll({
+                stroke: am5.color(KTUtil.getCssVariableValue("--bs-gray-300")),
+                strokeWidth: 1,
+                strokeOpacity: 1,
+                strokeDasharray: [3],
+              }),
+                o.get("renderer").labels.template.setAll({
+                  fontWeight: "400",
+                  fontSize: 13,
+                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
                 }),
-                o
-                  .get("renderer")
-                  .labels.template.setAll({
-                    fontWeight: "400",
-                    fontSize: 13,
-                    fill: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-500")
-                    ),
-                  }),
                 i("Cars", "cars", KTUtil.getCssVariableValue("--bs-primary")),
                 i(
                   "Motorcycles",
@@ -716,58 +704,44 @@ var KTChartsWidget13 = {
                 );
               var s = r.makeDataItem({ category: "2016", endCategory: "2021" });
               r.createAxisRange(s),
-                s
-                  .get("grid")
-                  .setAll({
-                    stroke: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-200")
-                    ),
-                    strokeOpacity: 0.5,
-                    strokeDasharray: [3],
-                  }),
-                s
-                  .get("axisFill")
-                  .setAll({
-                    fill: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-200")
-                    ),
-                    fillOpacity: 0.1,
-                  }),
-                s
-                  .get("label")
-                  .setAll({
-                    inside: !0,
-                    text: "Fines increased",
-                    rotation: 90,
-                    centerX: am5.p100,
-                    centerY: am5.p100,
-                    location: 0,
-                    paddingBottom: 10,
-                    paddingRight: 15,
-                  });
+                s.get("grid").setAll({
+                  stroke: am5.color(
+                    KTUtil.getCssVariableValue("--bs-gray-200")
+                  ),
+                  strokeOpacity: 0.5,
+                  strokeDasharray: [3],
+                }),
+                s.get("axisFill").setAll({
+                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-200")),
+                  fillOpacity: 0.1,
+                }),
+                s.get("label").setAll({
+                  inside: !0,
+                  text: "Fines increased",
+                  rotation: 90,
+                  centerX: am5.p100,
+                  centerY: am5.p100,
+                  location: 0,
+                  paddingBottom: 10,
+                  paddingRight: 15,
+                });
               var n = r.makeDataItem({ category: "2021" });
               r.createAxisRange(n),
-                n
-                  .get("grid")
-                  .setAll({
-                    stroke: am5.color(
-                      KTUtil.getCssVariableValue("--bs-danger")
-                    ),
-                    strokeOpacity: 1,
-                    strokeDasharray: [3],
-                  }),
-                n
-                  .get("label")
-                  .setAll({
-                    inside: !0,
-                    text: "Fee introduced",
-                    rotation: 90,
-                    centerX: am5.p100,
-                    centerY: am5.p100,
-                    location: 0,
-                    paddingBottom: 10,
-                    paddingRight: 15,
-                  }),
+                n.get("grid").setAll({
+                  stroke: am5.color(KTUtil.getCssVariableValue("--bs-danger")),
+                  strokeOpacity: 1,
+                  strokeDasharray: [3],
+                }),
+                n.get("label").setAll({
+                  inside: !0,
+                  text: "Fee introduced",
+                  rotation: 90,
+                  centerX: am5.p100,
+                  centerY: am5.p100,
+                  location: 0,
+                  paddingBottom: 10,
+                  paddingRight: 15,
+                }),
                 a.appear(1e3, 100);
             };
           am5.ready(function () {
@@ -1087,14 +1061,12 @@ var KTChartsWidget15 = {
                     },
                   })
                 );
-              r
-                .get("renderer")
-                .labels.template.setAll({
-                  paddingTop: 20,
-                  fontWeight: "400",
-                  fontSize: 10,
-                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
-                }),
+              r.get("renderer").labels.template.setAll({
+                paddingTop: 20,
+                fontWeight: "400",
+                fontSize: 10,
+                fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+              }),
                 r
                   .get("renderer")
                   .grid.template.setAll({ disabled: !0, strokeOpacity: 0 }),
@@ -1104,25 +1076,17 @@ var KTChartsWidget15 = {
                   renderer: am5xy.AxisRendererY.new(t, {}),
                 })
               );
-              o
-                .get("renderer")
-                .grid.template.setAll({
-                  stroke: am5.color(
-                    KTUtil.getCssVariableValue("--bs-gray-300")
-                  ),
-                  strokeWidth: 1,
-                  strokeOpacity: 1,
-                  strokeDasharray: [3],
-                }),
-                o
-                  .get("renderer")
-                  .labels.template.setAll({
-                    fontWeight: "400",
-                    fontSize: 10,
-                    fill: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-500")
-                    ),
-                  });
+              o.get("renderer").grid.template.setAll({
+                stroke: am5.color(KTUtil.getCssVariableValue("--bs-gray-300")),
+                strokeWidth: 1,
+                strokeOpacity: 1,
+                strokeDasharray: [3],
+              }),
+                o.get("renderer").labels.template.setAll({
+                  fontWeight: "400",
+                  fontSize: 10,
+                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+                });
               var i = a.series.push(
                 am5xy.ColumnSeries.new(t, {
                   xAxis: r,
@@ -1209,14 +1173,12 @@ var KTChartsWidget16 = {
                   renderer: am5xy.AxisRendererX.new(t, { minGridDistance: 30 }),
                 })
               );
-              r
-                .get("renderer")
-                .labels.template.setAll({
-                  paddingTop: 10,
-                  fontWeight: "400",
-                  fontSize: 13,
-                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
-                }),
+              r.get("renderer").labels.template.setAll({
+                paddingTop: 10,
+                fontWeight: "400",
+                fontSize: 13,
+                fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+              }),
                 r
                   .get("renderer")
                   .grid.template.setAll({ disabled: !0, strokeOpacity: 0 }),
@@ -1226,24 +1188,20 @@ var KTChartsWidget16 = {
                   renderer: am5xy.AxisRendererY.new(t, {}),
                 })
               );
-              o
-                .get("renderer")
-                .labels.template.setAll({
-                  paddingLeft: 10,
-                  fontWeight: "400",
-                  fontSize: 13,
-                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
-                }),
-                o
-                  .get("renderer")
-                  .grid.template.setAll({
-                    stroke: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-300")
-                    ),
-                    strokeWidth: 1,
-                    strokeOpacity: 1,
-                    strokeDasharray: [3],
-                  });
+              o.get("renderer").labels.template.setAll({
+                paddingLeft: 10,
+                fontWeight: "400",
+                fontSize: 13,
+                fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+              }),
+                o.get("renderer").grid.template.setAll({
+                  stroke: am5.color(
+                    KTUtil.getCssVariableValue("--bs-gray-300")
+                  ),
+                  strokeWidth: 1,
+                  strokeOpacity: 1,
+                  strokeDasharray: [3],
+                });
               var i = am5xy.AxisRendererY.new(t, { opposite: !0 }),
                 s = a.yAxes.push(
                   am5xy.ValueAxis.new(t, {
@@ -1253,13 +1211,11 @@ var KTChartsWidget16 = {
                     strictMinMax: !0,
                   })
                 );
-              s
-                .get("renderer")
-                .labels.template.setAll({
-                  fontWeight: "400",
-                  fontSize: 13,
-                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
-                }),
+              s.get("renderer").labels.template.setAll({
+                fontWeight: "400",
+                fontSize: 13,
+                fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+              }),
                 i.grid.template.set("forceHidden", !0),
                 s.set("numberFormat", "#'%");
               var n = a.series.push(
@@ -2455,16 +2411,12 @@ var KTChartsWidget23 = {
                   })
                 );
               r.data.setAll(l),
-                r
-                  .get("renderer")
-                  .labels.template.setAll({
-                    paddingTop: 20,
-                    fontWeight: "400",
-                    fontSize: 11,
-                    fill: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-500")
-                    ),
-                  }),
+                r.get("renderer").labels.template.setAll({
+                  paddingTop: 20,
+                  fontWeight: "400",
+                  fontSize: 11,
+                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+                }),
                 r
                   .get("renderer")
                   .grid.template.setAll({ disabled: !0, strokeOpacity: 0 });
@@ -2475,24 +2427,20 @@ var KTChartsWidget23 = {
                   renderer: am5xy.AxisRendererY.new(t, {}),
                 })
               );
-              o
-                .get("renderer")
-                .labels.template.setAll({
-                  paddingTop: 0,
-                  fontWeight: "400",
-                  fontSize: 11,
-                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
-                }),
-                o
-                  .get("renderer")
-                  .grid.template.setAll({
-                    stroke: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-300")
-                    ),
-                    strokeWidth: 1,
-                    strokeOpacity: 1,
-                    strokeDasharray: [3],
-                  });
+              o.get("renderer").labels.template.setAll({
+                paddingTop: 0,
+                fontWeight: "400",
+                fontSize: 11,
+                fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+              }),
+                o.get("renderer").grid.template.setAll({
+                  stroke: am5.color(
+                    KTUtil.getCssVariableValue("--bs-gray-300")
+                  ),
+                  strokeWidth: 1,
+                  strokeOpacity: 1,
+                  strokeDasharray: [3],
+                });
               var i = a.series.push(
                 am5xy.ColumnSeries.new(t, {
                   name: "Income",
@@ -3724,34 +3672,13 @@ var KTChartsWidget24 = {
                     renderer: am5xy.AxisRendererY.new(t, {}),
                   })
                 );
-              s
-                .get("renderer")
-                .labels.template.setAll({
-                  paddingTop: 0,
-                  fontWeight: "400",
-                  fontSize: 11,
-                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
-                }),
-                s
-                  .get("renderer")
-                  .grid.template.setAll({
-                    stroke: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-300")
-                    ),
-                    strokeWidth: 1,
-                    strokeOpacity: 1,
-                    strokeDasharray: [3],
-                  }),
-                s.data.setAll(a);
-              var n = i.yAxes.push(
-                am5xy.CategoryAxis.new(t, {
-                  categoryField: "age",
-                  renderer: am5xy.AxisRendererY.new(t, { opposite: !0 }),
-                })
-              );
-              n
-                .get("renderer")
-                .grid.template.setAll({
+              s.get("renderer").labels.template.setAll({
+                paddingTop: 0,
+                fontWeight: "400",
+                fontSize: 11,
+                fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+              }),
+                s.get("renderer").grid.template.setAll({
                   stroke: am5.color(
                     KTUtil.getCssVariableValue("--bs-gray-300")
                   ),
@@ -3759,16 +3686,25 @@ var KTChartsWidget24 = {
                   strokeOpacity: 1,
                   strokeDasharray: [3],
                 }),
-                n
-                  .get("renderer")
-                  .labels.template.setAll({
-                    paddingTop: 0,
-                    fontWeight: "400",
-                    fontSize: 11,
-                    fill: am5.color(
-                      KTUtil.getCssVariableValue("--bs-gray-500")
-                    ),
-                  }),
+                s.data.setAll(a);
+              var n = i.yAxes.push(
+                am5xy.CategoryAxis.new(t, {
+                  categoryField: "age",
+                  renderer: am5xy.AxisRendererY.new(t, { opposite: !0 }),
+                })
+              );
+              n.get("renderer").grid.template.setAll({
+                stroke: am5.color(KTUtil.getCssVariableValue("--bs-gray-300")),
+                strokeWidth: 1,
+                strokeOpacity: 1,
+                strokeDasharray: [3],
+              }),
+                n.get("renderer").labels.template.setAll({
+                  paddingTop: 0,
+                  fontWeight: "400",
+                  fontSize: 11,
+                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+                }),
                 n.data.setAll(a);
               var d = i.xAxes.push(
                 am5xy.ValueAxis.new(t, {
@@ -3778,14 +3714,12 @@ var KTChartsWidget24 = {
                   renderer: am5xy.AxisRendererX.new(t, { minGridDistance: 40 }),
                 })
               );
-              d
-                .get("renderer")
-                .labels.template.setAll({
-                  paddingTop: 20,
-                  fontWeight: "400",
-                  fontSize: 11,
-                  fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
-                }),
+              d.get("renderer").labels.template.setAll({
+                paddingTop: 20,
+                fontWeight: "400",
+                fontSize: 11,
+                fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500")),
+              }),
                 d
                   .get("renderer")
                   .grid.template.setAll({ disabled: !0, strokeOpacity: 0 });

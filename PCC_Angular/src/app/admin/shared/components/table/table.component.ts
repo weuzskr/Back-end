@@ -44,7 +44,6 @@ export class TableComponent implements OnInit {
         this.paginateCitoyens();
       },
       (error) => {
-        // console.error('Erreur lors de la récupération des citoyens pour le ministre :', error);
       }
     );
   }
@@ -52,8 +51,6 @@ export class TableComponent implements OnInit {
     if (localStorage.getItem("userConnect")) {
       this.user = JSON.parse(localStorage.getItem("userConnect") || "");
       this.consulat_id = this.user.user.consulatId;
-      // console.log(this.consulat_id);
-      // console.log("L'utilisateur connecté est :", this.user.user);
 
     }
   }
@@ -66,7 +63,6 @@ export class TableComponent implements OnInit {
         this.paginateCitoyens();
       },
       (error) => {
-        // console.error('Erreur lors de la récupération des citoyens pour le chancelier :', error);
       }
     );
   }

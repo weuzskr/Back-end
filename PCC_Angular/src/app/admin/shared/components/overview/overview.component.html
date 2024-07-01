@@ -180,15 +180,17 @@
                             <tr
                               class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
                             >
-                              <th class="min-w-200px">Matricule</th>
-                              <th class="min-w-200px">Prénom</th>
-                              <th class="min-w-200px">Nom</th>
-                              <th class="min-w-200px">Age</th>
-                              <th class="min-w-200px">Sexe</th>
-                              <th class="text-center min-w-100px">Statut</th>
+                              <th class="min-w-200px"><h3>Matricule</h3></th>
+                              <th class="min-w-200px"><h3>Prénom</h3></th>
+                              <th class="min-w-200px"><h3>Nom</h3></th>
+                              <th class="min-w-200px"><h3>Age</h3></th>
+                              <th class="min-w-200px"><h3>Sexe</h3></th>
+                              <th class="text-center min-w-100px">
+                                <h3>Statut</h3>
+                              </th>
                             </tr>
                           </thead>
-                          <tbody class="fw-semibold text-gray-600">
+                          <tbody class="text-gray-800 fs-5 fw-bold">
                             <tr
                               *ngFor="
                                 let famille of paginatedFamilles
@@ -338,19 +340,21 @@
                         >
                           <thead>
                             <tr
-                              class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0"
+                              class="text-start text-gray-800 fs-5 fw-bold text-uppercase gs-0"
                             >
-                              <th class="min-w-200px">Matricule</th>
-                              <th class="min-w-200px">Prénom</th>
-                              <th class="min-w-200px">Nom</th>
-                              <th class="min-w-200px">Numero de Telephone</th>
-                              <th class="min-w-200px">Adresse</th>
+                              <th class="min-w-200px"><h3>Matricule</h3></th>
+                              <th class="min-w-200px"><h3>Prénom</h3></th>
+                              <th class="min-w-200px"><h3>Nom</h3></th>
+                              <th class="min-w-200px">
+                                <h3>Numero de Telephone</h3>
+                              </th>
+                              <th class="min-w-200px"><h3>Adresse</h3></th>
                               <th class="text-center min-w-100px">
-                                Lien de parenté
+                                <h3>Lien de parenté</h3>
                               </th>
                             </tr>
                           </thead>
-                          <tbody class="fw-semibold text-gray-600">
+                          <tbody class="text-gray-800 fs-5 fw-bold">
                             <tr
                               *ngFor="
                                 let attache of paginatedAttaches
